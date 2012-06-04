@@ -1,0 +1,1 @@
+/usr/bin/c++   -O2 -g     -pthread CMakeFiles/evaluator.dir/src/evaluator.o CMakeFiles/evaluator.dir/src/AU_UAV_ROS/standardDefs.o  -o ../bin/evaluator -rdynamic -L/opt/ros/fuerte/lib -lroscpp -lrostime -lrosconsole -lroscpp_serialization -lxmlrpcpp -lroslib -Wl,-rpath,/opt/ros/fuerte/lib 

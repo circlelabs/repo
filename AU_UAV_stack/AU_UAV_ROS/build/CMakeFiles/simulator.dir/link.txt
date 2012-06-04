@@ -1,0 +1,1 @@
+/usr/bin/c++   -O2 -g     -pthread CMakeFiles/simulator.dir/src/simulator.o CMakeFiles/simulator.dir/src/AU_UAV_ROS/SimulatedPlane.o CMakeFiles/simulator.dir/src/AU_UAV_ROS/standardDefs.o  -o ../bin/simulator -rdynamic -L/opt/ros/fuerte/lib -lroscpp -lrostime -lrosconsole -lroscpp_serialization -lxmlrpcpp -lroslib -Wl,-rpath,/opt/ros/fuerte/lib 
