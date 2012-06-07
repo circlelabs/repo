@@ -13,6 +13,8 @@ is already setup along with a dummy version of how the service request would wor
 #include "ros/ros.h"
 #include "AU_UAV_ROS/TelemetryUpdate.h"
 #include "AU_UAV_ROS/GoToWaypoint.h"
+#include "AU_UAV_ROS/RequestWaypointInfo.h"
+#include "AU_UAV_ROS/standardDefs.h"
 
 
 //ROS service client for calling a service from the coordinator
@@ -75,8 +77,8 @@ int main(int argc, char **argv)
 	
 	//subscribe to telemetry outputs and create clients for the goToWaypoint and requestWaypointInfo services
 	ros::Subscriber sub = n.subscribe("telemetry", 1000, telemetryCallback);
-	goToWaypointClient = n.serviceClient<AU_UAV_ROS::GoToWaypoint>("go_to_waypoint");
-	requestWaypointInfoClient = n.serviceClient<AU_UAV_ROS::RequestWaypointInfo>("request_waypoint_info");
+	//goToWaypointClient = n.serviceClient<AU_UAV_ROS::GoToWaypoint>("go_to_waypoint");
+	//requestWaypointInfoClient = n.serviceClient<AU_UAV_ROS::RequestWaypointInfo>("request_waypoint_info");
 	
 	//initialize counting
 	count = 0;
