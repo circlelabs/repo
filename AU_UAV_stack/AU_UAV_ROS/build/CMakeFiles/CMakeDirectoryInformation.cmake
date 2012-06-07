@@ -12,6 +12,11 @@ SET(CMAKE_FORCE_UNIX_PATHS 1)
 SET(CMAKE_C_INCLUDE_PATH
   "../include"
   "/opt/ros/fuerte/include"
+  "/opt/ros/fuerte/stacks/geometry/tf/include"
+  "/opt/ros/fuerte/stacks/geometry/tf/msg_gen/cpp/include"
+  "/opt/ros/fuerte/stacks/geometry/tf/srv_gen/cpp/include"
+  "/opt/ros/fuerte/stacks/bullet/include"
+  "/opt/ros/fuerte/stacks/geometry/angles/include"
   "../msg_gen/cpp/include"
   "../srv_gen/cpp/include"
   )

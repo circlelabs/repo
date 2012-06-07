@@ -56,17 +56,27 @@ CMakeFiles/coordinator.dir/src/coordinator.o: /opt/ros/fuerte/share/rospy/manife
 CMakeFiles/coordinator.dir/src/coordinator.o: /opt/ros/fuerte/share/roslib/manifest.xml
 CMakeFiles/coordinator.dir/src/coordinator.o: /opt/ros/fuerte/share/geometry_msgs/manifest.xml
 CMakeFiles/coordinator.dir/src/coordinator.o: /opt/ros/fuerte/share/visualization_msgs/manifest.xml
+CMakeFiles/coordinator.dir/src/coordinator.o: /opt/ros/fuerte/stacks/bullet/manifest.xml
+CMakeFiles/coordinator.dir/src/coordinator.o: /opt/ros/fuerte/share/sensor_msgs/manifest.xml
+CMakeFiles/coordinator.dir/src/coordinator.o: /opt/ros/fuerte/share/rosconsole/manifest.xml
+CMakeFiles/coordinator.dir/src/coordinator.o: /opt/ros/fuerte/stacks/geometry/angles/manifest.xml
+CMakeFiles/coordinator.dir/src/coordinator.o: /opt/ros/fuerte/share/rostest/manifest.xml
+CMakeFiles/coordinator.dir/src/coordinator.o: /opt/ros/fuerte/share/roswtf/manifest.xml
+CMakeFiles/coordinator.dir/src/coordinator.o: /opt/ros/fuerte/share/message_filters/manifest.xml
+CMakeFiles/coordinator.dir/src/coordinator.o: /opt/ros/fuerte/stacks/geometry/tf/manifest.xml
+CMakeFiles/coordinator.dir/src/coordinator.o: /opt/ros/fuerte/stacks/geometry/tf/msg_gen/generated
+CMakeFiles/coordinator.dir/src/coordinator.o: /opt/ros/fuerte/stacks/geometry/tf/srv_gen/generated
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/coordinator.dir/src/coordinator.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/coordinator.dir/src/coordinator.o -c /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/coordinator.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -DBT_USE_DOUBLE_PRECISION -DBT_EULER_DEFAULT_ZYX -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/coordinator.dir/src/coordinator.o -c /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/coordinator.cpp
 
 CMakeFiles/coordinator.dir/src/coordinator.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/coordinator.dir/src/coordinator.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/coordinator.cpp > CMakeFiles/coordinator.dir/src/coordinator.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -DBT_USE_DOUBLE_PRECISION -DBT_EULER_DEFAULT_ZYX -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/coordinator.cpp > CMakeFiles/coordinator.dir/src/coordinator.i
 
 CMakeFiles/coordinator.dir/src/coordinator.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/coordinator.dir/src/coordinator.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/coordinator.cpp -o CMakeFiles/coordinator.dir/src/coordinator.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -DBT_USE_DOUBLE_PRECISION -DBT_EULER_DEFAULT_ZYX -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/coordinator.cpp -o CMakeFiles/coordinator.dir/src/coordinator.s
 
 CMakeFiles/coordinator.dir/src/coordinator.o.requires:
 .PHONY : CMakeFiles/coordinator.dir/src/coordinator.o.requires
@@ -87,17 +97,27 @@ CMakeFiles/coordinator.dir/src/AU_UAV_ROS/PlaneCoordinator.o: /opt/ros/fuerte/sh
 CMakeFiles/coordinator.dir/src/AU_UAV_ROS/PlaneCoordinator.o: /opt/ros/fuerte/share/roslib/manifest.xml
 CMakeFiles/coordinator.dir/src/AU_UAV_ROS/PlaneCoordinator.o: /opt/ros/fuerte/share/geometry_msgs/manifest.xml
 CMakeFiles/coordinator.dir/src/AU_UAV_ROS/PlaneCoordinator.o: /opt/ros/fuerte/share/visualization_msgs/manifest.xml
+CMakeFiles/coordinator.dir/src/AU_UAV_ROS/PlaneCoordinator.o: /opt/ros/fuerte/stacks/bullet/manifest.xml
+CMakeFiles/coordinator.dir/src/AU_UAV_ROS/PlaneCoordinator.o: /opt/ros/fuerte/share/sensor_msgs/manifest.xml
+CMakeFiles/coordinator.dir/src/AU_UAV_ROS/PlaneCoordinator.o: /opt/ros/fuerte/share/rosconsole/manifest.xml
+CMakeFiles/coordinator.dir/src/AU_UAV_ROS/PlaneCoordinator.o: /opt/ros/fuerte/stacks/geometry/angles/manifest.xml
+CMakeFiles/coordinator.dir/src/AU_UAV_ROS/PlaneCoordinator.o: /opt/ros/fuerte/share/rostest/manifest.xml
+CMakeFiles/coordinator.dir/src/AU_UAV_ROS/PlaneCoordinator.o: /opt/ros/fuerte/share/roswtf/manifest.xml
+CMakeFiles/coordinator.dir/src/AU_UAV_ROS/PlaneCoordinator.o: /opt/ros/fuerte/share/message_filters/manifest.xml
+CMakeFiles/coordinator.dir/src/AU_UAV_ROS/PlaneCoordinator.o: /opt/ros/fuerte/stacks/geometry/tf/manifest.xml
+CMakeFiles/coordinator.dir/src/AU_UAV_ROS/PlaneCoordinator.o: /opt/ros/fuerte/stacks/geometry/tf/msg_gen/generated
+CMakeFiles/coordinator.dir/src/AU_UAV_ROS/PlaneCoordinator.o: /opt/ros/fuerte/stacks/geometry/tf/srv_gen/generated
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles $(CMAKE_PROGRESS_2)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/coordinator.dir/src/AU_UAV_ROS/PlaneCoordinator.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/coordinator.dir/src/AU_UAV_ROS/PlaneCoordinator.o -c /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/PlaneCoordinator.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -DBT_USE_DOUBLE_PRECISION -DBT_EULER_DEFAULT_ZYX -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/coordinator.dir/src/AU_UAV_ROS/PlaneCoordinator.o -c /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/PlaneCoordinator.cpp
 
 CMakeFiles/coordinator.dir/src/AU_UAV_ROS/PlaneCoordinator.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/coordinator.dir/src/AU_UAV_ROS/PlaneCoordinator.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/PlaneCoordinator.cpp > CMakeFiles/coordinator.dir/src/AU_UAV_ROS/PlaneCoordinator.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -DBT_USE_DOUBLE_PRECISION -DBT_EULER_DEFAULT_ZYX -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/PlaneCoordinator.cpp > CMakeFiles/coordinator.dir/src/AU_UAV_ROS/PlaneCoordinator.i
 
 CMakeFiles/coordinator.dir/src/AU_UAV_ROS/PlaneCoordinator.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/coordinator.dir/src/AU_UAV_ROS/PlaneCoordinator.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/PlaneCoordinator.cpp -o CMakeFiles/coordinator.dir/src/AU_UAV_ROS/PlaneCoordinator.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -DBT_USE_DOUBLE_PRECISION -DBT_EULER_DEFAULT_ZYX -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/PlaneCoordinator.cpp -o CMakeFiles/coordinator.dir/src/AU_UAV_ROS/PlaneCoordinator.s
 
 CMakeFiles/coordinator.dir/src/AU_UAV_ROS/PlaneCoordinator.o.requires:
 .PHONY : CMakeFiles/coordinator.dir/src/AU_UAV_ROS/PlaneCoordinator.o.requires
@@ -118,17 +138,27 @@ CMakeFiles/coordinator.dir/src/AU_UAV_ROS/standardDefs.o: /opt/ros/fuerte/share/
 CMakeFiles/coordinator.dir/src/AU_UAV_ROS/standardDefs.o: /opt/ros/fuerte/share/roslib/manifest.xml
 CMakeFiles/coordinator.dir/src/AU_UAV_ROS/standardDefs.o: /opt/ros/fuerte/share/geometry_msgs/manifest.xml
 CMakeFiles/coordinator.dir/src/AU_UAV_ROS/standardDefs.o: /opt/ros/fuerte/share/visualization_msgs/manifest.xml
+CMakeFiles/coordinator.dir/src/AU_UAV_ROS/standardDefs.o: /opt/ros/fuerte/stacks/bullet/manifest.xml
+CMakeFiles/coordinator.dir/src/AU_UAV_ROS/standardDefs.o: /opt/ros/fuerte/share/sensor_msgs/manifest.xml
+CMakeFiles/coordinator.dir/src/AU_UAV_ROS/standardDefs.o: /opt/ros/fuerte/share/rosconsole/manifest.xml
+CMakeFiles/coordinator.dir/src/AU_UAV_ROS/standardDefs.o: /opt/ros/fuerte/stacks/geometry/angles/manifest.xml
+CMakeFiles/coordinator.dir/src/AU_UAV_ROS/standardDefs.o: /opt/ros/fuerte/share/rostest/manifest.xml
+CMakeFiles/coordinator.dir/src/AU_UAV_ROS/standardDefs.o: /opt/ros/fuerte/share/roswtf/manifest.xml
+CMakeFiles/coordinator.dir/src/AU_UAV_ROS/standardDefs.o: /opt/ros/fuerte/share/message_filters/manifest.xml
+CMakeFiles/coordinator.dir/src/AU_UAV_ROS/standardDefs.o: /opt/ros/fuerte/stacks/geometry/tf/manifest.xml
+CMakeFiles/coordinator.dir/src/AU_UAV_ROS/standardDefs.o: /opt/ros/fuerte/stacks/geometry/tf/msg_gen/generated
+CMakeFiles/coordinator.dir/src/AU_UAV_ROS/standardDefs.o: /opt/ros/fuerte/stacks/geometry/tf/srv_gen/generated
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles $(CMAKE_PROGRESS_3)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/coordinator.dir/src/AU_UAV_ROS/standardDefs.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/coordinator.dir/src/AU_UAV_ROS/standardDefs.o -c /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/standardDefs.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -DBT_USE_DOUBLE_PRECISION -DBT_EULER_DEFAULT_ZYX -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/coordinator.dir/src/AU_UAV_ROS/standardDefs.o -c /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/standardDefs.cpp
 
 CMakeFiles/coordinator.dir/src/AU_UAV_ROS/standardDefs.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/coordinator.dir/src/AU_UAV_ROS/standardDefs.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/standardDefs.cpp > CMakeFiles/coordinator.dir/src/AU_UAV_ROS/standardDefs.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -DBT_USE_DOUBLE_PRECISION -DBT_EULER_DEFAULT_ZYX -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/standardDefs.cpp > CMakeFiles/coordinator.dir/src/AU_UAV_ROS/standardDefs.i
 
 CMakeFiles/coordinator.dir/src/AU_UAV_ROS/standardDefs.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/coordinator.dir/src/AU_UAV_ROS/standardDefs.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/standardDefs.cpp -o CMakeFiles/coordinator.dir/src/AU_UAV_ROS/standardDefs.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -DBT_USE_DOUBLE_PRECISION -DBT_EULER_DEFAULT_ZYX -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/standardDefs.cpp -o CMakeFiles/coordinator.dir/src/AU_UAV_ROS/standardDefs.s
 
 CMakeFiles/coordinator.dir/src/AU_UAV_ROS/standardDefs.o.requires:
 .PHONY : CMakeFiles/coordinator.dir/src/AU_UAV_ROS/standardDefs.o.requires

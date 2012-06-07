@@ -57,6 +57,16 @@ CMakeFiles/ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/AU_UAV_ROS/TelemetryUpdat
 ../msg_gen/cpp/include/AU_UAV_ROS/Command.h: /opt/ros/fuerte/share/roslib/manifest.xml
 ../msg_gen/cpp/include/AU_UAV_ROS/Command.h: /opt/ros/fuerte/share/geometry_msgs/manifest.xml
 ../msg_gen/cpp/include/AU_UAV_ROS/Command.h: /opt/ros/fuerte/share/visualization_msgs/manifest.xml
+../msg_gen/cpp/include/AU_UAV_ROS/Command.h: /opt/ros/fuerte/stacks/bullet/manifest.xml
+../msg_gen/cpp/include/AU_UAV_ROS/Command.h: /opt/ros/fuerte/share/sensor_msgs/manifest.xml
+../msg_gen/cpp/include/AU_UAV_ROS/Command.h: /opt/ros/fuerte/share/rosconsole/manifest.xml
+../msg_gen/cpp/include/AU_UAV_ROS/Command.h: /opt/ros/fuerte/stacks/geometry/angles/manifest.xml
+../msg_gen/cpp/include/AU_UAV_ROS/Command.h: /opt/ros/fuerte/share/rostest/manifest.xml
+../msg_gen/cpp/include/AU_UAV_ROS/Command.h: /opt/ros/fuerte/share/roswtf/manifest.xml
+../msg_gen/cpp/include/AU_UAV_ROS/Command.h: /opt/ros/fuerte/share/message_filters/manifest.xml
+../msg_gen/cpp/include/AU_UAV_ROS/Command.h: /opt/ros/fuerte/stacks/geometry/tf/manifest.xml
+../msg_gen/cpp/include/AU_UAV_ROS/Command.h: /opt/ros/fuerte/stacks/geometry/tf/msg_gen/generated
+../msg_gen/cpp/include/AU_UAV_ROS/Command.h: /opt/ros/fuerte/stacks/geometry/tf/srv_gen/generated
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../msg_gen/cpp/include/AU_UAV_ROS/Command.h"
 	/opt/ros/fuerte/share/roscpp/rosbuild/scripts/genmsg_cpp.py /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/msg/Command.msg
@@ -73,6 +83,16 @@ CMakeFiles/ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/AU_UAV_ROS/TelemetryUpdat
 ../msg_gen/cpp/include/AU_UAV_ROS/TelemetryUpdate.h: /opt/ros/fuerte/share/roslib/manifest.xml
 ../msg_gen/cpp/include/AU_UAV_ROS/TelemetryUpdate.h: /opt/ros/fuerte/share/geometry_msgs/manifest.xml
 ../msg_gen/cpp/include/AU_UAV_ROS/TelemetryUpdate.h: /opt/ros/fuerte/share/visualization_msgs/manifest.xml
+../msg_gen/cpp/include/AU_UAV_ROS/TelemetryUpdate.h: /opt/ros/fuerte/stacks/bullet/manifest.xml
+../msg_gen/cpp/include/AU_UAV_ROS/TelemetryUpdate.h: /opt/ros/fuerte/share/sensor_msgs/manifest.xml
+../msg_gen/cpp/include/AU_UAV_ROS/TelemetryUpdate.h: /opt/ros/fuerte/share/rosconsole/manifest.xml
+../msg_gen/cpp/include/AU_UAV_ROS/TelemetryUpdate.h: /opt/ros/fuerte/stacks/geometry/angles/manifest.xml
+../msg_gen/cpp/include/AU_UAV_ROS/TelemetryUpdate.h: /opt/ros/fuerte/share/rostest/manifest.xml
+../msg_gen/cpp/include/AU_UAV_ROS/TelemetryUpdate.h: /opt/ros/fuerte/share/roswtf/manifest.xml
+../msg_gen/cpp/include/AU_UAV_ROS/TelemetryUpdate.h: /opt/ros/fuerte/share/message_filters/manifest.xml
+../msg_gen/cpp/include/AU_UAV_ROS/TelemetryUpdate.h: /opt/ros/fuerte/stacks/geometry/tf/manifest.xml
+../msg_gen/cpp/include/AU_UAV_ROS/TelemetryUpdate.h: /opt/ros/fuerte/stacks/geometry/tf/msg_gen/generated
+../msg_gen/cpp/include/AU_UAV_ROS/TelemetryUpdate.h: /opt/ros/fuerte/stacks/geometry/tf/srv_gen/generated
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles $(CMAKE_PROGRESS_2)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../msg_gen/cpp/include/AU_UAV_ROS/TelemetryUpdate.h"
 	/opt/ros/fuerte/share/roscpp/rosbuild/scripts/genmsg_cpp.py /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/msg/TelemetryUpdate.msg

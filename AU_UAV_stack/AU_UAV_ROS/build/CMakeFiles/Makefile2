@@ -445,9 +445,9 @@ clean: CMakeFiles/evaluator.dir/clean
 # Target rules for target CMakeFiles/rosbuild_precompile.dir
 
 # All Build rule for target.
+CMakeFiles/rosbuild_precompile.dir/all: CMakeFiles/rospack_gensrv.dir/all
 CMakeFiles/rosbuild_precompile.dir/all: CMakeFiles/rospack_genmsg.dir/all
 CMakeFiles/rosbuild_precompile.dir/all: CMakeFiles/rospack_genmsg_libexe.dir/all
-CMakeFiles/rosbuild_precompile.dir/all: CMakeFiles/rospack_gensrv.dir/all
 	$(MAKE) -f CMakeFiles/rosbuild_precompile.dir/build.make CMakeFiles/rosbuild_precompile.dir/depend
 	$(MAKE) -f CMakeFiles/rosbuild_precompile.dir/build.make CMakeFiles/rosbuild_precompile.dir/build
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles 
@@ -673,13 +673,48 @@ clean: CMakeFiles/rospack_gensrv_all.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/rvizTranslator.dir
+
+# All Build rule for target.
+CMakeFiles/rvizTranslator.dir/all: CMakeFiles/rosbuild_precompile.dir/all
+	$(MAKE) -f CMakeFiles/rvizTranslator.dir/build.make CMakeFiles/rvizTranslator.dir/depend
+	$(MAKE) -f CMakeFiles/rvizTranslator.dir/build.make CMakeFiles/rvizTranslator.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles  43
+	@echo "Built target rvizTranslator"
+.PHONY : CMakeFiles/rvizTranslator.dir/all
+
+# Include target in all.
+all: CMakeFiles/rvizTranslator.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/rvizTranslator.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles 33
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/rvizTranslator.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles 0
+.PHONY : CMakeFiles/rvizTranslator.dir/rule
+
+# Convenience name for target.
+rvizTranslator: CMakeFiles/rvizTranslator.dir/rule
+.PHONY : rvizTranslator
+
+# clean rule for target.
+CMakeFiles/rvizTranslator.dir/clean:
+	$(MAKE) -f CMakeFiles/rvizTranslator.dir/build.make CMakeFiles/rvizTranslator.dir/clean
+.PHONY : CMakeFiles/rvizTranslator.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/rvizTranslator.dir/clean
+.PHONY : clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/simulator.dir
 
 # All Build rule for target.
 CMakeFiles/simulator.dir/all: CMakeFiles/rosbuild_precompile.dir/all
 	$(MAKE) -f CMakeFiles/simulator.dir/build.make CMakeFiles/simulator.dir/depend
 	$(MAKE) -f CMakeFiles/simulator.dir/build.make CMakeFiles/simulator.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles  43 44 45
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles  44 45 46
 	@echo "Built target simulator"
 .PHONY : CMakeFiles/simulator.dir/all
 
@@ -869,7 +904,7 @@ clean: CMakeFiles/tests.dir/clean
 CMakeFiles/visualization.dir/all: CMakeFiles/rosbuild_precompile.dir/all
 	$(MAKE) -f CMakeFiles/visualization.dir/build.make CMakeFiles/visualization.dir/depend
 	$(MAKE) -f CMakeFiles/visualization.dir/build.make CMakeFiles/visualization.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles  46
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles  47
 	@echo "Built target visualization"
 .PHONY : CMakeFiles/visualization.dir/all
 

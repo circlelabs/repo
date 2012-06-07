@@ -56,17 +56,27 @@ CMakeFiles/visualization.dir/src/visualization.o: /opt/ros/fuerte/share/rospy/ma
 CMakeFiles/visualization.dir/src/visualization.o: /opt/ros/fuerte/share/roslib/manifest.xml
 CMakeFiles/visualization.dir/src/visualization.o: /opt/ros/fuerte/share/geometry_msgs/manifest.xml
 CMakeFiles/visualization.dir/src/visualization.o: /opt/ros/fuerte/share/visualization_msgs/manifest.xml
+CMakeFiles/visualization.dir/src/visualization.o: /opt/ros/fuerte/stacks/bullet/manifest.xml
+CMakeFiles/visualization.dir/src/visualization.o: /opt/ros/fuerte/share/sensor_msgs/manifest.xml
+CMakeFiles/visualization.dir/src/visualization.o: /opt/ros/fuerte/share/rosconsole/manifest.xml
+CMakeFiles/visualization.dir/src/visualization.o: /opt/ros/fuerte/stacks/geometry/angles/manifest.xml
+CMakeFiles/visualization.dir/src/visualization.o: /opt/ros/fuerte/share/rostest/manifest.xml
+CMakeFiles/visualization.dir/src/visualization.o: /opt/ros/fuerte/share/roswtf/manifest.xml
+CMakeFiles/visualization.dir/src/visualization.o: /opt/ros/fuerte/share/message_filters/manifest.xml
+CMakeFiles/visualization.dir/src/visualization.o: /opt/ros/fuerte/stacks/geometry/tf/manifest.xml
+CMakeFiles/visualization.dir/src/visualization.o: /opt/ros/fuerte/stacks/geometry/tf/msg_gen/generated
+CMakeFiles/visualization.dir/src/visualization.o: /opt/ros/fuerte/stacks/geometry/tf/srv_gen/generated
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/visualization.dir/src/visualization.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/visualization.dir/src/visualization.o -c /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/visualization.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -DBT_USE_DOUBLE_PRECISION -DBT_EULER_DEFAULT_ZYX -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/visualization.dir/src/visualization.o -c /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/visualization.cpp
 
 CMakeFiles/visualization.dir/src/visualization.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/visualization.dir/src/visualization.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/visualization.cpp > CMakeFiles/visualization.dir/src/visualization.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -DBT_USE_DOUBLE_PRECISION -DBT_EULER_DEFAULT_ZYX -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/visualization.cpp > CMakeFiles/visualization.dir/src/visualization.i
 
 CMakeFiles/visualization.dir/src/visualization.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/visualization.dir/src/visualization.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/visualization.cpp -o CMakeFiles/visualization.dir/src/visualization.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -DBT_USE_DOUBLE_PRECISION -DBT_EULER_DEFAULT_ZYX -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/visualization.cpp -o CMakeFiles/visualization.dir/src/visualization.s
 
 CMakeFiles/visualization.dir/src/visualization.o.requires:
 .PHONY : CMakeFiles/visualization.dir/src/visualization.o.requires
