@@ -6,7 +6,7 @@ CMakeFiles/coordinator.dir/src/AU_UAV_ROS/PlaneCoordinator.o
  ../include/AU_UAV_ROS/standardDefs.h
  ../msg_gen/cpp/include/AU_UAV_ROS/Command.h
  ../msg_gen/cpp/include/AU_UAV_ROS/TelemetryUpdate.h
- /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/PlaneCoordinator.cpp
+ /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/PlaneCoordinator.cpp
  /opt/ros/fuerte/include/XmlRpcDecl.h
  /opt/ros/fuerte/include/XmlRpcValue.h
  /opt/ros/fuerte/include/ros/advertise_options.h
@@ -64,7 +64,7 @@ CMakeFiles/coordinator.dir/src/AU_UAV_ROS/PlaneCoordinator.o
  /opt/ros/fuerte/include/std_msgs/Header.h
 CMakeFiles/coordinator.dir/src/AU_UAV_ROS/standardDefs.o
  ../include/AU_UAV_ROS/standardDefs.h
- /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/standardDefs.cpp
+ /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/standardDefs.cpp
 CMakeFiles/coordinator.dir/src/coordinator.o
  ../include/AU_UAV_ROS/PlaneCoordinator.h
  ../include/AU_UAV_ROS/standardDefs.h
@@ -75,7 +75,7 @@ CMakeFiles/coordinator.dir/src/coordinator.o
  ../srv_gen/cpp/include/AU_UAV_ROS/LoadPath.h
  ../srv_gen/cpp/include/AU_UAV_ROS/RequestPlaneID.h
  ../srv_gen/cpp/include/AU_UAV_ROS/RequestWaypointInfo.h
- /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/src/coordinator.cpp
+ /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/coordinator.cpp
  /opt/ros/fuerte/include/XmlRpcDecl.h
  /opt/ros/fuerte/include/XmlRpcValue.h
  /opt/ros/fuerte/include/ros/advertise_options.h

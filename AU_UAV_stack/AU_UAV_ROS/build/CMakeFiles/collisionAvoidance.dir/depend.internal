@@ -3,11 +3,11 @@
 
 CMakeFiles/collisionAvoidance.dir/src/AU_UAV_ROS/standardDefs.o
  ../include/AU_UAV_ROS/standardDefs.h
- /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/standardDefs.cpp
+ /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/standardDefs.cpp
 CMakeFiles/collisionAvoidance.dir/src/collisionAvoidance.o
  ../msg_gen/cpp/include/AU_UAV_ROS/TelemetryUpdate.h
  ../srv_gen/cpp/include/AU_UAV_ROS/GoToWaypoint.h
- /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/src/collisionAvoidance.cpp
+ /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/collisionAvoidance.cpp
  /opt/ros/fuerte/include/XmlRpcDecl.h
  /opt/ros/fuerte/include/XmlRpcValue.h
  /opt/ros/fuerte/include/ros/advertise_options.h

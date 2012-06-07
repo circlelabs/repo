@@ -154,7 +154,7 @@ ros/assert.h
 ros/service_traits.h
 ../srv_gen/cpp/include/AU_UAV_ROS/ros/service_traits.h
 
-/home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/standardDefs.cpp
+/home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/standardDefs.cpp
 stdio.h
 -
 string.h
@@ -162,9 +162,9 @@ string.h
 ctype.h
 -
 AU_UAV_ROS/standardDefs.h
-/home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/AU_UAV_ROS/standardDefs.h
+/home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/AU_UAV_ROS/standardDefs.h
 
-/home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/src/ControlMenu.cpp
+/home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/ControlMenu.cpp
 stdio.h
 -
 stdlib.h
@@ -174,23 +174,23 @@ iostream
 ctype.h
 -
 ros/ros.h
-/home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/src/ros/ros.h
+/home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/ros/ros.h
 ros/package.h
-/home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/src/ros/package.h
+/home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/ros/package.h
 AU_UAV_ROS/standardDefs.h
-/home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/standardDefs.h
+/home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/standardDefs.h
 AU_UAV_ROS/CreateSimulatedPlane.h
-/home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/CreateSimulatedPlane.h
+/home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/CreateSimulatedPlane.h
 AU_UAV_ROS/DeleteSimulatedPlane.h
-/home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/DeleteSimulatedPlane.h
+/home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/DeleteSimulatedPlane.h
 AU_UAV_ROS/GoToWaypoint.h
-/home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/GoToWaypoint.h
+/home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/GoToWaypoint.h
 AU_UAV_ROS/LoadPath.h
-/home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/LoadPath.h
+/home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/LoadPath.h
 AU_UAV_ROS/LoadCourse.h
-/home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/LoadCourse.h
+/home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/LoadCourse.h
 AU_UAV_ROS/SaveFlightData.h
-/home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/SaveFlightData.h
+/home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/SaveFlightData.h
 
 /opt/ros/fuerte/include/XmlRpcDecl.h
 ros/macros.h

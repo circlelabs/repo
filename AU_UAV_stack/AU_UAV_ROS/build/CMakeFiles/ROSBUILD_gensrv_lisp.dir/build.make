@@ -32,10 +32,10 @@ CMAKE_COMMAND = /usr/bin/cmake
 RM = /usr/bin/cmake -E remove -f
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS
+CMAKE_SOURCE_DIR = /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/build
+CMAKE_BINARY_DIR = /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/build
 
 # Utility rule file for ROSBUILD_gensrv_lisp.
 
@@ -78,9 +78,9 @@ CMakeFiles/ROSBUILD_gensrv_lisp: ../srv_gen/lisp/_package_CreateSimulatedPlane.l
 ../srv_gen/lisp/LoadCourse.lisp: /opt/ros/fuerte/share/roslib/manifest.xml
 ../srv_gen/lisp/LoadCourse.lisp: /opt/ros/fuerte/share/geometry_msgs/manifest.xml
 ../srv_gen/lisp/LoadCourse.lisp: /opt/ros/fuerte/share/visualization_msgs/manifest.xml
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../srv_gen/lisp/LoadCourse.lisp, ../srv_gen/lisp/_package.lisp, ../srv_gen/lisp/_package_LoadCourse.lisp"
-	/opt/ros/fuerte/share/roslisp/rosbuild/scripts/genmsg_lisp.py /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/srv/LoadCourse.srv
+	/opt/ros/fuerte/share/roslisp/rosbuild/scripts/genmsg_lisp.py /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/srv/LoadCourse.srv
 
 ../srv_gen/lisp/_package.lisp: ../srv_gen/lisp/LoadCourse.lisp
 
@@ -97,9 +97,9 @@ CMakeFiles/ROSBUILD_gensrv_lisp: ../srv_gen/lisp/_package_CreateSimulatedPlane.l
 ../srv_gen/lisp/DeleteSimulatedPlane.lisp: /opt/ros/fuerte/share/roslib/manifest.xml
 ../srv_gen/lisp/DeleteSimulatedPlane.lisp: /opt/ros/fuerte/share/geometry_msgs/manifest.xml
 ../srv_gen/lisp/DeleteSimulatedPlane.lisp: /opt/ros/fuerte/share/visualization_msgs/manifest.xml
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles $(CMAKE_PROGRESS_2)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles $(CMAKE_PROGRESS_2)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../srv_gen/lisp/DeleteSimulatedPlane.lisp, ../srv_gen/lisp/_package.lisp, ../srv_gen/lisp/_package_DeleteSimulatedPlane.lisp"
-	/opt/ros/fuerte/share/roslisp/rosbuild/scripts/genmsg_lisp.py /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/srv/DeleteSimulatedPlane.srv
+	/opt/ros/fuerte/share/roslisp/rosbuild/scripts/genmsg_lisp.py /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/srv/DeleteSimulatedPlane.srv
 
 ../srv_gen/lisp/_package.lisp: ../srv_gen/lisp/DeleteSimulatedPlane.lisp
 
@@ -116,9 +116,9 @@ CMakeFiles/ROSBUILD_gensrv_lisp: ../srv_gen/lisp/_package_CreateSimulatedPlane.l
 ../srv_gen/lisp/RequestWaypointInfo.lisp: /opt/ros/fuerte/share/roslib/manifest.xml
 ../srv_gen/lisp/RequestWaypointInfo.lisp: /opt/ros/fuerte/share/geometry_msgs/manifest.xml
 ../srv_gen/lisp/RequestWaypointInfo.lisp: /opt/ros/fuerte/share/visualization_msgs/manifest.xml
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles $(CMAKE_PROGRESS_3)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles $(CMAKE_PROGRESS_3)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../srv_gen/lisp/RequestWaypointInfo.lisp, ../srv_gen/lisp/_package.lisp, ../srv_gen/lisp/_package_RequestWaypointInfo.lisp"
-	/opt/ros/fuerte/share/roslisp/rosbuild/scripts/genmsg_lisp.py /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/srv/RequestWaypointInfo.srv
+	/opt/ros/fuerte/share/roslisp/rosbuild/scripts/genmsg_lisp.py /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/srv/RequestWaypointInfo.srv
 
 ../srv_gen/lisp/_package.lisp: ../srv_gen/lisp/RequestWaypointInfo.lisp
 
@@ -135,9 +135,9 @@ CMakeFiles/ROSBUILD_gensrv_lisp: ../srv_gen/lisp/_package_CreateSimulatedPlane.l
 ../srv_gen/lisp/SaveFlightData.lisp: /opt/ros/fuerte/share/roslib/manifest.xml
 ../srv_gen/lisp/SaveFlightData.lisp: /opt/ros/fuerte/share/geometry_msgs/manifest.xml
 ../srv_gen/lisp/SaveFlightData.lisp: /opt/ros/fuerte/share/visualization_msgs/manifest.xml
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles $(CMAKE_PROGRESS_4)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles $(CMAKE_PROGRESS_4)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../srv_gen/lisp/SaveFlightData.lisp, ../srv_gen/lisp/_package.lisp, ../srv_gen/lisp/_package_SaveFlightData.lisp"
-	/opt/ros/fuerte/share/roslisp/rosbuild/scripts/genmsg_lisp.py /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/srv/SaveFlightData.srv
+	/opt/ros/fuerte/share/roslisp/rosbuild/scripts/genmsg_lisp.py /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/srv/SaveFlightData.srv
 
 ../srv_gen/lisp/_package.lisp: ../srv_gen/lisp/SaveFlightData.lisp
 
@@ -154,9 +154,9 @@ CMakeFiles/ROSBUILD_gensrv_lisp: ../srv_gen/lisp/_package_CreateSimulatedPlane.l
 ../srv_gen/lisp/LoadPath.lisp: /opt/ros/fuerte/share/roslib/manifest.xml
 ../srv_gen/lisp/LoadPath.lisp: /opt/ros/fuerte/share/geometry_msgs/manifest.xml
 ../srv_gen/lisp/LoadPath.lisp: /opt/ros/fuerte/share/visualization_msgs/manifest.xml
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles $(CMAKE_PROGRESS_5)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles $(CMAKE_PROGRESS_5)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../srv_gen/lisp/LoadPath.lisp, ../srv_gen/lisp/_package.lisp, ../srv_gen/lisp/_package_LoadPath.lisp"
-	/opt/ros/fuerte/share/roslisp/rosbuild/scripts/genmsg_lisp.py /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/srv/LoadPath.srv
+	/opt/ros/fuerte/share/roslisp/rosbuild/scripts/genmsg_lisp.py /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/srv/LoadPath.srv
 
 ../srv_gen/lisp/_package.lisp: ../srv_gen/lisp/LoadPath.lisp
 
@@ -173,9 +173,9 @@ CMakeFiles/ROSBUILD_gensrv_lisp: ../srv_gen/lisp/_package_CreateSimulatedPlane.l
 ../srv_gen/lisp/RequestPlaneID.lisp: /opt/ros/fuerte/share/roslib/manifest.xml
 ../srv_gen/lisp/RequestPlaneID.lisp: /opt/ros/fuerte/share/geometry_msgs/manifest.xml
 ../srv_gen/lisp/RequestPlaneID.lisp: /opt/ros/fuerte/share/visualization_msgs/manifest.xml
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles $(CMAKE_PROGRESS_6)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles $(CMAKE_PROGRESS_6)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../srv_gen/lisp/RequestPlaneID.lisp, ../srv_gen/lisp/_package.lisp, ../srv_gen/lisp/_package_RequestPlaneID.lisp"
-	/opt/ros/fuerte/share/roslisp/rosbuild/scripts/genmsg_lisp.py /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/srv/RequestPlaneID.srv
+	/opt/ros/fuerte/share/roslisp/rosbuild/scripts/genmsg_lisp.py /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/srv/RequestPlaneID.srv
 
 ../srv_gen/lisp/_package.lisp: ../srv_gen/lisp/RequestPlaneID.lisp
 
@@ -192,9 +192,9 @@ CMakeFiles/ROSBUILD_gensrv_lisp: ../srv_gen/lisp/_package_CreateSimulatedPlane.l
 ../srv_gen/lisp/GoToWaypoint.lisp: /opt/ros/fuerte/share/roslib/manifest.xml
 ../srv_gen/lisp/GoToWaypoint.lisp: /opt/ros/fuerte/share/geometry_msgs/manifest.xml
 ../srv_gen/lisp/GoToWaypoint.lisp: /opt/ros/fuerte/share/visualization_msgs/manifest.xml
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles $(CMAKE_PROGRESS_7)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles $(CMAKE_PROGRESS_7)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../srv_gen/lisp/GoToWaypoint.lisp, ../srv_gen/lisp/_package.lisp, ../srv_gen/lisp/_package_GoToWaypoint.lisp"
-	/opt/ros/fuerte/share/roslisp/rosbuild/scripts/genmsg_lisp.py /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/srv/GoToWaypoint.srv
+	/opt/ros/fuerte/share/roslisp/rosbuild/scripts/genmsg_lisp.py /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/srv/GoToWaypoint.srv
 
 ../srv_gen/lisp/_package.lisp: ../srv_gen/lisp/GoToWaypoint.lisp
 
@@ -211,9 +211,9 @@ CMakeFiles/ROSBUILD_gensrv_lisp: ../srv_gen/lisp/_package_CreateSimulatedPlane.l
 ../srv_gen/lisp/CreateSimulatedPlane.lisp: /opt/ros/fuerte/share/roslib/manifest.xml
 ../srv_gen/lisp/CreateSimulatedPlane.lisp: /opt/ros/fuerte/share/geometry_msgs/manifest.xml
 ../srv_gen/lisp/CreateSimulatedPlane.lisp: /opt/ros/fuerte/share/visualization_msgs/manifest.xml
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles $(CMAKE_PROGRESS_8)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles $(CMAKE_PROGRESS_8)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../srv_gen/lisp/CreateSimulatedPlane.lisp, ../srv_gen/lisp/_package.lisp, ../srv_gen/lisp/_package_CreateSimulatedPlane.lisp"
-	/opt/ros/fuerte/share/roslisp/rosbuild/scripts/genmsg_lisp.py /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/srv/CreateSimulatedPlane.srv
+	/opt/ros/fuerte/share/roslisp/rosbuild/scripts/genmsg_lisp.py /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/srv/CreateSimulatedPlane.srv
 
 ../srv_gen/lisp/_package.lisp: ../srv_gen/lisp/CreateSimulatedPlane.lisp
 
@@ -256,6 +256,6 @@ CMakeFiles/ROSBUILD_gensrv_lisp.dir/clean:
 .PHONY : CMakeFiles/ROSBUILD_gensrv_lisp.dir/clean
 
 CMakeFiles/ROSBUILD_gensrv_lisp.dir/depend:
-	cd /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/build /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/build /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles/ROSBUILD_gensrv_lisp.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/build /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/build /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles/ROSBUILD_gensrv_lisp.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/ROSBUILD_gensrv_lisp.dir/depend
 

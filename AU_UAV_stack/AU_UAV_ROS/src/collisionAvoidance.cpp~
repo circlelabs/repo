@@ -73,10 +73,12 @@ int main(int argc, char **argv)
 	ros::init(argc, argv, "collisionAvoidance");
 	ros::NodeHandle n;
 	
-	//subscribe to telemetry outputs and create clients for the goToWaypoint and requestWaypointInfo services
+	//subscribe to telemetry outputs and create client for the avoid collision service
 	ros::Subscriber sub = n.subscribe("telemetry", 1000, telemetryCallback);
-	goToWaypointClient = n.serviceClient<AU_UAV_ROS::GoToWaypoint>("go_to_waypoint");
-	requestWaypointInfoClient = n.serviceClient<AU_UAV_ROS::RequestWaypointInfo>("request_waypoint_info");
+	client = n.serviceClient<AU_UAV_ROS::GoToWaypoint>("go_to_waypoint");
+	
+	//random seed for if statement in telemetryCallback, remove when collision avoidance work begins
+	srand(time(NULL));
 	
 	//initialize counting
 	count = 0;

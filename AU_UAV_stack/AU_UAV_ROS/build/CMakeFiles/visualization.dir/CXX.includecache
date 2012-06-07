@@ -30,7 +30,7 @@ ros/assert.h
 std_msgs/Header.h
 ../msg_gen/cpp/include/AU_UAV_ROS/std_msgs/Header.h
 
-/home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/src/visualization.cpp
+/home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/visualization.cpp
 stdio.h
 -
 ros/ros.h
@@ -38,7 +38,7 @@ ros/ros.h
 visualization_msgs/Marker.h
 -
 AU_UAV_ROS/TelemetryUpdate.h
-/home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/TelemetryUpdate.h
+/home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/TelemetryUpdate.h
 
 /opt/ros/fuerte/include/XmlRpcDecl.h
 ros/macros.h

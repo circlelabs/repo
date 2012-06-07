@@ -3,7 +3,7 @@
 
 CMakeFiles/ControlMenu.dir/src/AU_UAV_ROS/standardDefs.o
  ../include/AU_UAV_ROS/standardDefs.h
- /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/standardDefs.cpp
+ /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/standardDefs.cpp
 CMakeFiles/ControlMenu.dir/src/ControlMenu.o
  ../include/AU_UAV_ROS/standardDefs.h
  ../srv_gen/cpp/include/AU_UAV_ROS/CreateSimulatedPlane.h
@@ -12,7 +12,7 @@ CMakeFiles/ControlMenu.dir/src/ControlMenu.o
  ../srv_gen/cpp/include/AU_UAV_ROS/LoadCourse.h
  ../srv_gen/cpp/include/AU_UAV_ROS/LoadPath.h
  ../srv_gen/cpp/include/AU_UAV_ROS/SaveFlightData.h
- /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/src/ControlMenu.cpp
+ /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/ControlMenu.cpp
  /opt/ros/fuerte/include/XmlRpcDecl.h
  /opt/ros/fuerte/include/XmlRpcValue.h
  /opt/ros/fuerte/include/ros/advertise_options.h

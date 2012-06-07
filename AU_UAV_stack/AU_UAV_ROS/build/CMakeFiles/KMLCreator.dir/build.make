@@ -32,10 +32,10 @@ CMAKE_COMMAND = /usr/bin/cmake
 RM = /usr/bin/cmake -E remove -f
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS
+CMAKE_SOURCE_DIR = /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/build
+CMAKE_BINARY_DIR = /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/KMLCreator.dir/depend.make
@@ -56,17 +56,17 @@ CMakeFiles/KMLCreator.dir/src/KMLCreator.o: /opt/ros/fuerte/share/rospy/manifest
 CMakeFiles/KMLCreator.dir/src/KMLCreator.o: /opt/ros/fuerte/share/roslib/manifest.xml
 CMakeFiles/KMLCreator.dir/src/KMLCreator.o: /opt/ros/fuerte/share/geometry_msgs/manifest.xml
 CMakeFiles/KMLCreator.dir/src/KMLCreator.o: /opt/ros/fuerte/share/visualization_msgs/manifest.xml
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/KMLCreator.dir/src/KMLCreator.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/KMLCreator.dir/src/KMLCreator.o -c /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/src/KMLCreator.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/KMLCreator.dir/src/KMLCreator.o -c /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/KMLCreator.cpp
 
 CMakeFiles/KMLCreator.dir/src/KMLCreator.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/KMLCreator.dir/src/KMLCreator.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/src/KMLCreator.cpp > CMakeFiles/KMLCreator.dir/src/KMLCreator.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/KMLCreator.cpp > CMakeFiles/KMLCreator.dir/src/KMLCreator.i
 
 CMakeFiles/KMLCreator.dir/src/KMLCreator.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/KMLCreator.dir/src/KMLCreator.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/src/KMLCreator.cpp -o CMakeFiles/KMLCreator.dir/src/KMLCreator.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/KMLCreator.cpp -o CMakeFiles/KMLCreator.dir/src/KMLCreator.s
 
 CMakeFiles/KMLCreator.dir/src/KMLCreator.o.requires:
 .PHONY : CMakeFiles/KMLCreator.dir/src/KMLCreator.o.requires
@@ -102,6 +102,6 @@ CMakeFiles/KMLCreator.dir/clean:
 .PHONY : CMakeFiles/KMLCreator.dir/clean
 
 CMakeFiles/KMLCreator.dir/depend:
-	cd /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/build /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/build /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles/KMLCreator.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/build /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/build /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles/KMLCreator.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/KMLCreator.dir/depend
 

@@ -6,10 +6,6 @@
 
 #IncludeRegexTransform: 
 
-../include/AU_UAV_ROS/standardDefs.h
-math.h
--
-
 ../msg_gen/cpp/include/AU_UAV_ROS/TelemetryUpdate.h
 string
 -
@@ -58,17 +54,7 @@ ros/assert.h
 ros/service_traits.h
 ../srv_gen/cpp/include/AU_UAV_ROS/ros/service_traits.h
 
-/home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/standardDefs.cpp
-stdio.h
--
-string.h
--
-ctype.h
--
-AU_UAV_ROS/standardDefs.h
-/home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/AU_UAV_ROS/standardDefs.h
-
-/home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/src/collisionAvoidance.cpp
+/home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/collisionAvoidance.cpp
 sstream
 -
 stdlib.h
@@ -76,11 +62,11 @@ stdlib.h
 time.h
 -
 ros/ros.h
-/home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/src/ros/ros.h
+/home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/ros/ros.h
 AU_UAV_ROS/TelemetryUpdate.h
-/home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/TelemetryUpdate.h
+/home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/TelemetryUpdate.h
 AU_UAV_ROS/GoToWaypoint.h
-/home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/GoToWaypoint.h
+/home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/GoToWaypoint.h
 
 /opt/ros/fuerte/include/XmlRpcDecl.h
 ros/macros.h

@@ -32,10 +32,10 @@ CMAKE_COMMAND = /usr/bin/cmake
 RM = /usr/bin/cmake -E remove -f
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS
+CMAKE_SOURCE_DIR = /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/build
+CMAKE_BINARY_DIR = /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/build
 
 # Utility rule file for ROSBUILD_gensrv_py.
 
@@ -52,9 +52,9 @@ CMakeFiles/ROSBUILD_gensrv_py: ../src/AU_UAV_ROS/srv/__init__.py
 ../src/AU_UAV_ROS/srv/__init__.py: ../src/AU_UAV_ROS/srv/_RequestPlaneID.py
 ../src/AU_UAV_ROS/srv/__init__.py: ../src/AU_UAV_ROS/srv/_GoToWaypoint.py
 ../src/AU_UAV_ROS/srv/__init__.py: ../src/AU_UAV_ROS/srv/_CreateSimulatedPlane.py
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../src/AU_UAV_ROS/srv/__init__.py"
-	/opt/ros/fuerte/share/rospy/rosbuild/scripts/gensrv_py.py --initpy /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/srv/LoadCourse.srv /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/srv/DeleteSimulatedPlane.srv /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/srv/RequestWaypointInfo.srv /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/srv/SaveFlightData.srv /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/srv/LoadPath.srv /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/srv/RequestPlaneID.srv /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/srv/GoToWaypoint.srv /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/srv/CreateSimulatedPlane.srv
+	/opt/ros/fuerte/share/rospy/rosbuild/scripts/gensrv_py.py --initpy /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/srv/LoadCourse.srv /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/srv/DeleteSimulatedPlane.srv /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/srv/RequestWaypointInfo.srv /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/srv/SaveFlightData.srv /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/srv/LoadPath.srv /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/srv/RequestPlaneID.srv /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/srv/GoToWaypoint.srv /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/srv/CreateSimulatedPlane.srv
 
 ../src/AU_UAV_ROS/srv/_LoadCourse.py: ../srv/LoadCourse.srv
 ../src/AU_UAV_ROS/srv/_LoadCourse.py: /opt/ros/fuerte/share/rospy/rosbuild/scripts/gensrv_py.py
@@ -67,9 +67,9 @@ CMakeFiles/ROSBUILD_gensrv_py: ../src/AU_UAV_ROS/srv/__init__.py
 ../src/AU_UAV_ROS/srv/_LoadCourse.py: /opt/ros/fuerte/share/roslib/manifest.xml
 ../src/AU_UAV_ROS/srv/_LoadCourse.py: /opt/ros/fuerte/share/geometry_msgs/manifest.xml
 ../src/AU_UAV_ROS/srv/_LoadCourse.py: /opt/ros/fuerte/share/visualization_msgs/manifest.xml
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles $(CMAKE_PROGRESS_2)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles $(CMAKE_PROGRESS_2)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../src/AU_UAV_ROS/srv/_LoadCourse.py"
-	/opt/ros/fuerte/share/rospy/rosbuild/scripts/gensrv_py.py --noinitpy /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/srv/LoadCourse.srv
+	/opt/ros/fuerte/share/rospy/rosbuild/scripts/gensrv_py.py --noinitpy /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/srv/LoadCourse.srv
 
 ../src/AU_UAV_ROS/srv/_DeleteSimulatedPlane.py: ../srv/DeleteSimulatedPlane.srv
 ../src/AU_UAV_ROS/srv/_DeleteSimulatedPlane.py: /opt/ros/fuerte/share/rospy/rosbuild/scripts/gensrv_py.py
@@ -82,9 +82,9 @@ CMakeFiles/ROSBUILD_gensrv_py: ../src/AU_UAV_ROS/srv/__init__.py
 ../src/AU_UAV_ROS/srv/_DeleteSimulatedPlane.py: /opt/ros/fuerte/share/roslib/manifest.xml
 ../src/AU_UAV_ROS/srv/_DeleteSimulatedPlane.py: /opt/ros/fuerte/share/geometry_msgs/manifest.xml
 ../src/AU_UAV_ROS/srv/_DeleteSimulatedPlane.py: /opt/ros/fuerte/share/visualization_msgs/manifest.xml
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles $(CMAKE_PROGRESS_3)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles $(CMAKE_PROGRESS_3)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../src/AU_UAV_ROS/srv/_DeleteSimulatedPlane.py"
-	/opt/ros/fuerte/share/rospy/rosbuild/scripts/gensrv_py.py --noinitpy /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/srv/DeleteSimulatedPlane.srv
+	/opt/ros/fuerte/share/rospy/rosbuild/scripts/gensrv_py.py --noinitpy /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/srv/DeleteSimulatedPlane.srv
 
 ../src/AU_UAV_ROS/srv/_RequestWaypointInfo.py: ../srv/RequestWaypointInfo.srv
 ../src/AU_UAV_ROS/srv/_RequestWaypointInfo.py: /opt/ros/fuerte/share/rospy/rosbuild/scripts/gensrv_py.py
@@ -97,9 +97,9 @@ CMakeFiles/ROSBUILD_gensrv_py: ../src/AU_UAV_ROS/srv/__init__.py
 ../src/AU_UAV_ROS/srv/_RequestWaypointInfo.py: /opt/ros/fuerte/share/roslib/manifest.xml
 ../src/AU_UAV_ROS/srv/_RequestWaypointInfo.py: /opt/ros/fuerte/share/geometry_msgs/manifest.xml
 ../src/AU_UAV_ROS/srv/_RequestWaypointInfo.py: /opt/ros/fuerte/share/visualization_msgs/manifest.xml
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles $(CMAKE_PROGRESS_4)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles $(CMAKE_PROGRESS_4)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../src/AU_UAV_ROS/srv/_RequestWaypointInfo.py"
-	/opt/ros/fuerte/share/rospy/rosbuild/scripts/gensrv_py.py --noinitpy /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/srv/RequestWaypointInfo.srv
+	/opt/ros/fuerte/share/rospy/rosbuild/scripts/gensrv_py.py --noinitpy /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/srv/RequestWaypointInfo.srv
 
 ../src/AU_UAV_ROS/srv/_SaveFlightData.py: ../srv/SaveFlightData.srv
 ../src/AU_UAV_ROS/srv/_SaveFlightData.py: /opt/ros/fuerte/share/rospy/rosbuild/scripts/gensrv_py.py
@@ -112,9 +112,9 @@ CMakeFiles/ROSBUILD_gensrv_py: ../src/AU_UAV_ROS/srv/__init__.py
 ../src/AU_UAV_ROS/srv/_SaveFlightData.py: /opt/ros/fuerte/share/roslib/manifest.xml
 ../src/AU_UAV_ROS/srv/_SaveFlightData.py: /opt/ros/fuerte/share/geometry_msgs/manifest.xml
 ../src/AU_UAV_ROS/srv/_SaveFlightData.py: /opt/ros/fuerte/share/visualization_msgs/manifest.xml
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles $(CMAKE_PROGRESS_5)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles $(CMAKE_PROGRESS_5)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../src/AU_UAV_ROS/srv/_SaveFlightData.py"
-	/opt/ros/fuerte/share/rospy/rosbuild/scripts/gensrv_py.py --noinitpy /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/srv/SaveFlightData.srv
+	/opt/ros/fuerte/share/rospy/rosbuild/scripts/gensrv_py.py --noinitpy /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/srv/SaveFlightData.srv
 
 ../src/AU_UAV_ROS/srv/_LoadPath.py: ../srv/LoadPath.srv
 ../src/AU_UAV_ROS/srv/_LoadPath.py: /opt/ros/fuerte/share/rospy/rosbuild/scripts/gensrv_py.py
@@ -127,9 +127,9 @@ CMakeFiles/ROSBUILD_gensrv_py: ../src/AU_UAV_ROS/srv/__init__.py
 ../src/AU_UAV_ROS/srv/_LoadPath.py: /opt/ros/fuerte/share/roslib/manifest.xml
 ../src/AU_UAV_ROS/srv/_LoadPath.py: /opt/ros/fuerte/share/geometry_msgs/manifest.xml
 ../src/AU_UAV_ROS/srv/_LoadPath.py: /opt/ros/fuerte/share/visualization_msgs/manifest.xml
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles $(CMAKE_PROGRESS_6)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles $(CMAKE_PROGRESS_6)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../src/AU_UAV_ROS/srv/_LoadPath.py"
-	/opt/ros/fuerte/share/rospy/rosbuild/scripts/gensrv_py.py --noinitpy /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/srv/LoadPath.srv
+	/opt/ros/fuerte/share/rospy/rosbuild/scripts/gensrv_py.py --noinitpy /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/srv/LoadPath.srv
 
 ../src/AU_UAV_ROS/srv/_RequestPlaneID.py: ../srv/RequestPlaneID.srv
 ../src/AU_UAV_ROS/srv/_RequestPlaneID.py: /opt/ros/fuerte/share/rospy/rosbuild/scripts/gensrv_py.py
@@ -142,9 +142,9 @@ CMakeFiles/ROSBUILD_gensrv_py: ../src/AU_UAV_ROS/srv/__init__.py
 ../src/AU_UAV_ROS/srv/_RequestPlaneID.py: /opt/ros/fuerte/share/roslib/manifest.xml
 ../src/AU_UAV_ROS/srv/_RequestPlaneID.py: /opt/ros/fuerte/share/geometry_msgs/manifest.xml
 ../src/AU_UAV_ROS/srv/_RequestPlaneID.py: /opt/ros/fuerte/share/visualization_msgs/manifest.xml
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles $(CMAKE_PROGRESS_7)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles $(CMAKE_PROGRESS_7)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../src/AU_UAV_ROS/srv/_RequestPlaneID.py"
-	/opt/ros/fuerte/share/rospy/rosbuild/scripts/gensrv_py.py --noinitpy /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/srv/RequestPlaneID.srv
+	/opt/ros/fuerte/share/rospy/rosbuild/scripts/gensrv_py.py --noinitpy /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/srv/RequestPlaneID.srv
 
 ../src/AU_UAV_ROS/srv/_GoToWaypoint.py: ../srv/GoToWaypoint.srv
 ../src/AU_UAV_ROS/srv/_GoToWaypoint.py: /opt/ros/fuerte/share/rospy/rosbuild/scripts/gensrv_py.py
@@ -157,9 +157,9 @@ CMakeFiles/ROSBUILD_gensrv_py: ../src/AU_UAV_ROS/srv/__init__.py
 ../src/AU_UAV_ROS/srv/_GoToWaypoint.py: /opt/ros/fuerte/share/roslib/manifest.xml
 ../src/AU_UAV_ROS/srv/_GoToWaypoint.py: /opt/ros/fuerte/share/geometry_msgs/manifest.xml
 ../src/AU_UAV_ROS/srv/_GoToWaypoint.py: /opt/ros/fuerte/share/visualization_msgs/manifest.xml
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles $(CMAKE_PROGRESS_8)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles $(CMAKE_PROGRESS_8)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../src/AU_UAV_ROS/srv/_GoToWaypoint.py"
-	/opt/ros/fuerte/share/rospy/rosbuild/scripts/gensrv_py.py --noinitpy /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/srv/GoToWaypoint.srv
+	/opt/ros/fuerte/share/rospy/rosbuild/scripts/gensrv_py.py --noinitpy /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/srv/GoToWaypoint.srv
 
 ../src/AU_UAV_ROS/srv/_CreateSimulatedPlane.py: ../srv/CreateSimulatedPlane.srv
 ../src/AU_UAV_ROS/srv/_CreateSimulatedPlane.py: /opt/ros/fuerte/share/rospy/rosbuild/scripts/gensrv_py.py
@@ -172,9 +172,9 @@ CMakeFiles/ROSBUILD_gensrv_py: ../src/AU_UAV_ROS/srv/__init__.py
 ../src/AU_UAV_ROS/srv/_CreateSimulatedPlane.py: /opt/ros/fuerte/share/roslib/manifest.xml
 ../src/AU_UAV_ROS/srv/_CreateSimulatedPlane.py: /opt/ros/fuerte/share/geometry_msgs/manifest.xml
 ../src/AU_UAV_ROS/srv/_CreateSimulatedPlane.py: /opt/ros/fuerte/share/visualization_msgs/manifest.xml
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles $(CMAKE_PROGRESS_9)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles $(CMAKE_PROGRESS_9)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../src/AU_UAV_ROS/srv/_CreateSimulatedPlane.py"
-	/opt/ros/fuerte/share/rospy/rosbuild/scripts/gensrv_py.py --noinitpy /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/srv/CreateSimulatedPlane.srv
+	/opt/ros/fuerte/share/rospy/rosbuild/scripts/gensrv_py.py --noinitpy /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/srv/CreateSimulatedPlane.srv
 
 ROSBUILD_gensrv_py: CMakeFiles/ROSBUILD_gensrv_py
 ROSBUILD_gensrv_py: ../src/AU_UAV_ROS/srv/__init__.py
@@ -198,6 +198,6 @@ CMakeFiles/ROSBUILD_gensrv_py.dir/clean:
 .PHONY : CMakeFiles/ROSBUILD_gensrv_py.dir/clean
 
 CMakeFiles/ROSBUILD_gensrv_py.dir/depend:
-	cd /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/build /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/build /home/ericwestman/ros_workspace/AU_UAV_ROS/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles/ROSBUILD_gensrv_py.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/build /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/build /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/build/CMakeFiles/ROSBUILD_gensrv_py.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/ROSBUILD_gensrv_py.dir/depend
 
