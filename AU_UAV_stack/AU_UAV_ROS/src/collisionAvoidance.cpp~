@@ -80,8 +80,13 @@ int main(int argc, char **argv)
 	
 	//subscribe to telemetry outputs and create clients for the goToWaypoint and requestWaypointInfo services
 	ros::Subscriber sub = n.subscribe("telemetry", 1000, telemetryCallback);
+<<<<<<< HEAD
 	//goToWaypointClient = n.serviceClient<AU_UAV_ROS::GoToWaypoint>("go_to_waypoint");
 	//requestWaypointInfoClient = n.serviceClient<AU_UAV_ROS::RequestWaypointInfo>("request_waypoint_info");
+=======
+	goToWaypointClient = n.serviceClient<AU_UAV_ROS::GoToWaypoint>("go_to_waypoint");
+	requestWaypointInfoClient = n.serviceClient<AU_UAV_ROS::RequestWaypointInfo>("request_waypoint_info");
+>>>>>>> bab93f05c34ebcdd3eccc7365616d4805f33b6e3
 	
 	//initialize counting
 	count = 0;
