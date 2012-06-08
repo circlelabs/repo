@@ -33,40 +33,33 @@ namespace AU_UAV_ROS {
 		void setCurrentBearing(double cBearing); 	/* set current bearing in the air */
 		void setSpeed(double speed);
 		void setDestination(const AU_UAV_ROS::waypoint &destination);
-
-		/*accessor functions*/
-		void update(void);
+		void updateTime(void); //changed function name from "update" to "updateTime"
 
 		/* Update the plane's data members with the information contained within the telemetry update */
 		void update(const AU_UAV_ROS::TelemetryUpdate &msg);
 
 		/* Accessor functions: Allow the client to access the plane's id, altitude, bearing, spped, etc. */
 		int getID(void) const;
-		double getPreviousLoc(void) const;
-		double getCurrentLoc(void) const;
+		AU_UAV_ROS::coordinate getPreviousLoc(void) const;
+		AU_UAV_ROS::coordinate getCurrentLoc(void) const;
 		double getTargetBearing(void) const;		/* get target bearing */
 		double getCurrentBearing(void) const;		/* get current bearing in the air */
 		double getSpeed(void) const;
 		double getLastUpdateTime(void) const;
 		AU_UAV_ROS::waypoint getDestination(void) const;
 
-		/* 
-		Find distance / Cardinal angle between two planes. The calling plane gives the starting latitude and longitude, 
-		and the object passed as a parameter gives the final latitude and longitude.
-		*/
+/* Find distance between this plane and another plane */
 		double findDistance(const PlaneObject& pobj) const;
+/* Find distance between this plane and another plane's latitude/longitude */
+		double findDistance(double lat, double lon) const;
+
+/* Find angle between this plane and another plane */
 		double findAngle(const PlaneObject& pobj) const;
+/* Find angle between this plane and another plane's latitude/longitude */
+		double findAngle(double lat, double lon) const;
 
 		/* Overloaded equality operator */
 		PlaneObject& operator=(const PlaneObject& pobj);
-
-		/* Find the distance between this plane object and another plane object or a latitude and longitude */
-		double findDistance(double lat, double lon) const;
-		double findDistance(const PlaneObject& planeObj) const;
-
-		/* Find the Cardinal angle between this plane object and another plane object or a latitude and longitude */
-		double findAngle(double lat, double lon) const;
-		double findAngle(const PlaneObject& planeObj) const;
 
 		/* Returns true if a plane object is within the cRadius meters of this plane object, false otherwise */
 		bool isColliding(const PlaneObject& planeObj) const;

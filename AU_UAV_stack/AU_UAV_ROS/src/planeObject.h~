@@ -33,9 +33,7 @@ namespace AU_UAV_ROS {
 		void setCurrentBearing(double cBearing); 	/* set current bearing in the air */
 		void setSpeed(double speed);
 		void setDestination(const AU_UAV_ROS::waypoint &destination);
-
-		/*accessor functions*/
-		void update(void);
+		void updateTime(void); //changed function name from "update" to "updateTime"
 
 		/* Update the plane's data members with the information contained within the telemetry update */
 		void update(const AU_UAV_ROS::TelemetryUpdate &msg);
@@ -59,6 +57,17 @@ namespace AU_UAV_ROS {
 
 		/* Overloaded equality operator */
 		PlaneObject& operator=(const PlaneObject& pobj);
+
+		/* Find the distance between this plane object and another plane object or a latitude and longitude */
+		double findDistance(double lat, double lon) const;
+		double findDistance(const PlaneObject& planeObj) const;
+
+		/* Find the Cardinal angle between this plane object and another plane object or a latitude and longitude */
+		double findAngle(double lat, double lon) const;
+		double findAngle(const PlaneObject& planeObj) const;
+
+		/* Returns true if a plane object is within the cRadius meters of this plane object, false otherwise */
+		bool isColliding(const PlaneObject& planeObj) const;
 
 	private:
 		/* Private data members */
