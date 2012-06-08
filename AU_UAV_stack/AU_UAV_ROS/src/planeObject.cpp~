@@ -123,7 +123,7 @@ AU_UAV_ROS::waypoint AU_UAV_ROS::PlaneObject::getDestination(void) const {
 
 /* Find distance between this plane and another plane */
 double AU_UAV_ROS::PlaneObject::findDistance(const AU_UAV_ROS::PlaneObject::PlaneObject& plane) {
-	return this->findDistance(plane.getCurrentLoc().latitude, plane.getCurrentLoc().longitude);
+	return this->findDistance(plane.currentLoc.latitude, plane.currentLoc.longitude);
 }
 
 /* Find distance between this plane and another plane's latitude/longitude */
