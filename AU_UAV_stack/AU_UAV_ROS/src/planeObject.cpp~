@@ -108,6 +108,7 @@ void AU_UAV_ROS::PlaneObject::update(const AU_UAV_ROS::TelemetryUpdate &msg) {
 
 	//TODO setCurrentBearing
 
+	this->setPreviousLoc(this->currentLoc.latitude, this->currentLoc.longitude, this->currentLoc.altitude);
 	this->setCurrentLoc(msg.currentLatitude, msg.currentLongitude, msg.currentAltitude);
 	this->setSpeed(msg.groundSpeed);
 	this->updateTime();
@@ -152,29 +153,12 @@ double AU_UAV_ROS::PlaneObject::findDistance(const AU_UAV_ROS::PlaneObject::Plan
 }
 
 /* Find distance between this plane and another plane's latitude/longitude */
-double AU_UAV_ROS::findDistance(double lat, double lon) const {
-	double latDiff = 0.0, lonDiff = 0.0;
-	double squareHalfChord = 0.0, angularDistance = 0.0;
+double AU_UAV_ROS::findDistance(double lat2, double lon2) const {
+	double lat1 = this->currentLoc.latitude;
+	double lon1 = this->currentLoc.longitude;
 
-	/* Get difference in latitude and longitude in radians */
-	latDiff = (this->currentLoc.latitude - lat) * PI / 180.0;
-	lonDiff = (this->currentLoc.longitude - lon) * PI / 180.0;
-
-	/* Haversine math: see http://www.movable-type.co.uk/scripts/latlong.html for more information */
-
-	/* Find the square of half of the chord length between the two points */
-	/* sin(lat difference)^2 + cos(lat1) * cos(lat2) * sin(lon difference)^2 */
-	squareHalfChord = pow(sin(latDiff / 2), 2) + 
-                    	  pow(sin(lonDiff / 2), 2) *
-                    	  cos(this->currentLoc.latitude * PI / 180.0) *
-                    	  cos(lat * PI / 180.0);
-
-	/* Calulate the angular distance in radians */
-	/* 2 * arctan(sqrt(squareHalfChord), sqrt(1 - squareHalfChord) */
-	angularDistance = 2 * atan2(sqrt(squareHalfChord), sqrt(1 - squareHalfChord));
-
-	/* Return result in meters */
-	return angularDistance * EARTH_RADIUS;
+	double distance = sqrt(pow(lat2 - lat1, 2) + pow(lon2 - lon1, 2));
+	return distance;
 }
 
 /* Find angle between this plane and another plane */
@@ -204,8 +188,26 @@ double AU_UAV_ROS::PlaneObject::findAngle(double lat, double lon) const {
 }
 
 AU_UAV_ROS::PlaneObject::PlaneObject& AU_UAV_ROS::PlaneObject::PlaneObject::operator=(const AU_UAV_ROS::PlaneObject::PlaneObject& plane) {
-  this->latitude = plane.currentLoc.latitude;
-  this->longitude = plane.currentLoc.longitude;
-  this->collisionRadius = plane.collisionRadius;
-  return *this;
+
+	this->id = plane.id;
+	this->currentLoc.altitude = plane.currentLoc.altitude;
+	this->currentLoc.latitude = plane.currentLoc.latitude;
+	this->currentLoc.longitude = plane.currentLoc.longitude;
+
+	this->previousLoc.altitude = plane.previousLoc.altitude;
+	this->previousLoc.latitude = plane.previousLoc.latitude;
+	this->previousLoc.longitude = plane.previousLoc.longitude;
+
+	this->destination.latitude = plane.destination.latitude;
+	this->destination.longitude = plane.destination.longitude;
+	this->destination.altitude = plane.destination.ltitude;
+
+	this->targetBearing = plane.targetBearing;
+	this->currentBearing = plane.currentBearing;
+
+	this->speed = plane.speed;
+	this->lastUpdateTime = plane.lastUpdateTime;
+	this->collisionRadius = plane.collisionRadius;
+
+	return *this;
 }
