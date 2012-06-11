@@ -52,7 +52,7 @@ namespace AU_UAV_ROS{
 	friend const mathVector operator/(double val, const mathVector& mV);
 	
 	/* Dot-product defined*/
-	double dotProduct(const mathVector& mV);
+	double dotProduct(const mathVector& mV1, const mathVector& mV2);
 
 	private:
 		/* Private data members specifying the magnitude and direction of the math vector */
