@@ -10,6 +10,31 @@
 #include <math.h>
 #include "AU_UAV_ROS/standardFuncs.h" /* for PI, EARTH_RADIUS in meters */
 
+/* Implementation of the default constructor: Member variables are set to zero
+AU_UAV_ROS::PlaneObject::PlaneObject(void) {
+	this->id = 0.0;
+	this->currentLoc.altitude = 0.0;
+	this->currentLoc.latitude = 0.0;
+	this->currentLoc.longitude = 0.0;
+	this->targetBearing = 0.0;
+	this->currentBearing = 0.0;
+	this->speed = 0.0;
+	this->lastUpdateTime = ros::Time::now().toSec();
+}
+*/
+/* Implementation of an explicit value constructor.  The member variables are set to the values given in the constructor
+AU_UAV_ROS::PlaneObject::PlaneObject(int id, double tBearing, double speed, double cRadius, const AU_UAV_ROS::waypoint &currentPos, const AU_UAV_ROS::waypoint &dest) {
+	this->id = id;
+	this->cRadius = cRadius;
+	this->destination = dest;
+	this->altitude = currentPos.altitude;
+	this->targetBearing = tBearing;
+	this->actualBearing = 0.0;
+	this->speed = speed;
+	this->destination = dest;
+	this->lastUpdateTime = ros::Time::now().toSec();
+}
+*/
 /* Explicit value constructor using TelemetryUpdate */
 AU_UAV_ROS::PlaneObject::PlaneObject(double cRadius, const AU_UAV_ROS::TelemetryUpdate &msg) {
 	this->id = msg.planeID;
@@ -27,7 +52,7 @@ AU_UAV_ROS::PlaneObject::PlaneObject(double cRadius, const AU_UAV_ROS::Telemetry
 	this->collisionRadius = cRadius;
 }
 
-/* Copy constructor */
+/* Copy constructor
 AU_UAV_ROS::PlaneObject::PlaneObject(const AU_UAV_ROS::PlaneObject& plane) {
 	this->id = plane.id;
 	this->currentLoc.altitude = plane.currentloc.altitude;
@@ -37,7 +62,7 @@ AU_UAV_ROS::PlaneObject::PlaneObject(const AU_UAV_ROS::PlaneObject& plane) {
 	this->destination = plane.destination;
 	this->lastUpdateTime = plane.lastUpdateTime;
 }
-
+*/
 /* mutator functions to update member variables */
 void AU_UAV_ROS::PlaneObject::setID(int id){
 	this->id = id;
