@@ -19,28 +19,28 @@ This is the implementation of RIPNA.h.
 #define CHECK_ZONE 4.0*MPS_SPEED
 #define DANGER_ZEM 2.0*MPS_SPEED
 #define MINIMUM_TURNING_RADIUS 28.64058013	
-#define DESIRED_RADIUS 30.0
+#define DESIRED_RADIUS 2.0*MPS_SPEED
 #define LAMBDA 1.0
 
 AU_UAV_ROS::waypoint calculateWaypoint(PlaneObject &plane1, std::map<int, PlaneObject> &planes){
 	/* Find plane to avoid*/	
-	std::tuple<int, double, bool> greatestThreat = findGreatestThreat(plane1, planes);
+	std::tuple<int, double> greatestThreat = findGreatestThreat(plane1, planes);
 	
 	/* Unpack plane to avoid*/	
 	int threatID = std::get<0>(greatestThreat);
 	double threatZEM = std:get<1>(greatestThreat);
-	bool turnRight = std::get<2>(greatestThreat);
-		
+	bool turnRight = shouldTurnRight(plane1, planes[threatID]);
 	double turningRadius = calculateTurningRadius(ZEM);
-
 }
 
 	
-/* */
-std::tuple<int, double, bool> findGreatestThreat(PlaneObject &plane1, std::map<int, PlaneObject> &planes){
+/* Function that returns the ID of the most dangerous neighboring plane and its ZEM */
+std::tuple<int, double> findGreatestThreat(PlaneObject &plane1, std::map<int, PlaneObject> &planes){
 	/* Set preliminary plane to avoid as non-existent*/
 	int planeToAvoid = -1;
-	bool turnRight;
+	/* Declare second plane and ID variable */
+	PlaneObject plane2;
+	int ID;
 	/* Set the preliminary time-to-go to infinity*/
 	double minimumTimeToGo = numeric_limits<double>::infinity();
 	double mostDangerousZEM;
@@ -55,8 +55,8 @@ std::tuple<int, double, bool> findGreatestThreat(PlaneObject &plane1, std::map<i
 		
 	for ( iterator=planes.begin() ; iterator != planes.end(); iterator++ ){
 		/* Unpacking plane to check*/		
-		int ID = (*iterator).first;
-		PlaneObject plane2 = (*iterator).second;
+		ID = (*iterator).first;
+		plane2 = (*iterator).second;
 		
 		/* If it's not in the Check Zone, check the other plane*/
 		if(plane1.findDistance(plane2) > CHECK_ZONE) continue;
@@ -83,12 +83,38 @@ std::tuple<int, double, bool> findGreatestThreat(PlaneObject &plane1, std::map<i
 			planeToAvoid = ID;
 			mostDangerousZEM = zeroEffortMiss;
 		}
-
 	}
 	
-	std::tuple<int, double, bool> container(planeToAvoid, mostDangerousZEM, turnRight);
+	std::tuple<int, double> container(planeToAvoid, mostDangerousZEM);
 	return container;
 
+}
+
+/* Returns true if the original plane (plane1) should turn right to avoid plane2, false if otherwise. Takes original plane and its greatest threat as parameters */
+bool shouldTurnRight(PlaneObject &plane1, PlaneObject &plane2) {
+
+	/* For checking whether the plane should turn right or left */
+	double theta;
+	double theta1;
+	double theta2;
+	bool turnRight;
+	bool plane2OnRight;
+
+	/* Calculate theta, theta1, and theta2 */
+	theta = findAngle(plane1.currentLoc.latitude, plane1.currentLoc.longitude, plane2.currentLoc.latitude, plane2.currentLoc.longitude);
+	theta1 = 90 - theta - plane1.currentBearing;
+	theta2 = 90 + currentBearing + theta;
+
+	theta = toCardinal(theta);
+	plane2OnRight = theta - plane.currentBearing >= 0;
+	
+	if ((plane2OnRight && theta1 >= theta2) || (!plane2OnRight && theta1 <= theta2))
+		turnRight = false;
+	else if ((plane2OnRight && theta1 < theta2) || (!plane2OnRight && theta1 > theta2))
+		turnRight = true;
+	
+	turnRight = (theta1 < theta2) ? true : false;
+	return turnRight;		
 }
 
 /* */
@@ -96,8 +122,11 @@ double calculateTurningRadius(double ZEM){
 	return MINIMUM_TURNING_RADIUS*exp(LAMBDA*ZEM/DESIRED_RADIUS);
 }
 
+/* create collision avoidance waypoint */
+
 
 /* */
+//TODO outline and simple cases for Dubins path
 AU_UAV_ROS::waypoint takeDubinsPath(PlaneObject &plane1, AU_UAV_ROS::waypoint &wp){
 
 
