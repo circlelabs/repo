@@ -86,8 +86,7 @@ std::tuple<int, double, bool> findGreatestThreat(PlaneObject &plane1, std::map<i
 
 	}
 	
-	std::tuple<int, double, bool> container(planeToAvoid, mostDangerousZEM, turnRight);
-	return container;
+	return std::tuple<int, double, bool> (planeToAvoid, mostDangerousZEM, turnRight);
 
 }
 
