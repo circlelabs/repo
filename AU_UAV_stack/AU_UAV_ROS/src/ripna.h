@@ -30,7 +30,7 @@ namespace AU_UAV_ROS{
 	double calculateSupplement(double theta);
 
 	/*This function calculates the next waypoint for the plane based on its distance from its current waypoint and its bearing. */
-	AU_UAV_ROS::waypoint takeDubinsPath(PlaneObject &plane1, AU_UAV_ROS::waypoint &wp);
+	AU_UAV_ROS::waypoint takeDubinsPath(PlaneObject &plane, AU_UAV_ROS::waypoint &wp);
 
 };
 
