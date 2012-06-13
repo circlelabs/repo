@@ -52,4 +52,8 @@ double findAngle(double lat1, double long1, double lat2, double long2);
 /* Returns the sign of the double*/
 double findSign(double number);
 
+/* This function takes an angle from -180 to 180 and returns its signed supplement (i.e. -45 returns -135 and 45 returns 135)*/
+double calculateSupplement(double theta);
+
+
 #endif

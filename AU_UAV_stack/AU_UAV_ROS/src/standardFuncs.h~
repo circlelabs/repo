@@ -50,7 +50,6 @@ The value returned is on the interval [-180, 180].
 double findAngle(double lat1, double long1, double lat2, double long2);
 
 /* Returns the sign of the double*/
-double findSign(double number)
-
+double findSign(double number);
 
 #endif

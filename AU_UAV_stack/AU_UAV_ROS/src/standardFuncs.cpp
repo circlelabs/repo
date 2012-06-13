@@ -130,3 +130,10 @@ double findSign(double number){
 	return 0;
 }
 
+
+/* Calculates the signed supplement of an angle*/
+double calculateSupplement(double theta){
+	return findSign(theta)*(PI-abs(theta));	
+}
+
+
