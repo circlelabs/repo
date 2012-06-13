@@ -122,3 +122,11 @@ double findAngle(double lat1, double long1, double lat2, double long2){
 	/* Return result in degrees */
 	return atan2(latDiff/lonDiff*180/PI);
 }
+
+/* Returns the sign of the double*/
+double findSign(double number){
+	if (number > 0) return 1;
+	if (number < 0) return -1;
+	return 0;
+}
+

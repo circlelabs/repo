@@ -19,7 +19,8 @@ This is the implementation of RIPNA.h.
 #define CHECK_ZONE 4.0*MPS_SPEED
 #define DANGER_ZEM 2.0*MPS_SPEED
 #define MINIMUM_TURNING_RADIUS 28.64058013	
-#define DESIRED_RADIUS 2.0*MPS_SPEED
+#define DESIRED_SEPARATION 2.0*MPS_SPEED
+#define LONG_TIME_STEP 1.2
 #define LAMBDA 1.0
 
 AU_UAV_ROS::waypoint calculateWaypoint(PlaneObject &plane1, std::map<int, PlaneObject> &planes){
@@ -30,7 +31,12 @@ AU_UAV_ROS::waypoint calculateWaypoint(PlaneObject &plane1, std::map<int, PlaneO
 	int threatID = std::get<0>(greatestThreat);
 	double threatZEM = std:get<1>(greatestThreat);
 	bool turnRight = shouldTurnRight(plane1, planes[threatID]);
+	
+	/* Calculate turning radius to avoid collision*/
 	double turningRadius = calculateTurningRadius(ZEM);
+	
+	/* Given turning radius and orientation of the plane, calculate next collision avoidance waypoint*/
+	AU_UAV_ROS::waypoint findNewWaypoint(plane1, turningRadius, turnRight)
 }
 
 	
@@ -85,10 +91,10 @@ std::tuple<int, double> findGreatestThreat(PlaneObject &plane1, std::map<int, Pl
 		}
 	}
 	
-	std::tuple<int, double> container(planeToAvoid, mostDangerousZEM);
-	return container;
 
+	return std::tuple<int, double> (planeToAvoid, mostDangerousZEM);
 }
+
 
 /* Returns true if the original plane (plane1) should turn right to avoid plane2, false if otherwise. Takes original plane and its greatest threat as parameters */
 bool shouldTurnRight(PlaneObject &plane1, PlaneObject &plane2) {
@@ -114,18 +120,37 @@ bool shouldTurnRight(PlaneObject &plane1, PlaneObject &plane2) {
 		turnRight = true;
 	
 	turnRight = (theta1 < theta2) ? true : false;
-	return turnRight;		
+	return turnRight;
 }
 
 /* */
 double calculateTurningRadius(double ZEM){
-	return MINIMUM_TURNING_RADIUS*exp(LAMBDA*ZEM/DESIRED_RADIUS);
+	return MINIMUM_TURNING_RADIUS*exp(LAMBDA*ZEM/DESIRED_SEPARATION);
 }
 
-/* create collision avoidance waypoint */
+
+/* Find the new collision avoidance waypoint for the plane to go to */
+AU_UAV_ROS::waypoint findNewWaypoint(PlaneObject &plane1, double turningRadius, bool turnRight){
+	/* Calculate theta*/	
+	double theta = MPS_SPEED*LONG_TIME_STEP/turningRadius;
+	/* Calculate signed supplement of bearing*/
+	double bearingBar = calculateSupplement(plane1.currentBearing);
+	/* Calculate center of turning circle*/
+	turningCircleCenter = BLAHBLAHBLAHBLAHBLAHBLAHBLAH();
+
+	/* */
+	AU_UAV_ROS::waypoint newDest;
+	newDest.longitude
+}
+
+/* Calculates the signed supplement of an angle*/
+double calculateSupplement(double theta){
+	return findSign(theta)*(PI-abs(theta));	
+}
 
 
 /* */
+//TODO outline and simple cases for Dubins path
 AU_UAV_ROS::waypoint takeDubinsPath(PlaneObject &plane1, AU_UAV_ROS::waypoint &wp){
 
 
