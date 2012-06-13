@@ -152,49 +152,38 @@ double calculateSupplement(double theta){
 AU_UAV_ROS::waypoint takeDubinsPath(PlaneObject &plane, AU_UAV_ROS::waypoint &wp) {
 
 	AU_UAV_ROS::coordinate circleCenter;
-
-	//we save these values because we use them frequently
-	double planeX = plane.currentLoc.longitude;
-	double planeY = plane.currentLoc.latitude;
-	double bearing = plane.currentBearing;
-
 	bool destOnRight;
 
-	//we can use longitude to find on which side of the plane the destination is
-	//Note: this is customized for the Northern and Western hemisphere
-	if ((abs(bearing) < 90 && wp.longitude < planeX) || (abs(bearing) > 90 && wp.longitude > planeX)
+	if (findAngle(plane.currentLoc.latitude, plane.currentLoc.longitude, wp.latitude, wp.longitude) < toCartesian(plane.currentBearing))
 		destOnRight = true;
-	else if ((abs(bearing) < 90 && wp.longitude > planeX) || (abs(bearing) > 90 && wp.longitude < planeX)
+	else if (findAngle(plane.currentLoc.latitude, plane.currentLoc.longitude, wp.latitude, wp.longitude) > toCartesian(plane.currentBearing))
 		destOnRight = false;
-	else {	//plane is parallel to the equator, use latitude
-		if ((bearing > 0 && wp.latitude < planeY) || (bearing < 0 && wp.latitude > planeY))
-			destOnRight = true;
-		else
-			destOnRight = false;
-	}
+	else 	//we're heading straight for the dest, no further work needed
+		return wp;
 
-	//------------------------------------
-	
-
-	circleCenter.altitude = plane.currentLoc.altitude;
-
-	//calculate circleCenter
-	if (destOnRight) {
-		circleCenter.longitude = planeX + cos(toCartesian(bearing) - 90);
-		circleCenter.latitude = planeY + sin(toCartesian(bearing) - 90);
-	}
-	else {
-		circleCenter.longitude = planeX + cos(toCartesian(bearing) + 90);
-		circleCenter.latitude = planeY + sin(toCartesian(bearing) + 90);
-	}
+	circleCenter = calculateCircleCenter(plane, MINIMUM_TURNING_RADIUS, destOnRight);
 
 	//if dest is inside circle, must fly opposite direction before we can reach dest
-	if (findDistance(planeY, planeX, wp.latitude, wp.longitude) < MINIMUM_TURNING_RADIUS) {
+	if (findDistance(circleCenter.latitude, circleCenter.longitude, wp.latitude, wp.longitude) < MINIMUM_TURNING_RADIUS) {
 		//TODO generate waypoint on opposite circle and return it
 	}
 	else {
 		//we can simply pass the current waypoint because it's accessible
 		return wp;
 	}
+}
 
+AU_UAV_ROS::coordinate calculateCircleCenter(PlaneObject &plane, double turnRadius, bool turnRight) {
+	AU_UAV_ROS::coordinate circleCenter;
+	circleCenter.altitude = plane.currentLoc.altitude;
+
+	if (turnRight) {
+		circleCenter.longitude = plane.currentLoc.longitude + (turnRadius / DELTA_LON_TO_METERS) * cos(toCartesian(plane.currentBearing) - 90);
+		circleCenter.latitude = plane.currentLoc.latitude + (turnRadius / DELTA_LAT_TO_METERS) * sin(toCartesian(plane.currentBearing) - 90);
+	}
+	else {
+		circleCenter.longitude = currentLoc.longitude + (turnRadius / DELTA_LON_TO_METERS) * cos(toCartesian(plane.currentBearing) + 90);
+		circleCenter.latitude = currentLoc.latitude + (turnRadius / DELTA_LAT_TO_METERS) * sin(toCartesian(plane.currentBearing) + 90);
+	}
+	return circleCenter;
 }

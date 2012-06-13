@@ -7,10 +7,6 @@ are related to implementation, not usage.
 #include <stdlib.h>
 #include "AU_UAV_ROS/standardFuncs.h"
 
-/* Constants for converting latitude/longitude to meters */
-#define DELTA_LAT_TO_METERS = 111200;
-#define DELTA_LON_TO_METERS = 93670;
-
 /*
 Given a waypoint (latitude, longitude, and altitude) as well as the bearing and angular distance to travel,
 calculateCoordinate will return the new location in the form of a waypoint.
