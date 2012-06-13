@@ -26,9 +26,6 @@ namespace AU_UAV_ROS{
 	/* This function takes the current plane, its calculated turning radius, and which direction it should turn in order to find the new 		collision avoidance waypoint for the plane to go to.*/
 	AU_UAV_ROS::waypoint findNewWaypoint(PlaneObject &plane1, double turningRadius, bool turnRight);
 
-	/* This function takes an angle from -180 to 180 and returns its signed supplement (i.e. -45 returns -135 and 45 returns 135)*/
-	double calculateSupplement(double theta);
-
 	/*This function calculates the next waypoint for the plane based on its distance from its current waypoint and its bearing. */
 	AU_UAV_ROS::waypoint takeDubinsPath(PlaneObject &plane, AU_UAV_ROS::waypoint &wp);
 

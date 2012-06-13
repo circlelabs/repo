@@ -130,21 +130,22 @@ double calculateTurningRadius(double ZEM){
 
 /* Find the new collision avoidance waypoint for the plane to go to */
 AU_UAV_ROS::waypoint findNewWaypoint(PlaneObject &plane1, double turningRadius, bool turnRight){
-	/* Calculate theta*/	
-	double theta = MPS_SPEED*LONG_TIME_STEP/turningRadius;
-	/* Calculate signed supplement of bearing*/
-	double bearingBar = calculateSupplement(plane1.currentBearing);
+	double phi;	
+	/* Calculate theta in degrees*/	
+	double theta = MPS_SPEED*LONG_TIME_STEP/turningRadius*180/PI;
+	/* Calculate signed supplement of bearing in degrees*/
+	double bearingBar = calculateSupplement(plane1.currentBearing);	
 	/* Calculate center of turning circle*/
-	turningCircleCenter = BLAHBLAHBLAHBLAHBLAHBLAHBLAH();
-
-	/* */
+	turningCircleCenter = calculateCircleCenter(plane1, turnRight, turningRadius);
+	/* Calculate phi in degrees if it's turning right or left*/
+	if (turnRight) phi = bearingBar - theta;
+	else phi = 180 + bearingBar + theta;
+	
+	/* Calculate the new waypoint destination*/
 	AU_UAV_ROS::waypoint newDest;
-	newDest.longitude
-}
-
-/* Calculates the signed supplement of an angle*/
-double calculateSupplement(double theta){
-	return findSign(theta)*(PI-abs(theta));	
+	newDest.altitude = plane1.altitude;
+	newDest.longitude = turningCircleCenter.longitude + turningRadius/DELTA_LON_TO_METERS*cos(phi);
+	newDest.latitude = turningCircleCenter.latitude + turningRadius/DELTA_LAT_TO_METERS*sin(phi)
 }
 
 
