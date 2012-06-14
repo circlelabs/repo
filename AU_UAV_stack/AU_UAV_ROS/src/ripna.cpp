@@ -138,11 +138,13 @@ bool shouldTurnRight(PlaneObject &plane1, PlaneObject &plane2) {
 	theta = findAngle(plane1.getCurrentLoc().latitude, plane1.getCurrentLoc().longitude, 
 		plane2.getCurrentLoc().latitude, plane2.getCurrentLoc().longitude);
 	theta1 = 90 - theta - plane1.getCurrentBearing();
-	theta2 = 90 + plane1.getCurrentBearing() + theta;
-
-	theta = toCardinal(theta);
-	plane2OnRight = theta - plane1.getCurrentBearing() >= 0;
+	theta2 = 90 + theta + plane2.getCurrentBearing();
 	
+	/* Calculate which side of plane1 that plane2 is on. */
+	cardinalTheta = toCardinal(theta);
+	plane2OnRight = cardinalTheta >= plane1.getCurrentBearing();
+	
+	/* Calculate which direction to turn*/
 	if ((plane2OnRight && theta1 >= theta2) || (!plane2OnRight && theta1 <= theta2))
 		turnRight = false;
 	else if ((plane2OnRight && theta1 < theta2) || (!plane2OnRight && theta1 > theta2))
