@@ -15,7 +15,7 @@ This is the header file for algorithm.cpp, which implements the functions declar
 namespace AU_UAV_ROS{
 	
 	/*This function is called in collisionAvoidance.cpp and utilizes the other functions outlined in this file to calculate a collision 		avoidance waypoint for the plane to travel to. If no collision avoidance or maneuvering is necessary, this function returns ________ */
-	AU_UAV_ROS::waypoint calculateWaypoint(PlaneObject &plane1, std::map<int, PlaneObject> &planes);
+	AU_UAV_ROS::waypoint findNewWaypoint(PlaneObject &plane1, std::map<int, PlaneObject> &planes);
 	
 	/*This function receives the current plane and a map of all of the planes in the airspace, and returns the ID of the plane which is the most 		imminent threat to the current plane. */
 	int findGreatestThreat(PlaneObject &plane1, std::map<int, PlaneObject> &planes);
@@ -24,10 +24,7 @@ namespace AU_UAV_ROS{
 	double calculateTurningRadius(double ZEM);
 	
 	/* This function takes the current plane, its calculated turning radius, and which direction it should turn in order to find the new 		collision avoidance waypoint for the plane to go to.*/
-	AU_UAV_ROS::waypoint findNewWaypoint(PlaneObject &plane1, double turningRadius, bool turnRight);
-
-	/* This function takes an angle from -180 to 180 and returns its signed supplement (i.e. -45 returns -135 and 45 returns 135)*/
-	double calculateSupplement(double theta);
+	AU_UAV_ROS::waypoint calculateWaypoint(PlaneObject &plane1, double turningRadius, bool turnRight);
 
 	/*This function calculates the next waypoint for the plane based on its distance from its current waypoint and its bearing. */
 	AU_UAV_ROS::waypoint takeDubinsPath(PlaneObject &plane, AU_UAV_ROS::waypoint &wp);
