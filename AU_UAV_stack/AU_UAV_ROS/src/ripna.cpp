@@ -129,7 +129,7 @@ double calculateTurningRadius(double ZEM){
 
 
 /* Find the new collision avoidance waypoint for the plane to go to */
-AU_UAV_ROS::waypoint findNewWaypoint(PlaneObject &plane1, double turningRadius, bool turnRight){
+AU_UAV_ROS::waypoint calculateWaypoint(PlaneObject &plane1, double turningRadius, bool turnRight){
 	double phi;	
 	/* Calculate theta in degrees*/	
 	double theta = MPS_SPEED*LONG_TIME_STEP/turningRadius*180/PI;

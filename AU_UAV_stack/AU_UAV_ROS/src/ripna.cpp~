@@ -162,7 +162,7 @@ AU_UAV_ROS::waypoint takeDubinsPath(PlaneObject &plane, AU_UAV_ROS::waypoint &wp
 	else 	//we're heading straight for the dest, no further work needed
 		return wp;
 
-	circleCenter = calculateCircleCenter(plane, destOnRight, MINIMUM_TURNING_RADIUS);
+	circleCenter = calculateCircleCenter(plane, MINIMUM_TURNING_RADIUS, destOnRight);
 
 	//if dest is inside circle, must fly opposite direction before we can reach dest
 	if (findDistance(circleCenter.latitude, circleCenter.longitude, wp.latitude, wp.longitude) < MINIMUM_TURNING_RADIUS) {
