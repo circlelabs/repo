@@ -21,6 +21,7 @@ This node controls the collision avoidance algorithm--an implementation of react
 //our headers
 #include "AU_UAV_ROS/planeObject.h"
 #include "AU_UAV_ROS/standardFuncs.h"
+#include "AU_UAV_ROS/ripna.h"
 
 /* constants */
 const double EPSILON = 1e-6; /* used to check floating point numbers for equality */
@@ -192,14 +193,18 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr &msg)
 		}
 	}
 
-	/* 
-	Create a goToWaypoint service to send to the coordinator based on the force vector just calculated.  The destination will be one
+	/* This line of code calls the collision avoidance algorithm and determines if there should be collision avoidance maneuvers taken.*/
+	
+	AU_UAV_ROS::waypoint newWaypoint = findNewWaypoint(planes[planeID], planes);
+
+	//TODO Implement a check to see if it's the same waypoint or something like that. Also figure out how block of code above works
+
+	/* Create a goToWaypoint service to send to the coordinator based the collision avoidance calculations.  The destination will be one
 	second away from the current position.
-	*/
-
-	//TODO figure out how to update path
-	goToWaypointSrv = updatePath(msg, force);
-
+	NOTE: If the collision avoidance algorithm determines that no steps are necessary to avoid collisions or looping, then no there is no 		goToWaypoint request*/
+	goToWaypointSrv.request.latitude = newPosition.latitude;
+	goToWaypointSrv.request.longitude = newPosition.longitude;
+	goToWaypointSrv.request.altitude = newPosition.altitude;
 	goToWaypointSrv.request.isAvoidanceManeuver = true; 
 	goToWaypointSrv.request.isNewQueue = true;
 
@@ -212,51 +217,4 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr &msg)
 	}
 }
 
-AU_UAV_ROS::GoToWaypoint updatePath(const AU_UAV_ROS::TelemetryUpdate::ConstPtr &msg, AU_UAV_ROS::mathVector forceVector){
-	AU_UAV_ROS::GoToWaypoint goToWaypointSrv; /* destination to go to */
-	double forceTheta = forceVector.getDirection(); /* angle of the force vector with respect to North bearing */
-	double d = MPS_SPEED/EARTH_RADIUS; /* angular distance traveled in one second */
 
-	AU_UAV_ROS::waypoint currentPosition, newPosition;
-	currentPosition.latitude = msg->currentLatitude;
-	currentPosition.longitude = msg->currentLongitude;
-	currentPosition.altitude = msg->currentAltitude;
-
-	newPosition = calculateCoordinate(currentPosition, forceTheta, d);	/* find new position one second away based on direction of force */
-
-	/* set up new goToWaypoint service */
-	goToWaypointSrv.request.planeID = msg->planeID;
-
-	goToWaypointSrv.request.latitude = newPosition.latitude;
-	goToWaypointSrv.request.longitude = newPosition.longitude;
-	goToWaypointSrv.request.altitude = newPosition.altitude;
-
-	return goToWaypointSrv;
-}
-
-/*void checkCollisions(void){
-	std::queue<int> planesToDelete;
-
-	/* Iterate through the list of planes to check for planes that have been removed due to collisions
-	for (std::map<int, AU_UAV_ROS::PlaneObject>::iterator iter = planes.begin(); iter != planes.end(); iter++){
-		/*
-		if (we have not heard from this plane for more than three seconds)
-			add this plane's ID to the queue of planes to delete 
-		
-		if ((ros::Time::now().toSec() - (iter->second).getLastUpdateTime()) > 3.0){
-			planesToDelete.push(iter->first);
-		}
-	}
-
-	while (!planesToDelete.empty()){
-		/* 
-		if the plane to delete still exists
-			remove it
-		
-		if (planes.find(planesToDelete.front()) != planes.end())
-			planes.erase(planesToDelete.front());
-
-		planesToDelete.pop();
-	}
-}
-*/

@@ -157,8 +157,7 @@ double AU_UAV_ROS::findDistance(double lat2, double lon2) const {
 	double lat1 = this->currentLoc.latitude;
 	double lon1 = this->currentLoc.longitude;
 
-	double distance = sqrt(pow(lat2 - lat1, 2) + pow(lon2 - lon1, 2));
-	return distance;
+	return sqrt(pow(lat2 - lat1, 2) + pow(lon2 - lon1, 2));
 }
 
 /* Find angle between this plane and another plane */
