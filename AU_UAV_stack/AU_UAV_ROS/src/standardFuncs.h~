@@ -8,15 +8,13 @@ IMPORTANT NOTE: All of the angles passed to the functions and returned from thes
 #ifndef STANDARD_FUNCS
 #define STANDARD_FUNCS
 
+/* Constants for converting latitude/longitude to meters */
+#define DELTA_LAT_TO_METERS = 111200;
+#define DELTA_LON_TO_METERS = 93670;
+
 #include "AU_UAV_ROS/standardDefs.h" /* for EARTH_RADIUS in meters */
 const double PI = 4*atan(1);
 const double DEGREE_TO_RAD = PI/180; /* convert degrees to radians */
-
-/*
-Takes the current location in the form of a waypoint, and given a bearing and angular distance, calculates
-a new waypoint at that specified bearing and distance away.
-*/
-AU_UAV_ROS::waypoint calculateCoordinate(AU_UAV_ROS::waypoint currentPosition, double bearing, double distance);
 
 /*
 Takes the bearing given by the UAV that is based off of Cardinal directions and converts
@@ -51,5 +49,9 @@ double findAngle(double lat1, double long1, double lat2, double long2);
 
 /* Returns the sign of the double*/
 double findSign(double number);
+
+/* This function takes an angle from -180 to 180 and returns its signed supplement (i.e. -45 returns -135 and 45 returns 135)*/
+double calculateSupplement(double theta);
+
 
 #endif

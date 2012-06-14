@@ -153,14 +153,12 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr &msg)
 
 	Pseudocode:
 	if (the plane has no destination){
-		- for simulations, silence any force from this UAV so it does not affect flight paths by giving it an impossible location
+		- set the plane way far away from everything else
 		- update with the new time of latest update to avoid a false detection of a collision
 	}
 	else{
 		update the plane with the new telemetry information
 
-		if (the plane's destination has changed)
-			update the map entry of the plane with this information
 	}
 	*/
 	if (requestWaypointInfoSrv.response.latitude == -1000){ /* plane has no waypoints to go to */
@@ -177,34 +175,29 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr &msg)
 	else{
 		planes[planeID].update(*msg); /* update plane with new position */
 
-		/* if (destination has changed)
-			update planes[planeID] with new destination */
-		if (((planes[planeID].getDestination().latitude - requestWaypointInfoSrv.response.latitude) > EPSILON)
-				|| ((planes[planeID].getDestination().longitude - requestWaypointInfoSrv.response.longitude) > EPSILON)
-				|| ((planes[planeID].getDestination().latitude - requestWaypointInfoSrv.response.latitude) < EPSILON)
-				|| ((planes[planeID].getDestination().longitude - requestWaypointInfoSrv.response.longitude) < EPSILON)){
-			AU_UAV_ROS::waypoint newDest;
+		AU_UAV_ROS::waypoint newDest;
 
-			newDest.latitude = requestWaypointInfoSrv.response.latitude;
-			newDest.longitude = requestWaypointInfoSrv.response.longitude;
-			newDest.altitude = requestWaypointInfoSrv.response.altitude;
+		newDest.latitude = requestWaypointInfoSrv.response.latitude;
+		newDest.longitude = requestWaypointInfoSrv.response.longitude;
+		newDest.altitude = requestWaypointInfoSrv.response.altitude;
 
-			planes[planeID].setDestination(newDest);
-		}
+		planes[planeID].setDestination(newDest);
 	}
 
-	/* This line of code calls the collision avoidance algorithm and determines if there should be collision avoidance maneuvers taken.*/
+	/* This line of code calls the collision avoidance algorithm 
+	and determines if there should be collision avoidance 
+	maneuvers taken.*/
 	
 	AU_UAV_ROS::waypoint newWaypoint = findNewWaypoint(planes[planeID], planes);
 
-	//TODO Implement a check to see if it's the same waypoint or something like that. Also figure out how block of code above works
+	
+	if ((requestWaypointInfoSrv.response.longitude == newWaypoint.longitude) 
+		&& (requestWaypointInfoSrv.response.latitude == newWaypoint.latitude)) return;
 
-	/* Create a goToWaypoint service to send to the coordinator based the collision avoidance calculations.  The destination will be one
-	second away from the current position.
-	NOTE: If the collision avoidance algorithm determines that no steps are necessary to avoid collisions or looping, then no there is no 		goToWaypoint request*/
-	goToWaypointSrv.request.latitude = newPosition.latitude;
-	goToWaypointSrv.request.longitude = newPosition.longitude;
-	goToWaypointSrv.request.altitude = newPosition.altitude;
+	/* Fill in goToWaypointSrv request with new waypoint information*/
+	goToWaypointSrv.request.latitude = newWaypoint.latitude;
+	goToWaypointSrv.request.longitude = newWaypoint.longitude;
+	goToWaypointSrv.request.altitude = newWaypoint.altitude;
 	goToWaypointSrv.request.isAvoidanceManeuver = true; 
 	goToWaypointSrv.request.isNewQueue = true;
 
