@@ -13,8 +13,8 @@ IMPORTANT NOTE: All of the angles passed to the functions and returned from thes
 #define DELTA_LON_TO_METERS 93670
 
 #include "AU_UAV_ROS/standardDefs.h" /* for EARTH_RADIUS in meters */
-const double PI = 4*atan(1);
-const double DEGREE_TO_RAD = PI/180; /* convert degrees to radians */
+const double PI = 4.0*atan(1.0);
+const double DEGREE_TO_RAD = PI/180.0; /* convert degrees to radians */
 
 namespace AU_UAV_ROS{
 

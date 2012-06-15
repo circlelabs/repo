@@ -93,7 +93,7 @@ void AU_UAV_ROS::PlaneObject::update(const AU_UAV_ROS::TelemetryUpdate &msg) {
 	//Calculate actual Cardinal Bearing
 	double numerator = (this->currentLoc.latitude - this->previousLoc.latitude);
 	double denominator = (this->currentLoc.longitude - this->previousLoc.longitude);
-	double angle = atan2(numerator,denominator)*180/PI;
+	double angle = atan2(numerator*DELTA_LAT_TO_METERS,denominator*DELTA_LON_TO_METERS)*180/PI;
 	this->setCurrentBearing(toCardinal(angle));
 
 	this->setPreviousLoc(this->currentLoc.latitude, this->currentLoc.longitude, this->currentLoc.altitude);

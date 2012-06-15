@@ -1,5 +1,5 @@
 <launch>
-	<node name="rviz" pkg="RVIZ" type="rviz" output="screen" />
+	<node name="rviz" pkg="rviz" type="rviz" output="screen" />
 	<node name="rvizTranslator" pkg="AU_UAV_ROS" type="rvizTranslator" output="screen" />
 	<node name="coordinator" pkg="AU_UAV_ROS" type="coordinator"/>
 	<node name="KMLCreator" pkg="AU_UAV_ROS" type="KMLCreator" output="screen" />

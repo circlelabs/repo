@@ -30,7 +30,7 @@ maneuvers are necessary, the function returns the current destination
 waypoint. */
 
 AU_UAV_ROS::waypoint AU_UAV_ROS::findNewWaypoint(PlaneObject &plane1, std::map<int, PlaneObject> &planes){
-	/* Find plane to avoid*/	
+	/* Find plane to avoid*/
 	AU_UAV_ROS::threatContainer greatestThreat = findGreatestThreat(plane1, planes);
 	
 	/* Unpack plane to avoid*/	
@@ -40,9 +40,11 @@ AU_UAV_ROS::waypoint AU_UAV_ROS::findNewWaypoint(PlaneObject &plane1, std::map<i
 	/* If there is no plane to avoid, then take Dubin's path to the 
 	destination waypoint*/
 	if ((threatID < 0) && (threatZEM < 0)) {
-		ROS_DEBUG("Didn't calculate collision avoidance waypoint");
 		return takeDubinsPath(plane1);
 	}
+	
+	ROS_WARN("PLANE%d detected PLANE%d with a ZEM of %f", plane1.getID(), threatID, threatZEM);
+
 	
 	/* If there is a plane to avoid, then figure out which direction it 
 	should turn*/
@@ -122,6 +124,8 @@ AU_UAV_ROS::threatContainer AU_UAV_ROS::findGreatestThreat(PlaneObject &plane1, 
 		if(zeroEffortMiss <= DANGER_ZEM && timeToGo < minimumTimeToGo){
 			planeToAvoid = ID;
 			mostDangerousZEM = zeroEffortMiss;
+			minimumTimeToGo = timeToGo;
+			ROS_WARN("potential time to go:%f", timeToGo);
 		}
 	}
 
@@ -181,6 +185,7 @@ AU_UAV_ROS::waypoint AU_UAV_ROS::calculateWaypoint(PlaneObject &plane1, double t
 	double bearingBar = calculateSupplement(plane1.getCurrentBearing());	
 	/* Calculate center of turning circle*/
 	AU_UAV_ROS::coordinate turningCircleCenter = calculateCircleCenter(plane1, turnRight, turningRadius);
+	
 	/* Calculate phi in degrees if it's turning right or left*/
 	if (turnRight) phi = bearingBar - theta;
 	else phi = 180 + bearingBar + theta;
@@ -240,14 +245,21 @@ and returns the center of the circle of its turning radius. */
 AU_UAV_ROS::coordinate AU_UAV_ROS::calculateCircleCenter(PlaneObject &plane, double turnRadius, bool turnRight) {
 	AU_UAV_ROS::coordinate circleCenter;
 	circleCenter.altitude = plane.getCurrentLoc().altitude;
-
+	
 	if (turnRight) {
-		circleCenter.longitude = plane.getCurrentLoc().longitude + (turnRadius / DELTA_LON_TO_METERS) * cos(toCartesian(plane.getCurrentBearing()) - 90);
-		circleCenter.latitude = plane.getCurrentLoc().latitude + (turnRadius / DELTA_LAT_TO_METERS) * sin(toCartesian(plane.getCurrentBearing()) - 90);
+		double angle = (toCartesian(plane.getCurrentBearing()) - 90) * PI/180.0;
+		double xdiff = turnRadius*cos(angle);
+		double ydiff = turnRadius*sin(angle);
+		circleCenter.longitude = plane.getCurrentLoc().longitude + xdiff/DELTA_LON_TO_METERS;
+		circleCenter.latitude = plane.getCurrentLoc().latitude + ydiff/DELTA_LAT_TO_METERS; 
 	}
 	else {
-		circleCenter.longitude = plane.getCurrentLoc().longitude + (turnRadius / DELTA_LON_TO_METERS) * cos(toCartesian(plane.getCurrentBearing()) + 90);
-		circleCenter.latitude = plane.getCurrentLoc().latitude + (turnRadius / DELTA_LAT_TO_METERS) * sin(toCartesian(plane.getCurrentBearing()) + 90);
+		double angle = (toCartesian(plane.getCurrentBearing()) + 90) * PI/180.0;
+		double xdiff = turnRadius*cos(angle);
+		double ydiff = turnRadius*sin(angle);
+		circleCenter.longitude = plane.getCurrentLoc().longitude + xdiff/DELTA_LON_TO_METERS;
+		circleCenter.latitude = plane.getCurrentLoc().latitude + ydiff/DELTA_LAT_TO_METERS; 
 	}
+	
 	return circleCenter;
 }

@@ -62,8 +62,8 @@ longitude of the ending point.
 double findDistance(double lat1, double long1, double lat2, double long2){
 	
 	/* Get difference in radians */
-	double latDiff = DELTA_LAT_TO_METERS;
-	double lonDiff = lat1;//(long2 - long1)*DELTA_LON_TO_METERS;
+	double latDiff = (lat2 - lat1)*DELTA_LAT_TO_METERS;
+	double lonDiff = (long2 - long1)*DELTA_LON_TO_METERS;
 
 	/* Return result in meters */
 	return sqrt(pow(latDiff, 2) + pow(lonDiff, 2));

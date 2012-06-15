@@ -63,7 +63,6 @@ int main(int argc, char **argv)
 
 void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr &msg)
 {	
-	ROS_DEBUG("RECEIVED TELEMETRY CALLBACK");	
 	/* Instantiate services for use later, and get planeID*/
 	AU_UAV_ROS::GoToWaypoint goToWaypointSrv;
 	AU_UAV_ROS::RequestWaypointInfo requestWaypointInfoSrv;
@@ -92,7 +91,7 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr &msg)
 		if (!requestWaypointInfoClient.call(requestWaypointInfoSrv)){
 			ROS_ERROR("Did not recieve a response from the coordinator");
 			return;
-		}2
+		}
 	}
 
 
@@ -157,17 +156,21 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr &msg)
 
 	
 	if ((requestWaypointInfoSrv.response.longitude == newWaypoint.longitude) 
-		&& (requestWaypointInfoSrv.response.latitude == newWaypoint.latitude)) return;
+		&& (requestWaypointInfoSrv.response.latitude == newWaypoint.latitude)) {
+	//ROS_WARN("NO COLLISION IMMINENT - TAKING DUBINS PATH");
+	return;
+	}	
 
 	/* Fill in goToWaypointSrv request with new waypoint information*/
 	goToWaypointSrv.request.latitude = newWaypoint.latitude;
 	goToWaypointSrv.request.longitude = newWaypoint.longitude;
 	goToWaypointSrv.request.altitude = newWaypoint.altitude;
 	goToWaypointSrv.request.isAvoidanceManeuver = true; 
-	goToWaypointSrv.request.isNewQueue = true;
+	goToWaypointSrv.request.isNewQueue = false;
 
 	if (goToWaypointClient.call(goToWaypointSrv)){
 		count++;
+		//ROS_WARN("Latitude: %f | Longitude: %f", goToWaypointSrv.request.latitude, goToWaypointSrv.request.longitude);
 		ROS_INFO("Received response from service request %d", (count-1));
 	}
 	else{

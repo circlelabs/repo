@@ -1,7 +1,7 @@
 Background\ ColorB=0
 Background\ ColorG=0
 Background\ ColorR=0
-Camera\ Config=1.06147 277.872 -260.935 -1.58
+Camera\ Config=1.18563 252.804 -259.434 0
 Camera\ Type=rviz::FixedOrientationOrthoViewController
 Fixed\ Frame=/world
 Grid.Alpha=0.5
@@ -59,5 +59,5 @@ world.Enabled=1
 [Window]
 Height=876
 Width=1375
-X=0
-Y=0
+X=-1
+Y=-28

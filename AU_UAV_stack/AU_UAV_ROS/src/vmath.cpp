@@ -42,12 +42,12 @@ Vector-based addition, subtract, and multiplication operator overloading.
 /* Dot produt. */ 
 double AU_UAV_ROS::mathVector::dotProduct(const AU_UAV_ROS::mathVector& mV){
 	/* Ax = mag * cos(degree), Ay = mag * sin(degree) */
-	double Ax = this->magnitude * cos(this->direction * PI / 180);
-	double Ay = this->magnitude * sin(this->direction * PI / 180);
+	double Ax = this->magnitude * cos(this->direction * PI / 180.0);
+	double Ay = this->magnitude * sin(this->direction * PI / 180.0);
 
 	/* Bx = mag * cos(degree), By = mag * sin(degree) */
-	double Bx = mV.magnitude * cos(mV.direction * PI / 180);
-	double By = mV.magnitude * sin(mV.direction * PI / 180);
+	double Bx = mV.magnitude * cos(mV.direction * PI / 180.0);
+	double By = mV.magnitude * sin(mV.direction * PI / 180.0);
 
 	return Ax*Bx+Ay*By;
 
@@ -64,12 +64,12 @@ AU_UAV_ROS::mathVector& AU_UAV_ROS::mathVector::operator+=(const AU_UAV_ROS::mat
 	double Rx = 0.0, Ry = 0.0, R = 0.0, Theta = 0.0;
 
 	/* Ax = mag * cos(degree), Ay = mag * sin(degree) */
-	Ax = this->magnitude * cos(this->direction * PI / 180);
-	Ay = this->magnitude * sin(this->direction * PI / 180);
+	Ax = this->magnitude * cos(this->direction * PI / 180.0);
+	Ay = this->magnitude * sin(this->direction * PI / 180.0);
 
 	/* Bx = mag * cos(degree), By = mag * sin(degree) */
-	Bx = mV.magnitude * cos(mV.direction * PI / 180);
-	By = mV.magnitude * sin(mV.direction * PI / 180);
+	Bx = mV.magnitude * cos(mV.direction * PI / 180.0);
+	By = mV.magnitude * sin(mV.direction * PI / 180.0);
 
 	/* Perform addition */
 	Rx = Ax + Bx;
@@ -79,7 +79,7 @@ AU_UAV_ROS::mathVector& AU_UAV_ROS::mathVector::operator+=(const AU_UAV_ROS::mat
 	R = sqrt(pow(Rx, 2) + pow(Ry, 2));
 
 	/* Theta = arctan2(Ry, Rx) */
-	Theta = atan2(Ry , Rx) * 180 / PI;
+	Theta = atan2(Ry , Rx) * 180.0 / PI;
 
 	/* Assign new values */
 	this->magnitude = R;
@@ -100,12 +100,12 @@ AU_UAV_ROS::mathVector& AU_UAV_ROS::mathVector::operator-=(const AU_UAV_ROS::mat
 	double Rx = 0.0, Ry = 0.0, R = 0.0, Theta = 0.0;
 
 	/* Ax = mag * cos(degree), Ay = mag * sin(degree) */
-	Ax = this->magnitude * cos(this->direction * PI / 180);
-	Ay = this->magnitude * sin(this->direction * PI / 180);
+	Ax = this->magnitude * cos(this->direction * PI / 180.0);
+	Ay = this->magnitude * sin(this->direction * PI / 180.0);
 
 	/* -Bx = mag * cos(-degree), -By = mag * sin(-degree) */
-	Bx = mV.magnitude * cos((mV.direction + 180) * PI / 180);
-	By = mV.magnitude * sin((mV.direction + 180) * PI / 180);
+	Bx = mV.magnitude * cos((mV.direction + 180.0) * PI / 180.0);
+	By = mV.magnitude * sin((mV.direction + 180.0) * PI / 180.0);
 
 	/* Perform addition with negative vector */
 	Rx = Ax + Bx;
@@ -115,7 +115,7 @@ AU_UAV_ROS::mathVector& AU_UAV_ROS::mathVector::operator-=(const AU_UAV_ROS::mat
 	R = sqrt(pow(Rx, 2) + pow(Ry, 2));
 
 	/* Theta = arctan2(Ry, Rx) */
-	Theta = atan2(Ry , Rx) * 180 / PI;
+	Theta = atan2(Ry , Rx) * 180.0 / PI;
 
 	/* Assign new values */
 	this->magnitude = R;

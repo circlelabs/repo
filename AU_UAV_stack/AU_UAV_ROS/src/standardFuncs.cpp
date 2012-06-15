@@ -12,13 +12,13 @@ are related to implementation, not usage.
 double toCartesian(double UAVBearing){
 	UAVBearing = manipulateAngle(UAVBearing); /* get angle on the interval [-180, 180] */
 
-	if (UAVBearing < 180 && UAVBearing >= 0) /* UAV bearing is in the first or fourth quadrant */
+	if (UAVBearing < 180.0 && UAVBearing >= 0) /* UAV bearing is in the first or fourth quadrant */
 		return 90 - UAVBearing;
 	else if (UAVBearing < 0 && UAVBearing >= -90) /* UAV bearing is in the second quadrant */
 		return -1*UAVBearing + 90;
-	else if (UAVBearing < -90 && UAVBearing > -180) /* UAV bearing is in the third quadrant */
-		return -1*(UAVBearing + 180) - 90;
-	else if (UAVBearing == 180 || UAVBearing == -180)
+	else if (UAVBearing < -90 && UAVBearing > -180.0) /* UAV bearing is in the third quadrant */
+		return -1*(UAVBearing + 180.0) - 90;
+	else if (UAVBearing == 180.0 || UAVBearing == -180.0)
 		return -90;
 	else
 		return -999; /* should never happen in current setup */
@@ -30,22 +30,22 @@ double toCardinal(double angle){
 
 	if (angle <= 90 && angle >= -90) /* angle is in the first or fourth quadrant */
 		return 90 - angle;
-	else if (angle >= 90 && angle <= 180) /* angle is in the second quadrant */
+	else if (angle >= 90 && angle <= 180.0) /* angle is in the second quadrant */
 		return -1*angle + 90;
-	else if (angle <= -90 && angle >= -180) /* angle is in third quadrant */
-		return -180 + -1*(90 + angle);
+	else if (angle <= -90 && angle >= -180.0) /* angle is in third quadrant */
+		return -180.0 + -1*(90 + angle);
 	else 
 		return -999; /* should never happen in current setup */ 
 }
 
 /* Modify the angle so that it remains on the interval [-180, 180] */
 double manipulateAngle(double angle){
-	while (angle > 180){
+	while (angle > 180.0){
 		/* decrease angle by one 360 degree cycle */
 		angle-=360;
 	}
 
-	while (angle < -180){
+	while (angle < -180.0){
 		/* increase angle by one 360 degree cycle cycle */
 		angle+=360;
 	}
@@ -81,7 +81,7 @@ double findAngle(double lat1, double long1, double lat2, double long2){
 	double lonDiff = (long2 - long1)*DELTA_LON_TO_METERS;
 
 	/* Return result in degrees */
-	return atan2(latDiff,lonDiff)*180/PI;
+	return atan2(latDiff,lonDiff)*180.0/PI;
 }
 
 /* Returns the sign of the double*/
