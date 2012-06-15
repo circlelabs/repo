@@ -91,6 +91,9 @@ CMakeFiles/rvizTranslator.dir/src/rvizTranslator.o: /opt/ros/fuerte/stacks/geome
 CMakeFiles/rvizTranslator.dir/src/rvizTranslator.o: /opt/ros/fuerte/stacks/geometry/tf/include/tf/transform_broadcaster.h
 CMakeFiles/rvizTranslator.dir/src/rvizTranslator.o: /opt/ros/fuerte/stacks/geometry/tf/include/tf/transform_datatypes.h
 CMakeFiles/rvizTranslator.dir/src/rvizTranslator.o: /opt/ros/fuerte/stacks/geometry/tf/msg_gen/cpp/include/tf/tfMessage.h
+CMakeFiles/rvizTranslator.dir/src/rvizTranslator.o: include/AU_UAV_ROS/standardDefs.h
+CMakeFiles/rvizTranslator.dir/src/rvizTranslator.o: include/AU_UAV_ROS/standardFuncs.h
 CMakeFiles/rvizTranslator.dir/src/rvizTranslator.o: msg_gen/cpp/include/AU_UAV_ROS/TelemetryUpdate.h
 CMakeFiles/rvizTranslator.dir/src/rvizTranslator.o: srv_gen/cpp/include/AU_UAV_ROS/GoToWaypoint.h
+CMakeFiles/rvizTranslator.dir/src/rvizTranslator.o: srv_gen/cpp/include/AU_UAV_ROS/RequestWaypointInfo.h
 

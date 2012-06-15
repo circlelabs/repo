@@ -36,10 +36,10 @@ CMAKE_COMMAND = /usr/bin/cmake
 RM = /usr/bin/cmake -E remove -f
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS
+CMAKE_SOURCE_DIR = /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS
+CMAKE_BINARY_DIR = /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -66,9 +66,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/CMakeFiles /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/CMakeFiles /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -579,6 +579,36 @@ src/evaluator.s:
 .PHONY : src/evaluator.s
 
 # target to build an object file
+src/planeObject.o:
+	$(MAKE) -f CMakeFiles/collisionAvoidance.dir/build.make CMakeFiles/collisionAvoidance.dir/src/planeObject.o
+.PHONY : src/planeObject.o
+
+# target to preprocess a source file
+src/planeObject.i:
+	$(MAKE) -f CMakeFiles/collisionAvoidance.dir/build.make CMakeFiles/collisionAvoidance.dir/src/planeObject.i
+.PHONY : src/planeObject.i
+
+# target to generate assembly for a file
+src/planeObject.s:
+	$(MAKE) -f CMakeFiles/collisionAvoidance.dir/build.make CMakeFiles/collisionAvoidance.dir/src/planeObject.s
+.PHONY : src/planeObject.s
+
+# target to build an object file
+src/ripna.o:
+	$(MAKE) -f CMakeFiles/collisionAvoidance.dir/build.make CMakeFiles/collisionAvoidance.dir/src/ripna.o
+.PHONY : src/ripna.o
+
+# target to preprocess a source file
+src/ripna.i:
+	$(MAKE) -f CMakeFiles/collisionAvoidance.dir/build.make CMakeFiles/collisionAvoidance.dir/src/ripna.i
+.PHONY : src/ripna.i
+
+# target to generate assembly for a file
+src/ripna.s:
+	$(MAKE) -f CMakeFiles/collisionAvoidance.dir/build.make CMakeFiles/collisionAvoidance.dir/src/ripna.s
+.PHONY : src/ripna.s
+
+# target to build an object file
 src/rvizTranslator.o:
 	$(MAKE) -f CMakeFiles/rvizTranslator.dir/build.make CMakeFiles/rvizTranslator.dir/src/rvizTranslator.o
 .PHONY : src/rvizTranslator.o
@@ -609,6 +639,21 @@ src/simulator.s:
 .PHONY : src/simulator.s
 
 # target to build an object file
+src/standardFuncs.o:
+	$(MAKE) -f CMakeFiles/collisionAvoidance.dir/build.make CMakeFiles/collisionAvoidance.dir/src/standardFuncs.o
+.PHONY : src/standardFuncs.o
+
+# target to preprocess a source file
+src/standardFuncs.i:
+	$(MAKE) -f CMakeFiles/collisionAvoidance.dir/build.make CMakeFiles/collisionAvoidance.dir/src/standardFuncs.i
+.PHONY : src/standardFuncs.i
+
+# target to generate assembly for a file
+src/standardFuncs.s:
+	$(MAKE) -f CMakeFiles/collisionAvoidance.dir/build.make CMakeFiles/collisionAvoidance.dir/src/standardFuncs.s
+.PHONY : src/standardFuncs.s
+
+# target to build an object file
 src/visualization.o:
 	$(MAKE) -f CMakeFiles/visualization.dir/build.make CMakeFiles/visualization.dir/src/visualization.o
 .PHONY : src/visualization.o
@@ -622,6 +667,21 @@ src/visualization.i:
 src/visualization.s:
 	$(MAKE) -f CMakeFiles/visualization.dir/build.make CMakeFiles/visualization.dir/src/visualization.s
 .PHONY : src/visualization.s
+
+# target to build an object file
+src/vmath.o:
+	$(MAKE) -f CMakeFiles/collisionAvoidance.dir/build.make CMakeFiles/collisionAvoidance.dir/src/vmath.o
+.PHONY : src/vmath.o
+
+# target to preprocess a source file
+src/vmath.i:
+	$(MAKE) -f CMakeFiles/collisionAvoidance.dir/build.make CMakeFiles/collisionAvoidance.dir/src/vmath.i
+.PHONY : src/vmath.i
+
+# target to generate assembly for a file
+src/vmath.s:
+	$(MAKE) -f CMakeFiles/collisionAvoidance.dir/build.make CMakeFiles/collisionAvoidance.dir/src/vmath.s
+.PHONY : src/vmath.s
 
 # Help Target
 help:
@@ -682,15 +742,27 @@ help:
 	@echo "... src/evaluator.o"
 	@echo "... src/evaluator.i"
 	@echo "... src/evaluator.s"
+	@echo "... src/planeObject.o"
+	@echo "... src/planeObject.i"
+	@echo "... src/planeObject.s"
+	@echo "... src/ripna.o"
+	@echo "... src/ripna.i"
+	@echo "... src/ripna.s"
 	@echo "... src/rvizTranslator.o"
 	@echo "... src/rvizTranslator.i"
 	@echo "... src/rvizTranslator.s"
 	@echo "... src/simulator.o"
 	@echo "... src/simulator.i"
 	@echo "... src/simulator.s"
+	@echo "... src/standardFuncs.o"
+	@echo "... src/standardFuncs.i"
+	@echo "... src/standardFuncs.s"
 	@echo "... src/visualization.o"
 	@echo "... src/visualization.i"
 	@echo "... src/visualization.s"
+	@echo "... src/vmath.o"
+	@echo "... src/vmath.i"
+	@echo "... src/vmath.s"
 .PHONY : help
 
 

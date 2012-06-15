@@ -6,6 +6,7 @@ This node controls the collision avoidance algorithm--an implementation of react
 
 //standard C++ headers
 #include <sstream>
+#include <iostream>
 #include <stdlib.h>
 #include <queue>
 #include <map>
@@ -40,7 +41,7 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr &msg);
 
 
 int main(int argc, char **argv)
-{
+{	
 	//standard ROS startup
 	ros::init(argc, argv, "collisionAvoidance");
 	ros::NodeHandle n;
@@ -61,7 +62,8 @@ int main(int argc, char **argv)
 }
 
 void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr &msg)
-{
+{	
+	ROS_DEBUG("RECEIVED TELEMETRY CALLBACK");	
 	/* Instantiate services for use later, and get planeID*/
 	AU_UAV_ROS::GoToWaypoint goToWaypointSrv;
 	AU_UAV_ROS::RequestWaypointInfo requestWaypointInfoSrv;
@@ -90,7 +92,7 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr &msg)
 		if (!requestWaypointInfoClient.call(requestWaypointInfoSrv)){
 			ROS_ERROR("Did not recieve a response from the coordinator");
 			return;
-		}
+		}2
 	}
 
 
@@ -129,8 +131,7 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr &msg)
 	response*/
 	if (requestWaypointInfoSrv.response.latitude == -1000){ /* plane has no waypoints to go to */
 		/* Remove in real flights*/
-		planes[planeID].setLatitude(-1000);
-		planes[planeID].setLongitude(-1000);
+		planes[planeID].setCurrentLoc(-1000,-1000,400);
 		/* update the time of last update for this plane to acknowledge 
 		it is still in the air */
 		planes[planeID].updateTime(); 

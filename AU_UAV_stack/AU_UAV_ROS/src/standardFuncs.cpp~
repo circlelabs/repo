@@ -60,11 +60,10 @@ longitude of the ending point.
 */
 
 double findDistance(double lat1, double long1, double lat2, double long2){
-	double latDiff = 0.0, lonDiff = 0.0;
 	
 	/* Get difference in radians */
-	latDiff = (lat2 - lat1)*DELTA_LAT_TO_METERS;
-	lonDiff = (long2 - long1)*DELTA_LON_TO_METERS;
+	double latDiff = DELTA_LAT_TO_METERS;
+	double lonDiff = lat1;//(long2 - long1)*DELTA_LON_TO_METERS;
 
 	/* Return result in meters */
 	return sqrt(pow(latDiff, 2) + pow(lonDiff, 2));
@@ -76,14 +75,13 @@ by lat1 and long1 (the first two parameters), and the final point is given by la
 The value returned is on the interval [-180, 180].
 */
 double findAngle(double lat1, double long1, double lat2, double long2){
-	double latDiff = 0.0, lonDiff = 0.0;
 	
 	/* Get difference in radians */
-	latDiff = (lat2 - lat1)*DELTA_LAT_TO_METERS;
-	lonDiff = (long2 - long1)*DELTA_LON_TO_METERS;
+	double latDiff = (lat2 - lat1)*DELTA_LAT_TO_METERS;
+	double lonDiff = (long2 - long1)*DELTA_LON_TO_METERS;
 
 	/* Return result in degrees */
-	return atan2(latDiff/lonDiff*180/PI);
+	return atan2(latDiff,lonDiff)*180/PI;
 }
 
 /* Returns the sign of the double*/

@@ -6,17 +6,17 @@
 
 #IncludeRegexTransform: 
 
-/home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/SimulatedPlane.cpp
+/home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/SimulatedPlane.cpp
 stdio.h
 -
 math.h
 -
 AU_UAV_ROS/standardDefs.h
-/home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/AU_UAV_ROS/standardDefs.h
+/home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/AU_UAV_ROS/standardDefs.h
 AU_UAV_ROS/SimulatedPlane.h
-/home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/AU_UAV_ROS/SimulatedPlane.h
+/home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/AU_UAV_ROS/SimulatedPlane.h
 
-/home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/standardDefs.cpp
+/home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/standardDefs.cpp
 stdio.h
 -
 string.h
@@ -24,29 +24,29 @@ string.h
 ctype.h
 -
 AU_UAV_ROS/standardDefs.h
-/home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/AU_UAV_ROS/standardDefs.h
+/home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/AU_UAV_ROS/standardDefs.h
 
-/home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/simulator.cpp
+/home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/simulator.cpp
 sstream
 -
 map
 -
 ros/ros.h
-/home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/ros/ros.h
+/home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/ros/ros.h
 AU_UAV_ROS/standardDefs.h
-/home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/standardDefs.h
+/home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/standardDefs.h
 AU_UAV_ROS/TelemetryUpdate.h
-/home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/TelemetryUpdate.h
+/home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/TelemetryUpdate.h
 AU_UAV_ROS/Command.h
-/home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/Command.h
+/home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/Command.h
 AU_UAV_ROS/RequestPlaneID.h
-/home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/RequestPlaneID.h
+/home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/RequestPlaneID.h
 AU_UAV_ROS/CreateSimulatedPlane.h
-/home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/CreateSimulatedPlane.h
+/home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/CreateSimulatedPlane.h
 AU_UAV_ROS/DeleteSimulatedPlane.h
-/home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/DeleteSimulatedPlane.h
+/home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/DeleteSimulatedPlane.h
 AU_UAV_ROS/SimulatedPlane.h
-/home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/SimulatedPlane.h
+/home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/SimulatedPlane.h
 
 /opt/ros/fuerte/include/XmlRpcDecl.h
 ros/macros.h

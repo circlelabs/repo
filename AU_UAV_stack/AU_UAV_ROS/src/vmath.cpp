@@ -39,6 +39,20 @@ void AU_UAV_ROS::mathVector::setMagnitude(double m) {
 Vector-based addition, subtract, and multiplication operator overloading.
 */
 
+/* Dot produt. */ 
+double AU_UAV_ROS::mathVector::dotProduct(const AU_UAV_ROS::mathVector& mV){
+	/* Ax = mag * cos(degree), Ay = mag * sin(degree) */
+	double Ax = this->magnitude * cos(this->direction * PI / 180);
+	double Ay = this->magnitude * sin(this->direction * PI / 180);
+
+	/* Bx = mag * cos(degree), By = mag * sin(degree) */
+	double Bx = mV.magnitude * cos(mV.direction * PI / 180);
+	double By = mV.magnitude * sin(mV.direction * PI / 180);
+
+	return Ax*Bx+Ay*By;
+
+}
+
 const AU_UAV_ROS::mathVector AU_UAV_ROS::mathVector::operator+(const AU_UAV_ROS::mathVector& mV) const {
 	mathVector newVector(*this); /* Copy vector */
 	newVector += mV; /* Use += to assign */
@@ -157,19 +171,6 @@ const AU_UAV_ROS::mathVector operator/(double val, const AU_UAV_ROS::mathVector&
   	return newVector;
 }
 
-/* Dot produt. */ 
-double dotProduct(const AU_UAV_ROS::mathVector& mV){
-	/* Ax = mag * cos(degree), Ay = mag * sin(degree) */
-	double Ax = this->magnitude * cos(this->direction * PI / 180);
-	double Ay = this->magnitude * sin(this->direction * PI / 180);
-
-	/* Bx = mag * cos(degree), By = mag * sin(degree) */
-	double Bx = mV.magnitude * cos(mV.direction * PI / 180);
-	double By = mV.magnitude * sin(mV.direction * PI / 180);
-
-	return Ax*Bx+Ay*By;
-
-}
 
 /* Overloaded equality operator */
 AU_UAV_ROS::mathVector& AU_UAV_ROS::mathVector::operator=(const AU_UAV_ROS::mathVector& mV){

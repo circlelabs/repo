@@ -40,13 +40,6 @@ namespace AU_UAV_ROS
 		double longitude;
 		double altitude;
 	};
-
-	struct coordinate
-	{
-		double latitude;
-		double longitude;
-		double altitude;
-	};
 }
 
 /*

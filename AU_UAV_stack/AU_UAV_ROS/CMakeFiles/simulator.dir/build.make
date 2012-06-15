@@ -32,10 +32,10 @@ CMAKE_COMMAND = /usr/bin/cmake
 RM = /usr/bin/cmake -E remove -f
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS
+CMAKE_SOURCE_DIR = /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS
+CMAKE_BINARY_DIR = /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS
 
 # Include any dependencies generated for this target.
 include CMakeFiles/simulator.dir/depend.make
@@ -66,17 +66,17 @@ CMakeFiles/simulator.dir/src/simulator.o: /opt/ros/fuerte/share/message_filters/
 CMakeFiles/simulator.dir/src/simulator.o: /opt/ros/fuerte/stacks/geometry/tf/manifest.xml
 CMakeFiles/simulator.dir/src/simulator.o: /opt/ros/fuerte/stacks/geometry/tf/msg_gen/generated
 CMakeFiles/simulator.dir/src/simulator.o: /opt/ros/fuerte/stacks/geometry/tf/srv_gen/generated
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/simulator.dir/src/simulator.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -DBT_USE_DOUBLE_PRECISION -DBT_EULER_DEFAULT_ZYX -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/simulator.dir/src/simulator.o -c /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/simulator.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -DBT_USE_DOUBLE_PRECISION -DBT_EULER_DEFAULT_ZYX -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/simulator.dir/src/simulator.o -c /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/simulator.cpp
 
 CMakeFiles/simulator.dir/src/simulator.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/simulator.dir/src/simulator.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -DBT_USE_DOUBLE_PRECISION -DBT_EULER_DEFAULT_ZYX -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/simulator.cpp > CMakeFiles/simulator.dir/src/simulator.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -DBT_USE_DOUBLE_PRECISION -DBT_EULER_DEFAULT_ZYX -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/simulator.cpp > CMakeFiles/simulator.dir/src/simulator.i
 
 CMakeFiles/simulator.dir/src/simulator.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/simulator.dir/src/simulator.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -DBT_USE_DOUBLE_PRECISION -DBT_EULER_DEFAULT_ZYX -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/simulator.cpp -o CMakeFiles/simulator.dir/src/simulator.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -DBT_USE_DOUBLE_PRECISION -DBT_EULER_DEFAULT_ZYX -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/simulator.cpp -o CMakeFiles/simulator.dir/src/simulator.s
 
 CMakeFiles/simulator.dir/src/simulator.o.requires:
 .PHONY : CMakeFiles/simulator.dir/src/simulator.o.requires
@@ -107,17 +107,17 @@ CMakeFiles/simulator.dir/src/AU_UAV_ROS/SimulatedPlane.o: /opt/ros/fuerte/share/
 CMakeFiles/simulator.dir/src/AU_UAV_ROS/SimulatedPlane.o: /opt/ros/fuerte/stacks/geometry/tf/manifest.xml
 CMakeFiles/simulator.dir/src/AU_UAV_ROS/SimulatedPlane.o: /opt/ros/fuerte/stacks/geometry/tf/msg_gen/generated
 CMakeFiles/simulator.dir/src/AU_UAV_ROS/SimulatedPlane.o: /opt/ros/fuerte/stacks/geometry/tf/srv_gen/generated
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/CMakeFiles $(CMAKE_PROGRESS_2)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/CMakeFiles $(CMAKE_PROGRESS_2)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/simulator.dir/src/AU_UAV_ROS/SimulatedPlane.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -DBT_USE_DOUBLE_PRECISION -DBT_EULER_DEFAULT_ZYX -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/simulator.dir/src/AU_UAV_ROS/SimulatedPlane.o -c /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/SimulatedPlane.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -DBT_USE_DOUBLE_PRECISION -DBT_EULER_DEFAULT_ZYX -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/simulator.dir/src/AU_UAV_ROS/SimulatedPlane.o -c /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/SimulatedPlane.cpp
 
 CMakeFiles/simulator.dir/src/AU_UAV_ROS/SimulatedPlane.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/simulator.dir/src/AU_UAV_ROS/SimulatedPlane.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -DBT_USE_DOUBLE_PRECISION -DBT_EULER_DEFAULT_ZYX -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/SimulatedPlane.cpp > CMakeFiles/simulator.dir/src/AU_UAV_ROS/SimulatedPlane.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -DBT_USE_DOUBLE_PRECISION -DBT_EULER_DEFAULT_ZYX -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/SimulatedPlane.cpp > CMakeFiles/simulator.dir/src/AU_UAV_ROS/SimulatedPlane.i
 
 CMakeFiles/simulator.dir/src/AU_UAV_ROS/SimulatedPlane.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/simulator.dir/src/AU_UAV_ROS/SimulatedPlane.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -DBT_USE_DOUBLE_PRECISION -DBT_EULER_DEFAULT_ZYX -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/SimulatedPlane.cpp -o CMakeFiles/simulator.dir/src/AU_UAV_ROS/SimulatedPlane.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -DBT_USE_DOUBLE_PRECISION -DBT_EULER_DEFAULT_ZYX -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/SimulatedPlane.cpp -o CMakeFiles/simulator.dir/src/AU_UAV_ROS/SimulatedPlane.s
 
 CMakeFiles/simulator.dir/src/AU_UAV_ROS/SimulatedPlane.o.requires:
 .PHONY : CMakeFiles/simulator.dir/src/AU_UAV_ROS/SimulatedPlane.o.requires
@@ -148,17 +148,17 @@ CMakeFiles/simulator.dir/src/AU_UAV_ROS/standardDefs.o: /opt/ros/fuerte/share/me
 CMakeFiles/simulator.dir/src/AU_UAV_ROS/standardDefs.o: /opt/ros/fuerte/stacks/geometry/tf/manifest.xml
 CMakeFiles/simulator.dir/src/AU_UAV_ROS/standardDefs.o: /opt/ros/fuerte/stacks/geometry/tf/msg_gen/generated
 CMakeFiles/simulator.dir/src/AU_UAV_ROS/standardDefs.o: /opt/ros/fuerte/stacks/geometry/tf/srv_gen/generated
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/CMakeFiles $(CMAKE_PROGRESS_3)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/CMakeFiles $(CMAKE_PROGRESS_3)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/simulator.dir/src/AU_UAV_ROS/standardDefs.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -DBT_USE_DOUBLE_PRECISION -DBT_EULER_DEFAULT_ZYX -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/simulator.dir/src/AU_UAV_ROS/standardDefs.o -c /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/standardDefs.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -DBT_USE_DOUBLE_PRECISION -DBT_EULER_DEFAULT_ZYX -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/simulator.dir/src/AU_UAV_ROS/standardDefs.o -c /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/standardDefs.cpp
 
 CMakeFiles/simulator.dir/src/AU_UAV_ROS/standardDefs.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/simulator.dir/src/AU_UAV_ROS/standardDefs.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -DBT_USE_DOUBLE_PRECISION -DBT_EULER_DEFAULT_ZYX -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/standardDefs.cpp > CMakeFiles/simulator.dir/src/AU_UAV_ROS/standardDefs.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -DBT_USE_DOUBLE_PRECISION -DBT_EULER_DEFAULT_ZYX -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/standardDefs.cpp > CMakeFiles/simulator.dir/src/AU_UAV_ROS/standardDefs.i
 
 CMakeFiles/simulator.dir/src/AU_UAV_ROS/standardDefs.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/simulator.dir/src/AU_UAV_ROS/standardDefs.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -DBT_USE_DOUBLE_PRECISION -DBT_EULER_DEFAULT_ZYX -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/standardDefs.cpp -o CMakeFiles/simulator.dir/src/AU_UAV_ROS/standardDefs.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -DBT_USE_DOUBLE_PRECISION -DBT_EULER_DEFAULT_ZYX -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/standardDefs.cpp -o CMakeFiles/simulator.dir/src/AU_UAV_ROS/standardDefs.s
 
 CMakeFiles/simulator.dir/src/AU_UAV_ROS/standardDefs.o.requires:
 .PHONY : CMakeFiles/simulator.dir/src/AU_UAV_ROS/standardDefs.o.requires
@@ -200,6 +200,6 @@ CMakeFiles/simulator.dir/clean:
 .PHONY : CMakeFiles/simulator.dir/clean
 
 CMakeFiles/simulator.dir/depend:
-	cd /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/CMakeFiles/simulator.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/CMakeFiles/simulator.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/simulator.dir/depend
 

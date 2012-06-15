@@ -7,6 +7,10 @@ FILE(REMOVE_RECURSE
   "srv_gen"
   "CMakeFiles/collisionAvoidance.dir/src/collisionAvoidance.o"
   "CMakeFiles/collisionAvoidance.dir/src/AU_UAV_ROS/standardDefs.o"
+  "CMakeFiles/collisionAvoidance.dir/src/standardFuncs.o"
+  "CMakeFiles/collisionAvoidance.dir/src/planeObject.o"
+  "CMakeFiles/collisionAvoidance.dir/src/ripna.o"
+  "CMakeFiles/collisionAvoidance.dir/src/vmath.o"
   "bin/collisionAvoidance.pdb"
   "bin/collisionAvoidance"
 )
