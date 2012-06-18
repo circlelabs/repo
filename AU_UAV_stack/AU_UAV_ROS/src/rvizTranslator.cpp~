@@ -280,7 +280,7 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr& msg)
 	// Publish the marker
 	marker_pub.publish(marker3);
 
-
+/*
 //request waypoint info to publish a square at each plane's next COLLISION AVOIDANCE waypoint location.
 	AU_UAV_ROS::RequestWaypointInfo srv2;
 	srv2.request.planeID = msg->planeID;	
@@ -308,7 +308,7 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr& msg)
 
 		
 
-		ROS_ERROR("SIM PlaneID:%d LAT:%f LON:%f", srv2.request.planeID, srv2.response.latitude, srv2.response.longitude);
+		//ROS_ERROR("SIM PlaneID:%d LAT:%f LON:%f", srv2.request.planeID, srv2.response.latitude, srv2.response.longitude);
 
 		//set shape
 		shape = visualization_msgs::Marker::SPHERE;
@@ -359,6 +359,7 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr& msg)
 		
 		
 	}
+	*/
 }
 
 

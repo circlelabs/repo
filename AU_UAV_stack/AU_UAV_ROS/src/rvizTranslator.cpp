@@ -280,7 +280,7 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr& msg)
 	// Publish the marker
 	marker_pub.publish(marker3);
 
-
+/*
 //request waypoint info to publish a square at each plane's next COLLISION AVOIDANCE waypoint location.
 	AU_UAV_ROS::RequestWaypointInfo srv2;
 	srv2.request.planeID = msg->planeID;	
@@ -359,6 +359,7 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr& msg)
 		
 		
 	}
+	*/
 }
 
 
