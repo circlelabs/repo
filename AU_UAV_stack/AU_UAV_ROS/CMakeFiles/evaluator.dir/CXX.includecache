@@ -6,16 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/standardDefs.cpp
-stdio.h
--
-string.h
--
-ctype.h
--
-AU_UAV_ROS/standardDefs.h
-/home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/AU_UAV_ROS/standardDefs.h
-
 /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/evaluator.cpp
 stdio.h
 -

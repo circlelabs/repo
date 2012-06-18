@@ -43,7 +43,7 @@ AU_UAV_ROS::waypoint AU_UAV_ROS::findNewWaypoint(PlaneObject &plane1, std::map<i
 		return takeDubinsPath(plane1);
 	}
 	
-	ROS_WARN("PLANE%d detected PLANE%d with a ZEM of %f", plane1.getID(), threatID, threatZEM);
+	//ROS_WARN("PLANE%d detected PLANE%d with a ZEM of %f", plane1.getID(), threatID, threatZEM);
 
 	
 	/* If there is a plane to avoid, then figure out which direction it 
@@ -52,6 +52,7 @@ AU_UAV_ROS::waypoint AU_UAV_ROS::findNewWaypoint(PlaneObject &plane1, std::map<i
 
 	/* Calculate turning radius to avoid collision*/
 	double turningRadius = calculateTurningRadius(threatZEM);
+	//ROS_WARN("PLANE%d detected PLANE%d and wants to turn right %d with radius %f", plane1.getID(), threatID, turnRight, turningRadius);
 
 	/* Given turning radius and orientation of the plane, calculate 
 	next collision avoidance waypoint*/
@@ -125,7 +126,6 @@ AU_UAV_ROS::threatContainer AU_UAV_ROS::findGreatestThreat(PlaneObject &plane1, 
 			planeToAvoid = ID;
 			mostDangerousZEM = zeroEffortMiss;
 			minimumTimeToGo = timeToGo;
-			ROS_WARN("potential time to go:%f", timeToGo);
 		}
 	}
 
@@ -172,7 +172,9 @@ bool AU_UAV_ROS::shouldTurnRight(PlaneObject &plane1, PlaneObject &plane2) {
 
 /* Calculate the turning radius based on the zero effort miss*/
 double AU_UAV_ROS::calculateTurningRadius(double ZEM){
-	return MINIMUM_TURNING_RADIUS*exp(LAMBDA*ZEM/DESIRED_SEPARATION);
+	double l = LAMBDA;
+	double ds = DESIRED_SEPARATION;
+	return MINIMUM_TURNING_RADIUS*exp(l*ZEM/ds);
 }
 
 

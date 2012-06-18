@@ -166,7 +166,7 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr &msg)
 	goToWaypointSrv.request.longitude = newWaypoint.longitude;
 	goToWaypointSrv.request.altitude = newWaypoint.altitude;
 	goToWaypointSrv.request.isAvoidanceManeuver = true; 
-	goToWaypointSrv.request.isNewQueue = false;
+	goToWaypointSrv.request.isNewQueue = true;
 
 	if (goToWaypointClient.call(goToWaypointSrv)){
 		count++;

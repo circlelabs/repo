@@ -166,11 +166,11 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr &msg)
 	goToWaypointSrv.request.longitude = newWaypoint.longitude;
 	goToWaypointSrv.request.altitude = newWaypoint.altitude;
 	goToWaypointSrv.request.isAvoidanceManeuver = true; 
-	goToWaypointSrv.request.isNewQueue = false;
+	goToWaypointSrv.request.isNewQueue = true;
 
 	if (goToWaypointClient.call(goToWaypointSrv)){
 		count++;
-		//ROS_WARN("Latitude: %f | Longitude: %f", goToWaypointSrv.request.latitude, goToWaypointSrv.request.longitude);
+		ROS_WARN("Latitude: %f | Longitude: %f", goToWaypointSrv.request.latitude, goToWaypointSrv.request.longitude);
 		ROS_INFO("Received response from service request %d", (count-1));
 	}
 	else{
