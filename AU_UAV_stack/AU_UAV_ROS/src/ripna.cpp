@@ -16,6 +16,7 @@ This is the implementation of RIPNA.h.
 #include "AU_UAV_ROS/standardFuncs.h"		// for PI, EARTH_RADIUS, MPS_SPEED
 #include "AU_UAV_ROS/SimulatedPlane.h"		// for MAXIMUM_TURNING_ANGLE
 
+#define PLANE_MAX_TURN_ANGLE 22.5 //degrees
 #define CHECK_ZONE 6.0*MPS_SPEED //meters
 #define DANGER_ZEM 2.0*MPS_SPEED //meters
 #define MINIMUM_TURNING_RADIUS 28.64058013 //meters	
@@ -184,7 +185,37 @@ waypoint location: http://local.wasp.uwa.edu.au/~pbourke/geometry/2circle/ */
 AU_UAV_ROS::waypoint AU_UAV_ROS::calculateWaypoint(PlaneObject &plane1, double turningRadius, bool turnRight){
 	
 	AU_UAV_ROS::coordinate turningCircleCenter = calculateCircleCenter(plane1, turnRight, turningRadius);
+	AU_UAV_ROS::waypoint wp;	
+
+	double r0 = turningRadius; //radius of turning circle
+	double r1 = MPS_SPEED*TIME_STEP; //distance travelled in one time step
+	double d = turningRadius; //distance between circle centers
+	double a = (pow(r0, 2) - pow(r1, 2) + pow(d, 2)) / (2 * d);
+	double h = sqrt(pow(r0, 2) - pow(a, 2));
+
+	// Using turningCircleCenter as origin
+	double p0x = 0;
+	double p0y = 0;
+
+	double p1x = (plane1.getCurrentLoc().longitude - turningCircleCenter.longitude)* DELTA_LON_TO_METERS;
+	double p1y = (plane1.getCurrentLoc().latitude - turningCircleCenter.latitude)*DELTA_LAT_TO_METERS;
+
+	double p2x = p0x + a * (p1x - p0x) / d;
+	double p2y = p0y + a * (p1y - p0y) / d;
+
+	double x3 = p2x + h * (p1y - p0y) / d;
+	double y3 = p2y - h * (p1x - p0x) / d;
+
+	if (abs(manipulateAngle(toCartestian(plane1.getCurrentBearing()) - atan2((y3-y1),(x3-x1)))) > PLANE_MAX_TURN_ANGLE) {
+		x3 = p2x - h * (p1y - p0y) / d;
+		y3 = p2y + h * (p1x - p0x) / d;
+	}
 	
+	wp.latitude = y3;
+	wp.longitude = x3;
+	wp.altitude = plane1.getCurrentLoc().altitude;	
+
+	return wp;
 
 }
 
