@@ -41,7 +41,7 @@ longitude of the ending point.
 double findDistance(double lat1, double long1, double lat2, double long2);
 
 /* 
-Returns the Cardinal angle between two points of latitude and longitude in degrees.  The starting point is given
+Returns the Cartesian angle between two points of latitude and longitude in degrees.  The starting point is given
 by lat1 and long1 (the first two parameters), and the final point is given by lat2 and long2 (the final two parameters).
 The value returned is on the interval [-180, 180].
 */

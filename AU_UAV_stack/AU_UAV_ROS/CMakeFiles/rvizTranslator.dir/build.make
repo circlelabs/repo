@@ -32,10 +32,10 @@ CMAKE_COMMAND = /usr/bin/cmake
 RM = /usr/bin/cmake -E remove -f
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS
+CMAKE_SOURCE_DIR = /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS
+CMAKE_BINARY_DIR = /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS
 
 # Include any dependencies generated for this target.
 include CMakeFiles/rvizTranslator.dir/depend.make
@@ -66,17 +66,17 @@ CMakeFiles/rvizTranslator.dir/src/rvizTranslator.o: /opt/ros/fuerte/share/messag
 CMakeFiles/rvizTranslator.dir/src/rvizTranslator.o: /opt/ros/fuerte/stacks/geometry/tf/manifest.xml
 CMakeFiles/rvizTranslator.dir/src/rvizTranslator.o: /opt/ros/fuerte/stacks/geometry/tf/msg_gen/generated
 CMakeFiles/rvizTranslator.dir/src/rvizTranslator.o: /opt/ros/fuerte/stacks/geometry/tf/srv_gen/generated
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/rvizTranslator.dir/src/rvizTranslator.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -DBT_USE_DOUBLE_PRECISION -DBT_EULER_DEFAULT_ZYX -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/rvizTranslator.dir/src/rvizTranslator.o -c /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/rvizTranslator.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -DBT_USE_DOUBLE_PRECISION -DBT_EULER_DEFAULT_ZYX -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/rvizTranslator.dir/src/rvizTranslator.o -c /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/rvizTranslator.cpp
 
 CMakeFiles/rvizTranslator.dir/src/rvizTranslator.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/rvizTranslator.dir/src/rvizTranslator.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -DBT_USE_DOUBLE_PRECISION -DBT_EULER_DEFAULT_ZYX -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/rvizTranslator.cpp > CMakeFiles/rvizTranslator.dir/src/rvizTranslator.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -DBT_USE_DOUBLE_PRECISION -DBT_EULER_DEFAULT_ZYX -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/rvizTranslator.cpp > CMakeFiles/rvizTranslator.dir/src/rvizTranslator.i
 
 CMakeFiles/rvizTranslator.dir/src/rvizTranslator.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/rvizTranslator.dir/src/rvizTranslator.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -DBT_USE_DOUBLE_PRECISION -DBT_EULER_DEFAULT_ZYX -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/rvizTranslator.cpp -o CMakeFiles/rvizTranslator.dir/src/rvizTranslator.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -DBT_USE_DOUBLE_PRECISION -DBT_EULER_DEFAULT_ZYX -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/rvizTranslator.cpp -o CMakeFiles/rvizTranslator.dir/src/rvizTranslator.s
 
 CMakeFiles/rvizTranslator.dir/src/rvizTranslator.o.requires:
 .PHONY : CMakeFiles/rvizTranslator.dir/src/rvizTranslator.o.requires
@@ -112,6 +112,6 @@ CMakeFiles/rvizTranslator.dir/clean:
 .PHONY : CMakeFiles/rvizTranslator.dir/clean
 
 CMakeFiles/rvizTranslator.dir/depend:
-	cd /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/CMakeFiles/rvizTranslator.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/CMakeFiles/rvizTranslator.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/rvizTranslator.dir/depend
 

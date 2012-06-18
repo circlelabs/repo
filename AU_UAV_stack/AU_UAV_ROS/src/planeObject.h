@@ -13,17 +13,10 @@ namespace AU_UAV_ROS {
 	class PlaneObject {
 
 	public:
-		PlaneObject(void);
-
-		PlaneObject(int id, double cBearing, double speed, double cRadius, 
-			    const AU_UAV_ROS::waypoint &currentPos, const AU_UAV_ROS::waypoint &dest);
 		/*
 		Explicit value constructor: Takes a collision radius and a telemetry update and creates a new PlaneObject.
 		*/
 		PlaneObject(double cRadius, const AU_UAV_ROS::TelemetryUpdate &msg);
-
-		/* Copy constructor */
-		PlaneObject(const PlaneObject& pobj);
 
 		/*mutator functions*/
 		void setID(int id);
@@ -48,14 +41,14 @@ namespace AU_UAV_ROS {
 		double getLastUpdateTime(void) const;
 		AU_UAV_ROS::waypoint getDestination(void) const;
 
-/* Find distance between this plane and another plane */
+		/* Find distance between this plane and another plane */
 		double findDistance(const PlaneObject& pobj) const;
-/* Find distance between this plane and another plane's latitude/longitude */
+		/* Find distance between this plane and another plane's latitude/longitude */
 		double findDistance(double lat, double lon) const;
 
-/* Find angle between this plane and another plane */
+		/* Find Cartesian angle between this plane and another plane */
 		double findAngle(const PlaneObject& pobj) const;
-/* Find angle between this plane and another plane's latitude/longitude */
+		/* Find Cartesian angle between this plane and another plane's latitude/longitude */
 		double findAngle(double lat, double lon) const;
 
 		/* Overloaded equality operator */

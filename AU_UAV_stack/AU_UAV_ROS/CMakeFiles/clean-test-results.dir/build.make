@@ -32,10 +32,10 @@ CMAKE_COMMAND = /usr/bin/cmake
 RM = /usr/bin/cmake -E remove -f
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS
+CMAKE_SOURCE_DIR = /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS
+CMAKE_BINARY_DIR = /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS
 
 # Utility rule file for clean-test-results.
 
@@ -43,7 +43,7 @@ CMAKE_BINARY_DIR = /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS
 include CMakeFiles/clean-test-results.dir/progress.make
 
 CMakeFiles/clean-test-results:
-	if ! rm -rf /home/ericwestman/.ros/test_results/AU_UAV_ROS; then echo WARNING:\ failed\ to\ remove\ test-results\ directory ; fi
+	if ! rm -rf /home/eric/.ros/test_results/AU_UAV_ROS; then echo WARNING:\ failed\ to\ remove\ test-results\ directory ; fi
 
 clean-test-results: CMakeFiles/clean-test-results
 clean-test-results: CMakeFiles/clean-test-results.dir/build.make
@@ -58,6 +58,6 @@ CMakeFiles/clean-test-results.dir/clean:
 .PHONY : CMakeFiles/clean-test-results.dir/clean
 
 CMakeFiles/clean-test-results.dir/depend:
-	cd /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/CMakeFiles/clean-test-results.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/CMakeFiles/clean-test-results.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/clean-test-results.dir/depend
 

@@ -6,6 +6,7 @@ This node controls the collision avoidance algorithm--an implementation of react
 
 //standard C++ headers
 #include <sstream>
+#include <iostream>
 #include <stdlib.h>
 #include <queue>
 #include <map>
@@ -23,9 +24,6 @@ This node controls the collision avoidance algorithm--an implementation of react
 #include "AU_UAV_ROS/standardFuncs.h"
 #include "AU_UAV_ROS/ripna.h"
 
-/* constants */
-const double EPSILON = 1e-6; /* used to check floating point numbers for equality */
-
 /* ROS service clients for calling services from the coordinator */
 ros::ServiceClient goToWaypointClient;
 ros::ServiceClient requestWaypointInfoClient;
@@ -34,37 +32,22 @@ int count; /* keeps count of the number of goToWaypoint services requested */
 
 std::map<int, AU_UAV_ROS::PlaneObject> planes; /* map of planes in the airspace.  The key is the plane id of the aircraft */
 
-/* 
-This function is run every time new telemetry information from any plane is recieved.  With the new telemetry update, 
+/* This function is run every time new telemetry information from any plane is recieved.  With the new telemetry update, 
 information about the plane is updated, including bearing, speed, current location, etc.  Additionally, we check to see
 if the UAV has reached it's current destination, and, if so, update the destination of the UAV.
 After updating, the calculateForces function is called to find a the new force acting on the UAV; from this new force,
-a next waypoint is found and forwarded to the coordinator.
-*/
+a next waypoint is found and forwarded to the coordinator. */
 void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr &msg);
 
-/*
-Returns a GoToWaypoint service to call the coordiantor with.  The service contains a new waypoint for the UAV to navigate to
-based on the current location information contained within the Telemetry update and the direction of the force vector.  The new
-waypoint is a second away from the current location.
-*/
-AU_UAV_ROS::GoToWaypoint updatePath(const AU_UAV_ROS::TelemetryUpdate::ConstPtr &msg, AU_UAV_ROS::mathVector forceVector);
-
-/*
-This function checks to see if any planes have been removed from the airspace due to a collision.
-To achieve this, the timestamp of the last update from each UAV is compared to the current time.
-If the two times differ by more than three seconds, the UAV is deleted.  This function is meant for use with the 
-evaluator, and may not be advantageous to use in the live testing due to packet loss, network latency, etc.
-*/
-//void checkCollisions(void);
 
 int main(int argc, char **argv)
-{
+{	
 	//standard ROS startup
 	ros::init(argc, argv, "collisionAvoidance");
 	ros::NodeHandle n;
 	
-	//subscribe to telemetry outputs and create clients for the goToWaypoint and requestWaypointInfo services
+	/*subscribe to telemetry outputs and create clients for the 
+	goToWaypoint and requestWaypointInfo services*/
 	ros::Subscriber sub = n.subscribe("telemetry", 1000, telemetryCallback);
 	goToWaypointClient = n.serviceClient<AU_UAV_ROS::GoToWaypoint>("go_to_waypoint");
 	requestWaypointInfoClient = n.serviceClient<AU_UAV_ROS::RequestWaypointInfo>("request_waypoint_info");
@@ -79,21 +62,13 @@ int main(int argc, char **argv)
 }
 
 void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr &msg)
-{
+{	
+	/* Instantiate services for use later, and get planeID*/
 	AU_UAV_ROS::GoToWaypoint goToWaypointSrv;
 	AU_UAV_ROS::RequestWaypointInfo requestWaypointInfoSrv;
 	int planeID = msg->planeID;
 
-	/* 
-	Remove any planes that have been involved in a collision.
-	Note: This function is made for use with the evaluator node, and may not work optimally in the field.
-	To check for collisions, it compares the current time with the last update time of each of the UAVs.  
-	If the values differ by more than three seconds, it is assumed the plane has been deleted.  However, 
-	packet losses / network latency may render issues in the real world.
-	*/
-	//checkCollisions();
-
-	/* request this plane's current normal destination */
+	/* Request this plane's current normal destination */
 	requestWaypointInfoSrv.request.planeID = planeID;
 	requestWaypointInfoSrv.request.isAvoidanceWaypoint = false;
 	requestWaypointInfoSrv.request.positionInQueue = 0;
@@ -103,10 +78,9 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr &msg)
 		return;
 	}
 
-	/* 
-	if (plane has reached current destination waypoint)
-		move on to next normal destination waypoint in queue
-	*/
+	/* If the plane has reached its current destination, move onto the 
+	next destination waypoint. This does not set the destination
+	of the plane object in the map "planes." */
 	if (findDistance(msg->currentLatitude, msg->currentLongitude, 
 					requestWaypointInfoSrv.response.latitude, 
 					requestWaypointInfoSrv.response.longitude) < COLLISION_THRESHOLD){
@@ -120,23 +94,20 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr &msg)
 		}
 	}
 
-	/* 
-	Pseudocode for the following code lines.
-	if (this plane is not in the map of planes and the telemetry update indicates that the plane is or has been moving towards a destination)
-		the plane has registered a new TelemetryUpdate 
-	else 
-		return - the plane has just been initialized but it is not moving torwards a waypoint as of now 
-	*/
 
+	/* If the plane is not in our map of planes and has destination
+	waypoints, then add it as a new plane to our map of planes. 
+	
+	Else if the plane is not in our map of planes and does not
+	have waypoints, return and do nothing more. */
 	if (planes.find(planeID) == planes.end() && msg->currentWaypointIndex != -1){ 
-		/* 
-		a new plane has registered a TelemetryUpdate where the destination is not (0, 0)
-		create new PlaneObject, collision radius is set to the distance traveled in one second
-		*/
-		AU_UAV_ROS::PlaneObject newPlane(MPS_SPEED, *msg); /* */
+		/* This is a new plane, so create a new planeObject and 
+		give it the appropriate information */
+		AU_UAV_ROS::PlaneObject newPlane(MPS_SPEED, *msg); 
 		planes[planeID] = newPlane; /* put the new plane into the map */
 
-		/* update the destination of the PlaneObject with the value found with the requestWaypointInfoSrv call */
+		/* Update the destination of the PlaneObject with the value 
+		found with the requestWaypointInfoSrv call */
 		AU_UAV_ROS::waypoint newDest; 
 		newDest.latitude = requestWaypointInfoSrv.response.latitude;
 		newDest.longitude = requestWaypointInfoSrv.response.longitude;
@@ -144,32 +115,25 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr &msg)
 
 		planes[planeID].setDestination(newDest);
 	}
-	else if (planes.find(planeID) == planes.end()) /* new plane without waypoint set */
+	else if (planes.find(planeID) == planes.end()) 
+		/* New plane without waypoint set */
 		return; 
 	
-	/* 
-	Note: The requestWaypointInfo service returns a waypoint of -1000, -1000 when the UAV cannot retrieve a destination from
-	queue.
 
-	Pseudocode:
-	if (the plane has no destination){
-		- set the plane way far away from everything else
-		- update with the new time of latest update to avoid a false detection of a collision
-	}
-	else{
-		update the plane with the new telemetry information
+	/* Note: The requestWaypointInfo service returns a waypoint of 
+	-1000, -1000 when the UAV cannot retrieve a destination from queue.
 
-	}
-	*/
+	If the plane has no waypoint to go to, put it far from all others.
+
+	Or, if the plane does have a waypoint to go to, update the plane 
+	with new position and destination received from requestWaypointInfoSrv
+	response*/
 	if (requestWaypointInfoSrv.response.latitude == -1000){ /* plane has no waypoints to go to */
-		/* 
-		useful for simulations, remove in real flights;		
-		set location of finished planes to -1000, -1000 so no repulsive force is felt from this plane
-		*/
-		planes[planeID].setLatitude(-1000);
-		planes[planeID].setLongitude(-1000);
-
-		planes[planeID].update(); /* update the time of last update for this plane to acknowledge it is still in the air */
+		/* Remove in real flights*/
+		planes[planeID].setCurrentLoc(-1000,-1000,400);
+		/* update the time of last update for this plane to acknowledge 
+		it is still in the air */
+		planes[planeID].updateTime(); 
 		return; 
 	}
 	else{
@@ -181,18 +145,21 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr &msg)
 		newDest.longitude = requestWaypointInfoSrv.response.longitude;
 		newDest.altitude = requestWaypointInfoSrv.response.altitude;
 
-		planes[planeID].setDestination(newDest);
+		planes[planeID].setDestination(newDest); /* update plane destination */
 	}
+
 
 	/* This line of code calls the collision avoidance algorithm 
 	and determines if there should be collision avoidance 
-	maneuvers taken.*/
-	
+	maneuvers taken.*/	
 	AU_UAV_ROS::waypoint newWaypoint = findNewWaypoint(planes[planeID], planes);
 
 	
 	if ((requestWaypointInfoSrv.response.longitude == newWaypoint.longitude) 
-		&& (requestWaypointInfoSrv.response.latitude == newWaypoint.latitude)) return;
+		&& (requestWaypointInfoSrv.response.latitude == newWaypoint.latitude)) {
+	//ROS_WARN("NO COLLISION IMMINENT - TAKING DUBINS PATH");
+	return;
+	}	
 
 	/* Fill in goToWaypointSrv request with new waypoint information*/
 	goToWaypointSrv.request.latitude = newWaypoint.latitude;
@@ -203,6 +170,7 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr &msg)
 
 	if (goToWaypointClient.call(goToWaypointSrv)){
 		count++;
+		ROS_WARN("Latitude: %f | Longitude: %f", goToWaypointSrv.request.latitude, goToWaypointSrv.request.longitude);
 		ROS_INFO("Received response from service request %d", (count-1));
 	}
 	else{

@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/KMLCreator.cpp
+/home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/KMLCreator.cpp
 stdio.h
 -
 map
@@ -14,15 +14,15 @@ map
 queue
 -
 ros/ros.h
-/home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/ros/ros.h
+/home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/ros/ros.h
 ros/package.h
-/home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/ros/package.h
+/home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/ros/package.h
 AU_UAV_ROS/standardDefs.h
-/home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/standardDefs.h
+/home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/standardDefs.h
 AU_UAV_ROS/TelemetryUpdate.h
-/home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/TelemetryUpdate.h
+/home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/TelemetryUpdate.h
 AU_UAV_ROS/SaveFlightData.h
-/home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/SaveFlightData.h
+/home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/SaveFlightData.h
 
 /opt/ros/fuerte/include/XmlRpcDecl.h
 ros/macros.h

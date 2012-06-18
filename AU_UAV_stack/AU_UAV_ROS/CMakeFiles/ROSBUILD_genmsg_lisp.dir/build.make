@@ -32,10 +32,10 @@ CMAKE_COMMAND = /usr/bin/cmake
 RM = /usr/bin/cmake -E remove -f
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS
+CMAKE_SOURCE_DIR = /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS
+CMAKE_BINARY_DIR = /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS
 
 # Utility rule file for ROSBUILD_genmsg_lisp.
 
@@ -71,9 +71,9 @@ msg_gen/lisp/Command.lisp: /opt/ros/fuerte/share/message_filters/manifest.xml
 msg_gen/lisp/Command.lisp: /opt/ros/fuerte/stacks/geometry/tf/manifest.xml
 msg_gen/lisp/Command.lisp: /opt/ros/fuerte/stacks/geometry/tf/msg_gen/generated
 msg_gen/lisp/Command.lisp: /opt/ros/fuerte/stacks/geometry/tf/srv_gen/generated
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating msg_gen/lisp/Command.lisp, msg_gen/lisp/_package.lisp, msg_gen/lisp/_package_Command.lisp"
-	/opt/ros/fuerte/share/roslisp/rosbuild/scripts/genmsg_lisp.py /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/msg/Command.msg
+	/opt/ros/fuerte/share/roslisp/rosbuild/scripts/genmsg_lisp.py /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/msg/Command.msg
 
 msg_gen/lisp/_package.lisp: msg_gen/lisp/Command.lisp
 
@@ -101,9 +101,9 @@ msg_gen/lisp/TelemetryUpdate.lisp: /opt/ros/fuerte/share/message_filters/manifes
 msg_gen/lisp/TelemetryUpdate.lisp: /opt/ros/fuerte/stacks/geometry/tf/manifest.xml
 msg_gen/lisp/TelemetryUpdate.lisp: /opt/ros/fuerte/stacks/geometry/tf/msg_gen/generated
 msg_gen/lisp/TelemetryUpdate.lisp: /opt/ros/fuerte/stacks/geometry/tf/srv_gen/generated
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/CMakeFiles $(CMAKE_PROGRESS_2)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/CMakeFiles $(CMAKE_PROGRESS_2)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating msg_gen/lisp/TelemetryUpdate.lisp, msg_gen/lisp/_package.lisp, msg_gen/lisp/_package_TelemetryUpdate.lisp"
-	/opt/ros/fuerte/share/roslisp/rosbuild/scripts/genmsg_lisp.py /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/msg/TelemetryUpdate.msg
+	/opt/ros/fuerte/share/roslisp/rosbuild/scripts/genmsg_lisp.py /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/msg/TelemetryUpdate.msg
 
 msg_gen/lisp/_package.lisp: msg_gen/lisp/TelemetryUpdate.lisp
 
@@ -128,6 +128,6 @@ CMakeFiles/ROSBUILD_genmsg_lisp.dir/clean:
 .PHONY : CMakeFiles/ROSBUILD_genmsg_lisp.dir/clean
 
 CMakeFiles/ROSBUILD_genmsg_lisp.dir/depend:
-	cd /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS /home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/CMakeFiles/ROSBUILD_genmsg_lisp.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS /home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/CMakeFiles/ROSBUILD_genmsg_lisp.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/ROSBUILD_genmsg_lisp.dir/depend
 

@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/visualization.cpp
+/home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/visualization.cpp
 stdio.h
 -
 ros/ros.h
@@ -14,7 +14,7 @@ ros/ros.h
 visualization_msgs/Marker.h
 -
 AU_UAV_ROS/TelemetryUpdate.h
-/home/ericwestman/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/TelemetryUpdate.h
+/home/eric/ros_workspace/repo/AU_UAV_stack/AU_UAV_ROS/src/AU_UAV_ROS/TelemetryUpdate.h
 
 /opt/ros/fuerte/include/XmlRpcDecl.h
 ros/macros.h
