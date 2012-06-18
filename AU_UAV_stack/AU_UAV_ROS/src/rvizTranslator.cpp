@@ -308,7 +308,7 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr& msg)
 
 		
 
-		ROS_ERROR("ERROR:  LAT: %f LON:%f ", srv2.response.latitude, srv2.response.longitude);
+		//ROS_ERROR("SIM PlaneID:%d LAT:%f LON:%f", srv2.request.planeID, srv2.response.latitude, srv2.response.longitude);
 
 		//set shape
 		shape = visualization_msgs::Marker::SPHERE;

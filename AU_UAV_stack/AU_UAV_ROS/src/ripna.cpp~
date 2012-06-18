@@ -52,7 +52,7 @@ AU_UAV_ROS::waypoint AU_UAV_ROS::findNewWaypoint(PlaneObject &plane1, std::map<i
 
 	/* Calculate turning radius to avoid collision*/
 	double turningRadius = calculateTurningRadius(threatZEM);
-	ROS_WARN("PLANE%d detected PLANE%d and wants to turn right %d with radius %f", plane1.getID(), threatID, turnRight, turningRadius);
+	//ROS_WARN("PLANE%d detected PLANE%d and wants to turn right %d with radius %f", plane1.getID(), threatID, turnRight, turningRadius);
 
 	/* Given turning radius and orientation of the plane, calculate 
 	next collision avoidance waypoint*/
@@ -177,27 +177,15 @@ double AU_UAV_ROS::calculateTurningRadius(double ZEM){
 	return MINIMUM_TURNING_RADIUS*exp(l*ZEM/ds);
 }
 
+/* Link to help calculate intersection of circles and therefore the new 
+waypoint location: http://local.wasp.uwa.edu.au/~pbourke/geometry/2circle/ */
 
 /* Find the new collision avoidance waypoint for the plane to go to */
 AU_UAV_ROS::waypoint AU_UAV_ROS::calculateWaypoint(PlaneObject &plane1, double turningRadius, bool turnRight){
-	double phi;	
-	/* Calculate theta in degrees*/	
-	double theta = 2*asin(MPS_SPEED*TIME_STEP/(2*turningRadius))*180/PI;
-	/* Calculate signed supplement of bearing in degrees*/
-	double bearingBar = calculateSupplement(plane1.getCurrentBearing());	
-	/* Calculate center of turning circle*/
+	
 	AU_UAV_ROS::coordinate turningCircleCenter = calculateCircleCenter(plane1, turnRight, turningRadius);
 	
-	/* Calculate phi in degrees if it's turning right or left*/
-	if (turnRight) phi = bearingBar - theta;
-	else phi = 180 + bearingBar + theta;
-	
-	/* Calculate the new waypoint destination*/
-	AU_UAV_ROS::waypoint newDest;
-	newDest.altitude = plane1.getCurrentLoc().altitude;
-	newDest.longitude = turningCircleCenter.longitude + turningRadius/DELTA_LON_TO_METERS*cos(phi);
-	newDest.latitude = turningCircleCenter.latitude + turningRadius/DELTA_LAT_TO_METERS*sin(phi);
-	return newDest;
+
 }
 
 

@@ -162,6 +162,7 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr &msg)
 	}	
 
 	/* Fill in goToWaypointSrv request with new waypoint information*/
+	goToWaypointSrv.request.planeID = msg->planeID;
 	goToWaypointSrv.request.latitude = newWaypoint.latitude;
 	goToWaypointSrv.request.longitude = newWaypoint.longitude;
 	goToWaypointSrv.request.altitude = newWaypoint.altitude;
@@ -170,7 +171,7 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr &msg)
 
 	if (goToWaypointClient.call(goToWaypointSrv)){
 		count++;
-		ROS_WARN("Latitude: %f | Longitude: %f", goToWaypointSrv.request.latitude, goToWaypointSrv.request.longitude);
+		//ROS_WARN("PlaneID:%d LAT: %f LON: %f", msg->planeID, goToWaypointSrv.request.latitude, goToWaypointSrv.request.longitude);
 		ROS_INFO("Received response from service request %d", (count-1));
 	}
 	else{
