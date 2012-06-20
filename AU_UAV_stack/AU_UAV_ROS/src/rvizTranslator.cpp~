@@ -280,23 +280,23 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr& msg)
 	// Publish the marker
 	marker_pub.publish(marker3);
 
-/*
+
 //request waypoint info to publish a square at each plane's next COLLISION AVOIDANCE waypoint location.
-	AU_UAV_ROS::RequestWaypointInfo srv2;
+	/*AU_UAV_ROS::RequestWaypointInfo srv2;
 	srv2.request.planeID = msg->planeID;	
 	srv2.request.isAvoidanceWaypoint = true;
-	srv2.request.positionInQueue = 0;//msg->currentWaypointIndex;
-
+	srv2.request.positionInQueue = 0;//msg->currentWaypointIndex; */
+/*
 	
-	if(requestWaypointInfoClient.call(srv2) && srv2.response.latitude > 0)
+	if(true)
 	{
 		//set up verticies of triangle
 		struct waypoint northsouthpointWP2;
-		northsouthpointWP2.latitude=srv2.response.latitude;//srv->currentLatitude;
+		northsouthpointWP2.latitude=msg->destLatitude;//srv->currentLatitude;
 		northsouthpointWP2.longitude=WEST_MOST_LONGITUDE;
 		struct waypoint eastwestpointWP2;
 		eastwestpointWP2.latitude=NORTH_MOST_LATITUDE;
-		eastwestpointWP2.longitude=srv2.response.longitude;//srv->currentLongitude;
+		eastwestpointWP2.longitude=msg->destLongitude;//srv->currentLongitude;
 
 		std::stringstream sstm4;
 		sstm4 << "CA" << buffer;
@@ -324,7 +324,7 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr& msg)
 		// Set the namespace and id for this marker.  This serves to create a unique ID
 		// Any marker sent with the same namespace and id will overwrite the old one
 		marker4.ns = "basic_shapes";
-		marker4.id = planeID+2000;
+		marker4.id = planeID+3000;
 
 		// Set the marker type.  Initially this is CUBE, and cycles between that and SPHERE, ARROW, and CYLINDER
 		marker4.type = shape;

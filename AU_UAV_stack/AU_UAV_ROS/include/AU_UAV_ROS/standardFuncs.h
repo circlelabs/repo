@@ -28,6 +28,12 @@ namespace AU_UAV_ROS{
 		int planeID;
 		double ZEM;
 	};
+	
+	struct waypointContainer {
+		AU_UAV_ROS::waypoint plane1WP;
+		AU_UAV_ROS::waypoint plane2WP;
+		int plane2ID;
+	};
 }
 
 

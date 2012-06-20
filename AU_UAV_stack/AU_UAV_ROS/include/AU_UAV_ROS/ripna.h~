@@ -19,7 +19,7 @@ namespace AU_UAV_ROS{
 	functions outlined in this file to calculate a collision avoidance waypoint 
 	for the plane to travel to. If no collision avoidance or maneuvering is 
 	necessary, this functions returns the current destination waypoint */
-	AU_UAV_ROS::waypoint findNewWaypoint(PlaneObject &plane1, std::map<int, PlaneObject> &planes);
+	AU_UAV_ROS::waypointContainer findNewWaypoint(PlaneObject &plane1, std::map<int, PlaneObject> &planes);
 	
 	/*This function receives the current plane and a map of all of the planes 
 	in the airspace, and returns the ID of the plane which is the most imminent 
@@ -45,6 +45,8 @@ namespace AU_UAV_ROS{
 	/* This function takes a plane, its turning radius, and the direction to turn 
 	and returns the center of the circle of its turning radius. */
 	AU_UAV_ROS::coordinate calculateCircleCenter(PlaneObject &plane, double turnRadius, bool turnRight);
+
+	AU_UAV_ROS::coordinate calculateLoopingCircleCenter(PlaneObject &plane, double turnRadius, bool turnRight);
 };
 
 

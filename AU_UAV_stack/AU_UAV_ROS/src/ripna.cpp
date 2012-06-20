@@ -19,7 +19,7 @@ This is the implementation of RIPNA.h.
 #define PLANE_MAX_TURN_ANGLE 22.5 //degrees / sec
 #define CHECK_ZONE 10.0*MPS_SPEED //meters
 #define DANGER_ZEM 2.5*MPS_SPEED //meters
-#define MINIMUM_TURNING_RADIUS 28.64058013 //meters	
+#define MINIMUM_TURNING_RADIUS 0.75*28.64058013 //meters	
 #define DESIRED_SEPARATION 2.5*MPS_SPEED //meters
 #define LAMBDA 0.1 //dimensionless
 #define TIME_STEP 1.0 //seconds
@@ -30,28 +30,36 @@ waypoint for the plane to travel to. If no collision avoidance
 maneuvers are necessary, the function returns the current destination 
 waypoint. */
 
-AU_UAV_ROS::waypoint AU_UAV_ROS::findNewWaypoint(PlaneObject &plane1, std::map<int, PlaneObject> &planes){
+AU_UAV_ROS::waypointContainer AU_UAV_ROS::findNewWaypoint(PlaneObject &plane1, std::map<int, PlaneObject> &planes){
 	/* Find plane to avoid*/
 	AU_UAV_ROS::threatContainer greatestThreat = findGreatestThreat(plane1, planes);
 	
 	/* Unpack plane to avoid*/	
 	int threatID = greatestThreat.planeID;
 	double threatZEM = greatestThreat.ZEM;
-	
-if (threatID != -1)
-	ROS_WARN("Distance between plane %d and plane %d = %f", plane1.getID(), threatID, findDistance(plane1.getCurrentLoc().latitude, plane1.getCurrentLoc().longitude, planes[threatID].getCurrentLoc().latitude, planes[threatID].getCurrentLoc().longitude));
+	/*
+	if (threatID != -1) {
+	ROS_WARN("Distance between plane %d and plane %d = %f", plane1.getID(), 
+		threatID, findDistance(plane1.getCurrentLoc().latitude, 
+		plane1.getCurrentLoc().longitude, planes[threatID].getCurrentLoc().latitude, 
+		planes[threatID].getCurrentLoc().longitude));
+	}
+	*/
+
+	AU_UAV_ROS::waypointContainer newWaypoints; 	
+
 	/* If there is no plane to avoid, then take Dubin's path to the 
 	destination waypoint*/
 	if ((threatID < 0) && (threatZEM < 0)) {
-		return takeDubinsPath(plane1);
+		newWaypoints.plane1WP = takeDubinsPath(plane1);
+		newWaypoints.plane2ID = threatID;
+		return newWaypoints;
 	}
-	
-	//ROS_WARN("PLANE%d detected PLANE%d with a ZEM of %f", plane1.getID(), threatID, threatZEM);
-
 	
 	/* If there is a plane to avoid, then figure out which direction it 
 	should turn*/
 	bool turnRight = shouldTurnRight(plane1, planes[threatID]);
+	//ROS_WARN("Plane %d shouldTurnRight = %d", plane1.getID(), turnRight);	
 
 	/* Calculate turning radius to avoid collision*/
 	double turningRadius = calculateTurningRadius(threatZEM);
@@ -59,7 +67,16 @@ if (threatID != -1)
 
 	/* Given turning radius and orientation of the plane, calculate 
 	next collision avoidance waypoint*/
-	return calculateWaypoint(plane1, turningRadius, turnRight);
+	AU_UAV_ROS::waypoint plane1WP = calculateWaypoint(plane1, turningRadius, turnRight);
+	newWaypoints.plane2ID = -1;
+	if (findGreatestThreat(planes[threatID], planes).planeID == plane1.getID()) {
+		AU_UAV_ROS::waypoint plane2WP = calculateWaypoint(planes[threatID], turningRadius, turnRight);
+		ROS_WARN("Plane %d and Plane %d have each other as their greatest threats", threatID, plane1.getID());
+		newWaypoints.plane2WP = plane2WP;
+		newWaypoints.plane2ID = threatID;
+	}
+	newWaypoints.plane1WP = plane1WP;
+	return newWaypoints;
 }
 
 	
@@ -101,7 +118,7 @@ AU_UAV_ROS::threatContainer AU_UAV_ROS::findGreatestThreat(PlaneObject &plane1, 
 		plane2 = (*it).second;
 		
 		/* If it's not in the Check Zone, check the other plane*/
-		if(plane1.findDistance(plane2) > CHECK_ZONE || plane1.getID() == ID) continue;
+		if(plane1.findDistance(plane2) > CHECK_ZONE || plane1.getID() == ID) continue;	
 
 		/* Making a position vector representation of plane2*/
 		magnitude2 = findDistance(origin.latitude, origin.longitude, 
@@ -125,7 +142,7 @@ AU_UAV_ROS::threatContainer AU_UAV_ROS::findGreatestThreat(PlaneObject &plane1, 
 		
 		/* If the Zero Effort Miss is less than the minimum required 
 		separation, consider this plane as a candidate to avoid*/
-		if(zeroEffortMiss <= DANGER_ZEM && timeToGo < minimumTimeToGo){
+		if(zeroEffortMiss <= DANGER_ZEM && timeToGo < minimumTimeToGo && timeToGo > 0){
 			planeToAvoid = ID;
 			mostDangerousZEM = zeroEffortMiss;
 			minimumTimeToGo = timeToGo;
@@ -135,7 +152,8 @@ AU_UAV_ROS::threatContainer AU_UAV_ROS::findGreatestThreat(PlaneObject &plane1, 
 	AU_UAV_ROS::threatContainer greatestThreat;
 	greatestThreat.planeID = planeToAvoid;
 	greatestThreat.ZEM = mostDangerousZEM;
-
+	
+	ROS_WARN("TimeToGo for plane %d and plane %d is %f", plane1.getID(), planeToAvoid, minimumTimeToGo);
 	return greatestThreat;
 }
 
@@ -145,31 +163,33 @@ false if otherwise. Takes original plane and its greatest threat as parameters *
 bool AU_UAV_ROS::shouldTurnRight(PlaneObject &plane1, PlaneObject &plane2) {
 
 	/* For checking whether the plane should turn right or left */
-	double theta;
-	double theta1;
-	double theta2;
-	bool turnRight;
-	bool plane2OnRight;
+	double theta, theta_prev, theta_prime, delta_theta, theta1, theta2;
+	bool turnRight, plane2OnRight, plane1OnRight;
+	double cartBearing1 = toCartesian(plane1.getCurrentBearing());
+	double cartBearing2 = toCartesian(plane2.getCurrentBearing());
 
 	/* Calculate theta, theta1, and theta2. Theta is the cartesian angle
 	from 0 degrees (due East) to plane2 (using plane1 as the origin). This 
 	may be referred to as the LOS angle. */
 	theta = findAngle(plane1.getCurrentLoc().latitude, plane1.getCurrentLoc().longitude, 
 		plane2.getCurrentLoc().latitude, plane2.getCurrentLoc().longitude);
-	theta1 = 90 - theta - plane1.getCurrentBearing();
-	theta2 = 90 + theta + plane2.getCurrentBearing();
+	theta_prev = findAngle(plane1.getPreviousLoc().latitude, plane1.getPreviousLoc().longitude, 
+		plane2.getPreviousLoc().latitude, plane2.getPreviousLoc().longitude);
+	delta_theta = theta - theta_prev;
+	theta_prime = manipulateAngle(theta+180.0);
+	theta1 = cartBearing1 - theta;
+	theta2 = cartBearing2 - theta_prime;
 	
-	/* Calculate which side of plane1 that plane2 is on. */
-	double cardinalTheta = toCardinal(theta);
-	plane2OnRight = cardinalTheta >= plane1.getCurrentBearing();
+	/* Calculate which side of plane1 that plane2 is on, and also which side of plane2 plane 1 is on.*/
+	plane2OnRight = theta1 >= 0; plane1OnRight = theta2 >= 0;
+	//ROS_WARN("Plane %d: Bearing: %f plane2OnRight: %d", plane1.getID(), plane1.getCurrentBearing(), plane2OnRight);
 	
 	/* Calculate which direction to turn*/
-	if ((plane2OnRight && theta1 >= theta2) || (!plane2OnRight && theta1 <= theta2))
-		turnRight = false;
-	else if ((plane2OnRight && theta1 < theta2) || (!plane2OnRight && theta1 > theta2))
-		turnRight = true;
+	if (plane2OnRight && plane1OnRight) turnRight = false;
+	else if (!plane2OnRight && !plane1OnRight) turnRight = true;
+	else if (plane2OnRight && !plane1OnRight) turnRight = (theta1 < theta2) ? true : false;
+	else if (!plane2OnRight && plane1OnRight) turnRight = (theta1 > theta2) ? true : false;
 	
-	turnRight = (theta1 < theta2) ? true : false;
 	return turnRight;
 }
 
@@ -253,7 +273,7 @@ AU_UAV_ROS::waypoint AU_UAV_ROS::takeDubinsPath(PlaneObject &plane1) {
 		else destOnRight = true;
 	/* Calculate the center of the circle of minimum turning radius on the side that the waypoint is on*/
 	
-	circleCenter = calculateCircleCenter(plane1, minTurningRadius, destOnRight);
+	circleCenter = calculateLoopingCircleCenter(plane1, minTurningRadius, destOnRight);
 
 	/* If destination is inside circle, must fly opposite direction before we can reach destination*/
 	if (findDistance(circleCenter.latitude, circleCenter.longitude, wp.latitude, wp.longitude) < 
@@ -278,6 +298,24 @@ AU_UAV_ROS::coordinate AU_UAV_ROS::calculateCircleCenter(PlaneObject &plane, dou
 	}
 	else {
 		angle = (toCartesian(plane.getCurrentBearing()) + 90) * PI/180.0;
+	}
+	double xdiff = turnRadius*cos(angle);
+	double ydiff = turnRadius*sin(angle);
+	circleCenter.longitude = plane.getCurrentLoc().longitude + xdiff/DELTA_LON_TO_METERS;
+	circleCenter.latitude = plane.getCurrentLoc().latitude + ydiff/DELTA_LAT_TO_METERS; 
+
+	return circleCenter;
+}
+
+AU_UAV_ROS::coordinate AU_UAV_ROS::calculateLoopingCircleCenter(PlaneObject &plane, double turnRadius, bool turnRight) {
+	AU_UAV_ROS::coordinate circleCenter;
+	circleCenter.altitude = plane.getCurrentLoc().altitude;
+	double angle;
+	if (turnRight) {
+		angle = (toCartesian(plane.getCurrentBearing()) - 90 - 22.5) * PI/180.0; 
+	}
+	else {
+		angle = (toCartesian(plane.getCurrentBearing()) + 90 + 22.5) * PI/180.0;
 	}
 	double xdiff = turnRadius*cos(angle);
 	double ydiff = turnRadius*sin(angle);
