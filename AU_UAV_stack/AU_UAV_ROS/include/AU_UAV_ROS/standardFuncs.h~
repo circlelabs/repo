@@ -27,6 +27,7 @@ namespace AU_UAV_ROS{
 	struct threatContainer {
 		int planeID;
 		double ZEM;
+		double timeToGo;
 	};
 	
 	struct waypointContainer {

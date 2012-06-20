@@ -37,6 +37,7 @@ AU_UAV_ROS::waypointContainer AU_UAV_ROS::findNewWaypoint(PlaneObject &plane1, s
 	/* Unpack plane to avoid*/	
 	int threatID = greatestThreat.planeID;
 	double threatZEM = greatestThreat.ZEM;
+	double timeToGo = greatestThreat.timeToGo;
 	/*
 	if (threatID != -1) {
 	ROS_WARN("Distance between plane %d and plane %d = %f", plane1.getID(), 
@@ -50,7 +51,7 @@ AU_UAV_ROS::waypointContainer AU_UAV_ROS::findNewWaypoint(PlaneObject &plane1, s
 
 	/* If there is no plane to avoid, then take Dubin's path to the 
 	destination waypoint*/
-	if ((threatID < 0) && (threatZEM < 0)) {
+	if (((threatID < 0) && (threatZEM < 0)) || timeToGo > 10.0) {
 		newWaypoints.plane1WP = takeDubinsPath(plane1);
 		newWaypoints.plane2ID = threatID;
 		return newWaypoints;
@@ -59,6 +60,12 @@ AU_UAV_ROS::waypointContainer AU_UAV_ROS::findNewWaypoint(PlaneObject &plane1, s
 	/* If there is a plane to avoid, then figure out which direction it 
 	should turn*/
 	bool turnRight = shouldTurnRight(plane1, planes[threatID]);
+	if (turnRight) {
+		//ROS_WARN("Plane %d should turn right", plane1.getID());
+	}
+	else {
+		//ROS_WARN("Plane %d should NOT turn right", plane1.getID());	
+	}
 	//ROS_WARN("Plane %d shouldTurnRight = %d", plane1.getID(), turnRight);	
 
 	/* Calculate turning radius to avoid collision*/
@@ -71,7 +78,7 @@ AU_UAV_ROS::waypointContainer AU_UAV_ROS::findNewWaypoint(PlaneObject &plane1, s
 	newWaypoints.plane2ID = -1;
 	if (findGreatestThreat(planes[threatID], planes).planeID == plane1.getID()) {
 		AU_UAV_ROS::waypoint plane2WP = calculateWaypoint(planes[threatID], turningRadius, turnRight);
-		ROS_WARN("Plane %d and Plane %d have each other as their greatest threats", threatID, plane1.getID());
+		//ROS_WARN("Plane %d and Plane %d have each other as their greatest threats", threatID, plane1.getID());
 		newWaypoints.plane2WP = plane2WP;
 		newWaypoints.plane2ID = threatID;
 	}
@@ -152,8 +159,8 @@ AU_UAV_ROS::threatContainer AU_UAV_ROS::findGreatestThreat(PlaneObject &plane1, 
 	AU_UAV_ROS::threatContainer greatestThreat;
 	greatestThreat.planeID = planeToAvoid;
 	greatestThreat.ZEM = mostDangerousZEM;
-	
-	ROS_WARN("TimeToGo for plane %d and plane %d is %f", plane1.getID(), planeToAvoid, minimumTimeToGo);
+	greatestThreat.timeToGo = timeToGo;
+
 	return greatestThreat;
 }
 
@@ -177,19 +184,26 @@ bool AU_UAV_ROS::shouldTurnRight(PlaneObject &plane1, PlaneObject &plane2) {
 		plane2.getPreviousLoc().latitude, plane2.getPreviousLoc().longitude);
 	delta_theta = theta - theta_prev;
 	theta_prime = manipulateAngle(theta+180.0);
-	theta1 = cartBearing1 - theta;
-	theta2 = cartBearing2 - theta_prime;
+	theta1 = manipulateAngle(cartBearing1 - theta);
+	theta2 = manipulateAngle(cartBearing2 - theta_prime);
 	
 	/* Calculate which side of plane1 that plane2 is on, and also which side of plane2 plane 1 is on.*/
 	plane2OnRight = theta1 >= 0; plane1OnRight = theta2 >= 0;
+
+	/* Set theta1 to be on positive*/
+	theta1 = fabs(theta1);
+	if ((plane2OnRight && !plane1OnRight) || (!plane2OnRight && plane1OnRight)) theta2 = fabs(theta2);
+	
 	//ROS_WARN("Plane %d: Bearing: %f plane2OnRight: %d", plane1.getID(), plane1.getCurrentBearing(), plane2OnRight);
 	
 	/* Calculate which direction to turn*/
 	if (plane2OnRight && plane1OnRight) turnRight = false;
 	else if (!plane2OnRight && !plane1OnRight) turnRight = true;
-	else if (plane2OnRight && !plane1OnRight) turnRight = (theta1 < theta2) ? true : false;
-	else if (!plane2OnRight && plane1OnRight) turnRight = (theta1 > theta2) ? true : false;
+	else if (plane2OnRight && !plane1OnRight) turnRight = (theta1 <= theta2) ? true : false;
+	else if (!plane2OnRight && plane1OnRight) turnRight = (theta1 >= theta2) ? true : false;
 	
+	if (plane1.getID() == 2 || plane2.getID() == 2)
+		//ROS_WARN("Plane %d: %f | Plane %d: %f TurnRight: %d", plane1.getID(), theta1, plane2.getID(), theta2, turnRight);
 	return turnRight;
 }
 
