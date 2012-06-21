@@ -216,7 +216,7 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr &msg)
 	/* If plane2 has a new waypoint to go to, then send it there!*/
 	AU_UAV_ROS::waypoint newWaypoint = bothNewWaypoints.plane1WP;
 	if (bothNewWaypoints.plane2ID >= 0) {
-		ROS_WARN("PlaneID: %d OtherPlaneID: %d", planeID, bothNewWaypoints.plane2ID);
+		//ROS_WARN("PlaneID: %d OtherPlaneID: %d", planeID, bothNewWaypoints.plane2ID);
 		AU_UAV_ROS::waypoint newWaypoint2 = bothNewWaypoints.plane2WP;
 		goToWaypointSrv.request.planeID = bothNewWaypoints.plane2ID;
 		goToWaypointSrv.request.latitude = newWaypoint2.latitude;
@@ -335,7 +335,7 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr &msg)
 	marker4.lifetime = ros::Duration();
 
 	// Publish the marker
-	marker_pub.publish(marker4);		
+	//marker_pub.publish(marker4);		
 }
 
 

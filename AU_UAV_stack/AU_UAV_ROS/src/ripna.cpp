@@ -18,7 +18,7 @@ This is the implementation of RIPNA.h.
 
 #define PLANE_MAX_TURN_ANGLE 22.5 //degrees / sec
 #define CHECK_ZONE 10.0*MPS_SPEED //meters
-#define DANGER_ZEM 2.5*MPS_SPEED //meters
+#define DANGER_ZEM 2.0*MPS_SPEED //meters
 #define MINIMUM_TURNING_RADIUS 0.75*28.64058013 //meters	
 #define DESIRED_SEPARATION 2.5*MPS_SPEED //meters
 #define LAMBDA 0.1 //dimensionless
@@ -61,10 +61,10 @@ AU_UAV_ROS::waypointContainer AU_UAV_ROS::findNewWaypoint(PlaneObject &plane1, s
 	should turn*/
 	bool turnRight = shouldTurnRight(plane1, planes[threatID]);
 	if (turnRight) {
-		//ROS_WARN("Plane %d should turn right", plane1.getID());
+		ROS_WARN("Plane %d should turn right", plane1.getID());
 	}
 	else {
-		//ROS_WARN("Plane %d should NOT turn right", plane1.getID());	
+		ROS_WARN("Plane %d should NOT turn right", plane1.getID());	
 	}
 	//ROS_WARN("Plane %d shouldTurnRight = %d", plane1.getID(), turnRight);	
 
@@ -192,7 +192,7 @@ bool AU_UAV_ROS::shouldTurnRight(PlaneObject &plane1, PlaneObject &plane2) {
 
 	/* Set theta1 to be on positive*/
 	theta1 = fabs(theta1);
-	if ((plane2OnRight && !plane1OnRight) || (!plane2OnRight && plane1OnRight)) theta2 = fabs(theta2);
+	theta2 = fabs(theta2);
 	
 	//ROS_WARN("Plane %d: Bearing: %f plane2OnRight: %d", plane1.getID(), plane1.getCurrentBearing(), plane2OnRight);
 	
