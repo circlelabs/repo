@@ -18,11 +18,12 @@ This is the implementation of RIPNA.h.
 
 #define PLANE_MAX_TURN_ANGLE 22.5 //degrees / sec
 #define CHECK_ZONE 10.0*MPS_SPEED //meters
-#define DANGER_ZEM 2.0*MPS_SPEED //meters
+#define DANGER_ZEM 2.5*MPS_SPEED //meters
 #define MINIMUM_TURNING_RADIUS 0.75*28.64058013 //meters	
 #define DESIRED_SEPARATION 2.5*MPS_SPEED //meters
 #define LAMBDA 0.1 //dimensionless
 #define TIME_STEP 1.0 //seconds
+#define MINIMUM_TIME_TO_GO 12.0 //seconds
 
 /* This is the function called by collisionAvoidance.cpp which calls 
 all necessary functions in order to find the new collision avoidance 
@@ -51,7 +52,7 @@ AU_UAV_ROS::waypointContainer AU_UAV_ROS::findNewWaypoint(PlaneObject &plane1, s
 
 	/* If there is no plane to avoid, then take Dubin's path to the 
 	destination waypoint*/
-	if (((threatID < 0) && (threatZEM < 0)) || timeToGo > 10.0) {
+	if (((threatID < 0) && (threatZEM < 0)) || timeToGo > MINIMUM_TIME_TO_GO) {
 		newWaypoints.plane1WP = takeDubinsPath(plane1);
 		newWaypoints.plane2ID = threatID;
 		return newWaypoints;
@@ -61,10 +62,10 @@ AU_UAV_ROS::waypointContainer AU_UAV_ROS::findNewWaypoint(PlaneObject &plane1, s
 	should turn*/
 	bool turnRight = shouldTurnRight(plane1, planes[threatID]);
 	if (turnRight) {
-		ROS_WARN("Plane %d should turn right", plane1.getID());
+		//ROS_WARN("Plane %d should turn right | ZEM = %f", plane1.getID(), threatZEM);
 	}
 	else {
-		ROS_WARN("Plane %d should NOT turn right", plane1.getID());	
+		//ROS_WARN("Plane %d should NOT turn right | ZEM = %f", plane1.getID(), threatZEM);	
 	}
 	//ROS_WARN("Plane %d shouldTurnRight = %d", plane1.getID(), turnRight);	
 
@@ -76,12 +77,14 @@ AU_UAV_ROS::waypointContainer AU_UAV_ROS::findNewWaypoint(PlaneObject &plane1, s
 	next collision avoidance waypoint*/
 	AU_UAV_ROS::waypoint plane1WP = calculateWaypoint(plane1, turningRadius, turnRight);
 	newWaypoints.plane2ID = -1;
+	newWaypoints.plane2WP = plane1WP;
+
 	if (findGreatestThreat(planes[threatID], planes).planeID == plane1.getID()) {
 		AU_UAV_ROS::waypoint plane2WP = calculateWaypoint(planes[threatID], turningRadius, turnRight);
-		//ROS_WARN("Plane %d and Plane %d have each other as their greatest threats", threatID, plane1.getID());
 		newWaypoints.plane2WP = plane2WP;
 		newWaypoints.plane2ID = threatID;
 	}
+	ROS_WARN("%f %f", plane1WP.latitude, plane1WP.longitude);
 	newWaypoints.plane1WP = plane1WP;
 	return newWaypoints;
 }
@@ -168,43 +171,25 @@ AU_UAV_ROS::threatContainer AU_UAV_ROS::findGreatestThreat(PlaneObject &plane1, 
 /* Returns true if the original plane (plane1) should turn right to avoid plane2, 
 false if otherwise. Takes original plane and its greatest threat as parameters */
 bool AU_UAV_ROS::shouldTurnRight(PlaneObject &plane1, PlaneObject &plane2) {
-
+	
 	/* For checking whether the plane should turn right or left */
-	double theta, theta_prev, theta_prime, delta_theta, theta1, theta2;
-	bool turnRight, plane2OnRight, plane1OnRight;
+	double theta, theta_dot, R;
 	double cartBearing1 = toCartesian(plane1.getCurrentBearing());
 	double cartBearing2 = toCartesian(plane2.getCurrentBearing());
-
+	double V = MPS_SPEED;
+	
 	/* Calculate theta, theta1, and theta2. Theta is the cartesian angle
 	from 0 degrees (due East) to plane2 (using plane1 as the origin). This 
 	may be referred to as the LOS angle. */
 	theta = findAngle(plane1.getCurrentLoc().latitude, plane1.getCurrentLoc().longitude, 
 		plane2.getCurrentLoc().latitude, plane2.getCurrentLoc().longitude);
-	theta_prev = findAngle(plane1.getPreviousLoc().latitude, plane1.getPreviousLoc().longitude, 
-		plane2.getPreviousLoc().latitude, plane2.getPreviousLoc().longitude);
-	delta_theta = theta - theta_prev;
-	theta_prime = manipulateAngle(theta+180.0);
-	theta1 = manipulateAngle(cartBearing1 - theta);
-	theta2 = manipulateAngle(cartBearing2 - theta_prime);
-	
-	/* Calculate which side of plane1 that plane2 is on, and also which side of plane2 plane 1 is on.*/
-	plane2OnRight = theta1 >= 0; plane1OnRight = theta2 >= 0;
+	R = findDistance(plane1.getCurrentLoc().latitude, plane1.getCurrentLoc().longitude, 
+		plane2.getCurrentLoc().latitude, plane2.getCurrentLoc().longitude);
+	theta_dot = (V*sin((cartBearing2 - theta)*PI/180) - V*sin((cartBearing1 - theta)*PI/180)) / R;
 
-	/* Set theta1 to be on positive*/
-	theta1 = fabs(theta1);
-	theta2 = fabs(theta2);
-	
-	//ROS_WARN("Plane %d: Bearing: %f plane2OnRight: %d", plane1.getID(), plane1.getCurrentBearing(), plane2OnRight);
-	
-	/* Calculate which direction to turn*/
-	if (plane2OnRight && plane1OnRight) turnRight = false;
-	else if (!plane2OnRight && !plane1OnRight) turnRight = true;
-	else if (plane2OnRight && !plane1OnRight) turnRight = (theta1 <= theta2) ? true : false;
-	else if (!plane2OnRight && plane1OnRight) turnRight = (theta1 >= theta2) ? true : false;
-	
-	if (plane1.getID() == 2 || plane2.getID() == 2)
-		//ROS_WARN("Plane %d: %f | Plane %d: %f TurnRight: %d", plane1.getID(), theta1, plane2.getID(), theta2, turnRight);
-	return turnRight;
+	if (theta_dot >= 0) return true;
+	else return false;
+
 }
 
 /* Calculate the turning radius based on the zero effort miss*/
@@ -220,37 +205,17 @@ waypoint location: http://local.wasp.uwa.edu.au/~pbourke/geometry/2circle/ */
 /* Find the new collision avoidance waypoint for the plane to go to */
 AU_UAV_ROS::waypoint AU_UAV_ROS::calculateWaypoint(PlaneObject &plane1, double turningRadius, bool turnRight){
 	
-	AU_UAV_ROS::coordinate turningCircleCenter = calculateCircleCenter(plane1, turningRadius, turnRight);
 	AU_UAV_ROS::waypoint wp;	
-	double maxTurnAngle = PLANE_MAX_TURN_ANGLE;
-	double r0 = turningRadius; //radius of turning circle
-	double r1 = MPS_SPEED*TIME_STEP; //distance travelled in one time step
-	double d = turningRadius; //distance between circle centers
-	double a = (pow(r0, 2) - pow(r1, 2) + pow(d, 2)) / (2 * d);
-	double h = sqrt(pow(r0, 2) - pow(a, 2));
-
-	// Using turningCircleCenter as origin
-	double x0 = 0;
-	double y0 = 0;
-
-	double x1 = (plane1.getCurrentLoc().longitude - turningCircleCenter.longitude) * DELTA_LON_TO_METERS;
-	double y1 = (plane1.getCurrentLoc().latitude - turningCircleCenter.latitude) * DELTA_LAT_TO_METERS;
-
-	double x2 = x0 + a * (x1 - x0) / d;
-	double y2 = y0 + a * (y1 - y0) / d;
-
-	double x3 = x2 + h * (y1 - y0) / d;
-	double y3 = y2 - h * (x1 - x0) / d;
-
-	if (fabs(manipulateAngle(toCartesian(plane1.getCurrentBearing()) - atan2((y3-y1),(x3-x1))*180/PI)) > maxTurnAngle) {
-		x3 = x2 - h * (y1 - y0) / d;
-		y3 = y2 + h * (x1 - x0) / d;
-	}
-	
-	wp.latitude = turningCircleCenter.latitude + y3/DELTA_LAT_TO_METERS;
-	wp.longitude = turningCircleCenter.longitude + x3/DELTA_LON_TO_METERS;
-	wp.altitude = plane1.getCurrentLoc().altitude;	
-
+	double V = MPS_SPEED;
+	double delta_T = TIME_STEP;	
+	double cartBearing = toCartesian(plane1.getCurrentBearing())* PI/180;
+	double delta_psi = V / turningRadius * delta_T;
+	//ROS_WARN("Delta Psi = %f, Turning Radius = %f", delta_psi, turningRadius);
+	if (turnRight) delta_psi *= -1.0;
+	double psi = (cartBearing + delta_psi);
+	wp.longitude = plane1.getCurrentLoc().longitude + V*cos(psi)/DELTA_LON_TO_METERS;
+	wp.latitude = plane1.getCurrentLoc().latitude + V*sin(psi)/DELTA_LAT_TO_METERS;
+	wp.altitude = plane1.getCurrentLoc().altitude;
 	return wp;
 
 }
@@ -301,25 +266,6 @@ AU_UAV_ROS::waypoint AU_UAV_ROS::takeDubinsPath(PlaneObject &plane1) {
 	}
 }
 
-/* This function takes a plane, its turning radius, and the direction to turn 
-and returns the center of the circle of its turning radius. */
-AU_UAV_ROS::coordinate AU_UAV_ROS::calculateCircleCenter(PlaneObject &plane, double turnRadius, bool turnRight) {
-	AU_UAV_ROS::coordinate circleCenter;
-	circleCenter.altitude = plane.getCurrentLoc().altitude;
-	double angle;
-	if (turnRight) {
-		angle = (toCartesian(plane.getCurrentBearing()) - 90) * PI/180.0; 
-	}
-	else {
-		angle = (toCartesian(plane.getCurrentBearing()) + 90) * PI/180.0;
-	}
-	double xdiff = turnRadius*cos(angle);
-	double ydiff = turnRadius*sin(angle);
-	circleCenter.longitude = plane.getCurrentLoc().longitude + xdiff/DELTA_LON_TO_METERS;
-	circleCenter.latitude = plane.getCurrentLoc().latitude + ydiff/DELTA_LAT_TO_METERS; 
-
-	return circleCenter;
-}
 
 AU_UAV_ROS::coordinate AU_UAV_ROS::calculateLoopingCircleCenter(PlaneObject &plane, double turnRadius, bool turnRight) {
 	AU_UAV_ROS::coordinate circleCenter;

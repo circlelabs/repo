@@ -225,6 +225,7 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr &msg)
 		goToWaypointSrv.request.isAvoidanceManeuver = true; 
 		goToWaypointSrv.request.isNewQueue = true;
 
+
 		if (goToWaypointClient.call(goToWaypointSrv)){
 			count++;
 			ROS_INFO("Received response from service request %d", (count-1));
@@ -232,6 +233,7 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr &msg)
 		else{
 			ROS_ERROR("Did not receive response");
 		}
+
 	}
 	
 	if ((requestWaypointInfoSrv.response.longitude == newWaypoint.longitude) 
