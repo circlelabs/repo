@@ -76,6 +76,8 @@ AU_UAV_ROS::waypointContainer AU_UAV_ROS::findNewWaypoint(PlaneObject &plane1, s
 	/* Given turning radius and orientation of the plane, calculate 
 	next collision avoidance waypoint*/
 	AU_UAV_ROS::waypoint plane1WP = calculateWaypoint(plane1, turningRadius, turnRight);
+
+	/* Cooperative planning*/
 	newWaypoints.plane2ID = -1;
 	newWaypoints.plane2WP = plane1WP;
 

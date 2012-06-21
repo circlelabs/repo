@@ -61,14 +61,7 @@ AU_UAV_ROS::waypointContainer AU_UAV_ROS::findNewWaypoint(PlaneObject &plane1, s
 	/* If there is a plane to avoid, then figure out which direction it 
 	should turn*/
 	bool turnRight = shouldTurnRight(plane1, planes[threatID]);
-	if (turnRight) {
-		//ROS_WARN("Plane %d should turn right | ZEM = %f", plane1.getID(), threatZEM);
-	}
-	else {
-		//ROS_WARN("Plane %d should NOT turn right | ZEM = %f", plane1.getID(), threatZEM);	
-	}
-	//ROS_WARN("Plane %d shouldTurnRight = %d", plane1.getID(), turnRight);	
-
+	
 	/* Calculate turning radius to avoid collision*/
 	double turningRadius = calculateTurningRadius(threatZEM);
 	//ROS_WARN("PLANE%d detected PLANE%d and wants to turn right %d with radius %f", plane1.getID(), threatID, turnRight, turningRadius);
