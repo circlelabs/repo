@@ -215,8 +215,8 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr &msg)
 	
 	/* If plane2 has a new waypoint to go to, then send it there!*/
 	AU_UAV_ROS::waypoint newWaypoint = bothNewWaypoints.plane1WP;
+
 	if (bothNewWaypoints.plane2ID >= 0) {
-		ROS_WARN("PlaneID: %d OtherPlaneID: %d", planeID, bothNewWaypoints.plane2ID);
 		AU_UAV_ROS::waypoint newWaypoint2 = bothNewWaypoints.plane2WP;
 		goToWaypointSrv.request.planeID = bothNewWaypoints.plane2ID;
 		goToWaypointSrv.request.latitude = newWaypoint2.latitude;
@@ -242,7 +242,7 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr &msg)
 	}	
 
 	/* Fill in goToWaypointSrv request with new waypoint information*/
-	goToWaypointSrv.request.planeID = msg->planeID;
+	goToWaypointSrv.request.planeID = planeID;
 	goToWaypointSrv.request.latitude = newWaypoint.latitude;
 	goToWaypointSrv.request.longitude = newWaypoint.longitude;
 	goToWaypointSrv.request.altitude = newWaypoint.altitude;

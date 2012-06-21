@@ -76,16 +76,20 @@ AU_UAV_ROS::waypointContainer AU_UAV_ROS::findNewWaypoint(PlaneObject &plane1, s
 	/* Given turning radius and orientation of the plane, calculate 
 	next collision avoidance waypoint*/
 	AU_UAV_ROS::waypoint plane1WP = calculateWaypoint(plane1, turningRadius, turnRight);
+
+	/* Cooperative planning*/
 	newWaypoints.plane2ID = -1;
 	newWaypoints.plane2WP = plane1WP;
+
+	ROS_WARN("Plane%d's GT is plane%d", plane1.getID(), threatID);
 
 	if (findGreatestThreat(planes[threatID], planes).planeID == plane1.getID()) {
 		AU_UAV_ROS::waypoint plane2WP = calculateWaypoint(planes[threatID], turningRadius, turnRight);
 		newWaypoints.plane2WP = plane2WP;
 		newWaypoints.plane2ID = threatID;
 	}
-	ROS_WARN("%f %f", plane1WP.latitude, plane1WP.longitude);
 	newWaypoints.plane1WP = plane1WP;
+	
 	return newWaypoints;
 }
 
