@@ -119,7 +119,7 @@ int main(int argc, char **argv)
 void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr &msg)
 {	
 	int planeID = msg->planeID;
-
+	ROS_WARN("Plane: %d", planeID);
 	/* Instantiate services for use later, and get planeID*/
 	AU_UAV_ROS::GoToWaypoint goToWaypointSrv;
 	AU_UAV_ROS::RequestWaypointInfo requestWaypointInfoSrv;

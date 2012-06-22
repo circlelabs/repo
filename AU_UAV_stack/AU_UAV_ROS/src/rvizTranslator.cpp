@@ -89,8 +89,9 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr& msg)
 	eastwestpoint.latitude=NORTH_MOST_LATITUDE;
 	eastwestpoint.longitude=msg->currentLongitude;
 
-
-	transform.setOrigin( tf::Vector3(distance(origin,eastwestpoint), -distance(origin,northsouthpoint),0));
+	double tempX = (eastwestpoint.longitude - origin.longitude)*93865.73571034615;
+	double tempY = (northsouthpoint.latitude - origin.latitude)*110897.4592048873;
+	transform.setOrigin( tf::Vector3(tempX, tempY, 0.0));//distance(origin,eastwestpoint), -distance(origin,northsouthpoint),0));
 	   transform.setRotation( tf::Quaternion(0, 0, msg->targetBearing) );
 	int planeID = msg->planeID;
 	char buffer [5];
@@ -214,21 +215,21 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr& msg)
 
 	if(requestWaypointInfoClient.call(srv))
 	{
-		//set up verticies of triangle
-		struct waypoint northsouthpointWP;
-		northsouthpointWP.latitude=srv.response.latitude;//srv->currentLatitude;
-		northsouthpointWP.longitude=WEST_MOST_LONGITUDE;
-		struct waypoint eastwestpointWP;
-		eastwestpointWP.latitude=NORTH_MOST_LATITUDE;
-		eastwestpointWP.longitude=srv.response.longitude;//srv->currentLongitude;
+	//set up verticies of triangle
+	struct waypoint northsouthpointWP;
+	northsouthpointWP.latitude=srv.response.latitude;//srv->currentLatitude;
+	northsouthpointWP.longitude=WEST_MOST_LONGITUDE;
+	struct waypoint eastwestpointWP;
+	eastwestpointWP.latitude=NORTH_MOST_LATITUDE;
+	eastwestpointWP.longitude=srv.response.longitude;//srv->currentLongitude;
 
-		std::stringstream sstm2;
-		sstm2 << "WP" << buffer;
+	std::stringstream sstm2;
+	sstm2 << "WP" << buffer;
 
 
-		transform.setOrigin( tf::Vector3(distance(origin,eastwestpointWP), -distance(origin,northsouthpointWP),0));
-	  	transform.setRotation( tf::Quaternion(0, 0, 0) );
-	  	br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "world", sstm2.str()));
+	transform.setOrigin( tf::Vector3(distance(origin,eastwestpointWP), -distance(origin,northsouthpointWP),0));
+  	transform.setRotation( tf::Quaternion(0, 0, 0) );
+  	br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "world", sstm2.str()));
 	}
 
 
@@ -280,86 +281,6 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr& msg)
 	// Publish the marker
 	marker_pub.publish(marker3);
 
-
-//request waypoint info to publish a square at each plane's next COLLISION AVOIDANCE waypoint location.
-	/*AU_UAV_ROS::RequestWaypointInfo srv2;
-	srv2.request.planeID = msg->planeID;	
-	srv2.request.isAvoidanceWaypoint = true;
-	srv2.request.positionInQueue = 0;//msg->currentWaypointIndex; */
-/*
-	
-	if(true)
-	{
-		//set up verticies of triangle
-		struct waypoint northsouthpointWP2;
-		northsouthpointWP2.latitude=msg->destLatitude;//srv->currentLatitude;
-		northsouthpointWP2.longitude=WEST_MOST_LONGITUDE;
-		struct waypoint eastwestpointWP2;
-		eastwestpointWP2.latitude=NORTH_MOST_LATITUDE;
-		eastwestpointWP2.longitude=msg->destLongitude;//srv->currentLongitude;
-
-		std::stringstream sstm4;
-		sstm4 << "CA" << buffer;
-
-
-		transform.setOrigin( tf::Vector3(distance(origin,eastwestpointWP2), -distance(origin,northsouthpointWP2),0));
-	  	transform.setRotation( tf::Quaternion(0, 0, 0) );
-	  	br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "world", sstm4.str()));
-
-		
-
-		//ROS_ERROR("SIM PlaneID:%d LAT:%f LON:%f", srv2.request.planeID, srv2.response.latitude, srv2.response.longitude);
-
-		//set shape
-		shape = visualization_msgs::Marker::SPHERE;
-
-		visualization_msgs::Marker marker4;
-		// Set the frame ID and timestamp.  See the TF tutorials for information on these.
-		std::stringstream sstm5;
-		sstm5 << "/CA" << buffer;
-		marker4.header.frame_id = sstm5.str();
-
-		marker4.header.stamp = ros::Time::now();
-
-		// Set the namespace and id for this marker.  This serves to create a unique ID
-		// Any marker sent with the same namespace and id will overwrite the old one
-		marker4.ns = "basic_shapes";
-		marker4.id = planeID+3000;
-
-		// Set the marker type.  Initially this is CUBE, and cycles between that and SPHERE, ARROW, and CYLINDER
-		marker4.type = shape;
-
-		// Set the marker action.  Options are ADD and DELETE
-		marker4.action = visualization_msgs::Marker::ADD;
-
-		// Set the pose of the marker.  This is a full 6DOF pose relative to the frame/time specified in the header
-		marker4.pose.position.x = 0;
-		marker4.pose.position.y = 0;
-		marker4.pose.position.z = 0;
-		marker4.pose.orientation.x = 0.0;
-		marker4.pose.orientation.y = 0.0;
-		marker4.pose.orientation.z = 0.0;
-		marker4.pose.orientation.w = 1.0;
-
-		// Set the scale of the marker -- 1x1x1 here means 1m on a side
-		marker4.scale.x = 12.0;
-		marker4.scale.y = 12.0;
-		marker4.scale.z = 12.0;
-
-		// Set the color -- be sure to set alpha to something non-zero!
-		marker4.color.r = 1.0f;
-		marker4.color.g = 0.0f;
-		marker4.color.b = 0.0f;
-		marker4.color.a = 0.7f;
-
-		marker4.lifetime = ros::Duration();
-
-		// Publish the marker
-		marker_pub.publish(marker4);		
-		
-		
-	}
-	*/
 }
 
 
