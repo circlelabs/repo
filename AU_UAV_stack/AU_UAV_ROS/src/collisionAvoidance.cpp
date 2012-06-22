@@ -119,7 +119,7 @@ int main(int argc, char **argv)
 void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr &msg)
 {	
 	int planeID = msg->planeID;
-
+	ROS_WARN("Plane: %d", planeID);
 	/* Instantiate services for use later, and get planeID*/
 	AU_UAV_ROS::GoToWaypoint goToWaypointSrv;
 	AU_UAV_ROS::RequestWaypointInfo requestWaypointInfoSrv;
@@ -225,6 +225,7 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr &msg)
 		goToWaypointSrv.request.isAvoidanceManeuver = true; 
 		goToWaypointSrv.request.isNewQueue = true;
 
+		ROS_WARN("ID: %d | Lat: %f | Lon: %f", goToWaypointSrv.request.planeID, goToWaypointSrv.request.latitude, goToWaypointSrv.request.longitude);
 
 		if (goToWaypointClient.call(goToWaypointSrv)){
 			count++;
@@ -248,6 +249,8 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr &msg)
 	goToWaypointSrv.request.altitude = newWaypoint.altitude;
 	goToWaypointSrv.request.isAvoidanceManeuver = true; 
 	goToWaypointSrv.request.isNewQueue = true;
+
+	ROS_WARN("ID: %d | Lat: %f | Lon: %f", goToWaypointSrv.request.planeID, goToWaypointSrv.request.latitude, goToWaypointSrv.request.longitude);
 
 	if (goToWaypointClient.call(goToWaypointSrv)){
 		count++;

@@ -22,7 +22,7 @@ functions on that data.
 #include "AU_UAV_ROS/SaveFlightData.h"
 
 //USER DEFINED EVALUATION SETTINGS
-#define TIME_LIMIT 10 //10 minutes
+#define TIME_LIMIT 600 //10 minutes
 #define WAYPOINT_SCORE 5 //5 points for each waypoint reached
 #define CONFLICT_SCORE -1 //-1 point for each conflict during flight
 
