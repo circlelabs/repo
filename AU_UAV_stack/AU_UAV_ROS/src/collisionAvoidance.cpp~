@@ -119,7 +119,6 @@ int main(int argc, char **argv)
 void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr &msg)
 {	
 	int planeID = msg->planeID;
-	ROS_WARN("Plane: %d", planeID);
 	/* Instantiate services for use later, and get planeID*/
 	AU_UAV_ROS::GoToWaypoint goToWaypointSrv;
 	AU_UAV_ROS::RequestWaypointInfo requestWaypointInfoSrv;
@@ -224,8 +223,26 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr &msg)
 		goToWaypointSrv.request.altitude = newWaypoint2.altitude;
 		goToWaypointSrv.request.isAvoidanceManeuver = true; 
 		goToWaypointSrv.request.isNewQueue = true;
+	
+		//ROS_WARN("Plane%d sent lat: %f lon: %f w/ act lat: %f lon: %f", goToWaypointSrv.request.planeID, goToWaypointSrv.request.latitude, goToWaypointSrv.request.longitude, planes[bothNewWaypoints.plane2ID].getCurrentLoc().latitude, planes[bothNewWaypoints.plane2ID].getCurrentLoc().longitude);
 
-		ROS_WARN("ID: %d | Lat: %f | Lon: %f", goToWaypointSrv.request.planeID, goToWaypointSrv.request.latitude, goToWaypointSrv.request.longitude);
+/////////////////////////////////////////////////////////////////////////////
+	double lat1 = planes[bothNewWaypoints.plane2ID].getCurrentLoc().latitude*DEGREES_TO_RADIANS;
+	double lat2 = newWaypoint2.latitude*DEGREES_TO_RADIANS;
+	double long1 = planes[bothNewWaypoints.plane2ID].getCurrentLoc().longitude*DEGREES_TO_RADIANS;
+	double long2 = newWaypoint2.longitude*DEGREES_TO_RADIANS;	
+
+	double deltaLat = lat2 - lat1;
+	double deltaLong = long2 - long1;
+
+	double y = sin(deltaLong)*cos(lat2);
+	double x = cos(lat1)*sin(lat2) - sin(lat1)*cos(lat2)*cos(deltaLong);
+	double bearing = atan2(y, x)*RADIANS_TO_DEGREES;
+
+
+		ROS_WARN("Plane%d new bearing: %f, %f", bothNewWaypoints.plane2ID, 
+			toCardinal( findAngle(planes[bothNewWaypoints.plane2ID].getCurrentLoc().latitude, planes[bothNewWaypoints.plane2ID].getCurrentLoc().longitude, newWaypoint2.latitude, newWaypoint2.longitude)), bearing);
+
 
 		if (goToWaypointClient.call(goToWaypointSrv)){
 			count++;
@@ -250,7 +267,9 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr &msg)
 	goToWaypointSrv.request.isAvoidanceManeuver = true; 
 	goToWaypointSrv.request.isNewQueue = true;
 
-	ROS_WARN("ID: %d | Lat: %f | Lon: %f", goToWaypointSrv.request.planeID, goToWaypointSrv.request.latitude, goToWaypointSrv.request.longitude);
+
+	//ROS_WARN("Plane%d sent lat: %f lon: %f w/ act lat: %f lon: %f", goToWaypointSrv.request.planeID, goToWaypointSrv.request.latitude, goToWaypointSrv.request.longitude, planes[planeID].getCurrentLoc().latitude, planes[planeID].getCurrentLoc().longitude);
+	ROS_WARN("Plane%d new bearing: %f Distance: %f", planeID, toCardinal( findAngle(planes[planeID].getCurrentLoc().latitude,planes[planeID].getCurrentLoc().longitude, newWaypoint.latitude, newWaypoint.longitude)), findDistance(planes[planeID].getCurrentLoc().latitude,planes[planeID].getCurrentLoc().longitude, newWaypoint.latitude, newWaypoint.longitude) );
 
 	if (goToWaypointClient.call(goToWaypointSrv)){
 		count++;

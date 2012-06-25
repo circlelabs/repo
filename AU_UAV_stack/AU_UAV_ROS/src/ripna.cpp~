@@ -19,11 +19,11 @@ This is the implementation of RIPNA.h.
 #define PLANE_MAX_TURN_ANGLE 22.5 //degrees / sec
 #define CHECK_ZONE 10.0*MPS_SPEED //meters
 #define DANGER_ZEM 3.5*MPS_SPEED //meters
-#define MINIMUM_TURNING_RADIUS 0.75*28.64058013 //meters	
+#define MINIMUM_TURNING_RADIUS 28.64058013 //meters	
 #define DESIRED_SEPARATION 2.5*MPS_SPEED //meters
 #define LAMBDA 0.1 //dimensionless
 #define TIME_STEP 1.0 //seconds
-#define MINIMUM_TIME_TO_GO 20.0 //seconds
+#define MINIMUM_TIME_TO_GO 100.0 //seconds
 
 /* This is the function called by collisionAvoidance.cpp which calls 
 all necessary functions in order to find the new collision avoidance 
@@ -65,10 +65,11 @@ AU_UAV_ROS::waypointContainer AU_UAV_ROS::findNewWaypoint(PlaneObject &plane1, s
 	
 	/* Calculate turning radius to avoid collision*/
 	double turningRadius = calculateTurningRadius(threatZEM);
-	//ROS_WARN("PLANE%d detected PLANE%d and wants to turn right %d with radius %f", plane1.getID(), threatID, turnRight, turningRadius);
+	ROS_WARN("PLANE%d detected PLANE%d and wants to turn right %d with radius %f", plane1.getID(), threatID, turnRight, turningRadius);
 
 	/* Given turning radius and orientation of the plane, calculate 
 	next collision avoidance waypoint*/
+	ROS_WARN("-----------------------------------------------------");
 	AU_UAV_ROS::waypoint plane1WP = calculateWaypoint(plane1, turningRadius, turnRight);
 
 	/* Cooperative planning*/
@@ -77,13 +78,11 @@ AU_UAV_ROS::waypointContainer AU_UAV_ROS::findNewWaypoint(PlaneObject &plane1, s
 
 	if (findGreatestThreat(planes[threatID], planes).planeID == plane1.getID()) {
 	
-		//if ((plane1.getID() == 1 && threatID == 6) || (plane1.getID() == 6 && threatID == 1)) {
-			ROS_WARN("-----------------------------------------------------");
+			
 			ROS_WARN("Planes %d and %d are each other's greatest threats", plane1.getID(), threatID);
 			ROS_WARN("Time to go = %f | ZEM = %f", timeToGo, threatZEM);
 			ROS_WARN("Plane %d bearing = %f | %d", plane1.getID(), plane1.getCurrentBearing(), turnRight);
 			ROS_WARN("Plane %d bearing = %f | %d", threatID, planes[threatID].getCurrentBearing(), turnRight);
-		//}
 
 		AU_UAV_ROS::waypoint plane2WP = calculateWaypoint(planes[threatID], turningRadius, turnRight);
 		bothNewWaypoints.plane2WP = plane2WP;
@@ -166,7 +165,7 @@ AU_UAV_ROS::threatContainer AU_UAV_ROS::findGreatestThreat(PlaneObject &plane1, 
 		
 		/* If the Zero Effort Miss is less than the minimum required 
 		separation, and the time to go is the least so far, then avoid this plane*/
-		if(zeroEffortMiss <= DANGER_ZEM && timeToGo < minimumTimeToGo && timeToGo >= 0){
+		if(zeroEffortMiss <= DANGER_ZEM && timeToGo < minimumTimeToGo && timeToGo > 0){
 			// If the plane is behind you, don't avoid it
 			if ( fabs(plane2.findAngle(plane1)*180/PI - toCartesian(plane1.getCurrentBearing())) > 20.0) {
 				timeToDest = plane1.findDistance(plane1.getDestination().latitude, 
@@ -226,20 +225,22 @@ waypoint location: http://local.wasp.uwa.edu.au/~pbourke/geometry/2circle/ */
 
 /* Find the new collision avoidance waypoint for the plane to go to */
 AU_UAV_ROS::waypoint AU_UAV_ROS::calculateWaypoint(PlaneObject &plane1, double turningRadius, bool turnRight){
-	
+
 	AU_UAV_ROS::waypoint wp;	
 	double V = MPS_SPEED;
 	double delta_T = TIME_STEP;	
 	double cartBearing = toCartesian(plane1.getCurrentBearing())* PI/180;
 	double delta_psi = V / turningRadius * delta_T;
-	//ROS_WARN("Delta Psi = %f, Turning Radius = %f", delta_psi, turningRadius);
 	if (turnRight) delta_psi *= -1.0;
+	ROS_WARN("Delta psi: %f", delta_psi);
 	double psi = (cartBearing + delta_psi);
 	wp.longitude = plane1.getCurrentLoc().longitude + V*cos(psi)/DELTA_LON_TO_METERS;
 	wp.latitude = plane1.getCurrentLoc().latitude + V*sin(psi)/DELTA_LAT_TO_METERS;
 	wp.altitude = plane1.getCurrentLoc().altitude;
+	ROS_WARN("Plane%d new cbearing: %f", plane1.getID(), toCardinal( findAngle(plane1.getCurrentLoc().latitude, plane1.getCurrentLoc().longitude, wp.latitude, wp.longitude) ) ); 
+	//ROS_WARN("Plane%d calc lat: %f lon: %f w/ act lat: %f lon: %f", plane1.getID(), wp.latitude, wp.longitude, plane1.getCurrentLoc().latitude, plane1.getCurrentLoc().longitude);
+	
 	return wp;
-
 }
 
 
@@ -251,7 +252,7 @@ AU_UAV_ROS::waypoint AU_UAV_ROS::takeDubinsPath(PlaneObject &plane1) {
 	/* Initialize variables*/
 	AU_UAV_ROS::coordinate circleCenter;
 	AU_UAV_ROS::waypoint wp = plane1.getDestination();
-	double minTurningRadius = MINIMUM_TURNING_RADIUS;
+	double minTurningRadius = 0.75*MINIMUM_TURNING_RADIUS;
 	bool destOnRight;
 	/* Calculate cartesian angle from plane to waypoint*/
 	double wpBearing = findAngle(plane1.getCurrentLoc().latitude, 
@@ -286,6 +287,25 @@ AU_UAV_ROS::waypoint AU_UAV_ROS::takeDubinsPath(PlaneObject &plane1) {
 		//ROS_WARN("FINE: %f", findDistance(circleCenter.latitude, circleCenter.longitude, wp.latitude, wp.longitude));
 		return wp;
 	}
+}
+
+
+AU_UAV_ROS::coordinate AU_UAV_ROS::calculateCircleCenter(PlaneObject &plane, double turnRadius, bool turnRight) {
+	AU_UAV_ROS::coordinate circleCenter;
+	circleCenter.altitude = plane.getCurrentLoc().altitude;
+	double angle;
+	if (turnRight) {
+		angle = (toCartesian(plane.getCurrentBearing()) - 90) * PI/180.0; 
+	}
+	else {
+		angle = (toCartesian(plane.getCurrentBearing()) + 90) * PI/180.0;
+	}
+	double xdiff = turnRadius*cos(angle);
+	double ydiff = turnRadius*sin(angle);
+	circleCenter.longitude = plane.getCurrentLoc().longitude + xdiff/DELTA_LON_TO_METERS;
+	circleCenter.latitude = plane.getCurrentLoc().latitude + ydiff/DELTA_LAT_TO_METERS; 
+
+	return circleCenter;
 }
 
 
