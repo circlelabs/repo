@@ -32,6 +32,8 @@ maneuvers are necessary, the function returns the current destination
 waypoint. */
 
 AU_UAV_ROS::waypointContainer AU_UAV_ROS::findNewWaypoint(PlaneObject &plane1, std::map<int, PlaneObject> &planes){
+	
+	ROS_WARN("-----------------------------------------------------");
 	/* Find plane to avoid*/
 	AU_UAV_ROS::threatContainer greatestThreat = findGreatestThreat(plane1, planes);
 	
@@ -68,7 +70,6 @@ AU_UAV_ROS::waypointContainer AU_UAV_ROS::findNewWaypoint(PlaneObject &plane1, s
 
 	/* Given turning radius and orientation of the plane, calculate 
 	next collision avoidance waypoint*/
-	ROS_WARN("-----------------------------------------------------");
 	AU_UAV_ROS::waypoint plane1WP = calculateWaypoint(plane1, turningRadius, turnRight);
 
 	/* Cooperative planning*/
@@ -166,7 +167,7 @@ AU_UAV_ROS::threatContainer AU_UAV_ROS::findGreatestThreat(PlaneObject &plane1, 
 		separation, and the time to go is the least so far, then avoid this plane*/
 		if(zeroEffortMiss <= DANGER_ZEM && timeToGo < minimumTimeToGo && timeToGo > 0){
 			// If the plane is behind you, don't avoid it
-			if ( fabs(plane2.findAngle(plane1)*180/PI - toCartesian(plane1.getCurrentBearing())) > 20.0) {
+			if ( fabs(plane2.findAngle(plane1)*180/PI - toCartesian(plane1.getCurrentBearing())) > 35.0) {
 				timeToDest = plane1.findDistance(plane1.getDestination().latitude, 
 					plane1.getDestination().longitude) / MPS_SPEED;
 				/* If you're close to your destination and the other plane isn't

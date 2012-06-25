@@ -38,7 +38,7 @@ bool AU_UAV_ROS::PlaneCoordinator::goToPoint(struct AU_UAV_ROS::waypoint receive
 	if(isNewQueue)
 	{
 		std::list<struct AU_UAV_ROS::waypoint> emptyQueue;
-		ROS_WARN("New Queue | isAvoidanceManeuver = %d | Waypoint Lat: %f | Lon: %f", isAvoidanceManeuver, receivedPoint.latitude, receivedPoint.longitude);
+		
 		//always clear the avoidance path if we say to do a new queue
 		this->avoidancePath = emptyQueue;
 		

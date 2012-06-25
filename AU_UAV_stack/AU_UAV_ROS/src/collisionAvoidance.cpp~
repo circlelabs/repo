@@ -72,8 +72,6 @@ double distance(struct waypoint first, struct waypoint second)
 }
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 /* ROS service clients for calling services from the coordinator */
 ros::ServiceClient goToWaypointClient;
 ros::ServiceClient requestWaypointInfoClient;
@@ -121,6 +119,7 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr &msg)
 	int planeID = msg->planeID;
 	/* Instantiate services for use later, and get planeID*/
 	AU_UAV_ROS::GoToWaypoint goToWaypointSrv;
+	AU_UAV_ROS::GoToWaypoint goToWaypointSrv2;
 	AU_UAV_ROS::RequestWaypointInfo requestWaypointInfoSrv;
 	
 
@@ -227,23 +226,23 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr &msg)
 		//ROS_WARN("Plane%d sent lat: %f lon: %f w/ act lat: %f lon: %f", goToWaypointSrv.request.planeID, goToWaypointSrv.request.latitude, goToWaypointSrv.request.longitude, planes[bothNewWaypoints.plane2ID].getCurrentLoc().latitude, planes[bothNewWaypoints.plane2ID].getCurrentLoc().longitude);
 
 /////////////////////////////////////////////////////////////////////////////
-	double lat1 = planes[bothNewWaypoints.plane2ID].getCurrentLoc().latitude*DEGREES_TO_RADIANS;
-	double lat2 = newWaypoint2.latitude*DEGREES_TO_RADIANS;
-	double long1 = planes[bothNewWaypoints.plane2ID].getCurrentLoc().longitude*DEGREES_TO_RADIANS;
-	double long2 = newWaypoint2.longitude*DEGREES_TO_RADIANS;	
+		double lat1 = planes[bothNewWaypoints.plane2ID].getCurrentLoc().latitude*DEGREES_TO_RADIANS;
+		double lat2 = newWaypoint2.latitude*DEGREES_TO_RADIANS;
+		double long1 = planes[bothNewWaypoints.plane2ID].getCurrentLoc().longitude*DEGREES_TO_RADIANS;
+		double long2 = newWaypoint2.longitude*DEGREES_TO_RADIANS;	
 
-	double deltaLat = lat2 - lat1;
-	double deltaLong = long2 - long1;
+		double deltaLat = lat2 - lat1;
+		double deltaLong = long2 - long1;
 
-	double y = sin(deltaLong)*cos(lat2);
-	double x = cos(lat1)*sin(lat2) - sin(lat1)*cos(lat2)*cos(deltaLong);
-	double bearing = atan2(y, x)*RADIANS_TO_DEGREES;
+		double y = sin(deltaLong)*cos(lat2);
+		double x = cos(lat1)*sin(lat2) - sin(lat1)*cos(lat2)*cos(deltaLong);
+		double bearing = atan2(y, x)*RADIANS_TO_DEGREES;
 
 
 		ROS_WARN("Plane%d new bearing: %f, %f", bothNewWaypoints.plane2ID, 
-			toCardinal( findAngle(planes[bothNewWaypoints.plane2ID].getCurrentLoc().latitude, planes[bothNewWaypoints.plane2ID].getCurrentLoc().longitude, newWaypoint2.latitude, newWaypoint2.longitude)), bearing);
+			toCardinal( findAngle(planes[bothNewWaypoints.plane2ID].getCurrentLoc().latitude, planes[bothNewWaypoints.plane2ID].getCurrentLoc().longitude, goToWaypointSrv.request.latitude, goToWaypointSrv.request.longitude)), bearing);
 
-
+		
 		if (goToWaypointClient.call(goToWaypointSrv)){
 			count++;
 			ROS_INFO("Received response from service request %d", (count-1));
@@ -251,7 +250,18 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr &msg)
 		else{
 			ROS_ERROR("Did not receive response");
 		}
+		
+		
+		requestWaypointInfoSrv.request.planeID = bothNewWaypoints.plane2ID;
+		requestWaypointInfoSrv.request.isAvoidanceWaypoint = true;
+		requestWaypointInfoSrv.request.positionInQueue = 0;
 
+		if (requestWaypointInfoClient.call(requestWaypointInfoSrv)){
+			ROS_WARN("%f, %f / %f, %f", planes[bothNewWaypoints.plane2ID].getCurrentLoc().latitude, planes[bothNewWaypoints.plane2ID].getCurrentLoc().longitude, requestWaypointInfoSrv.response.latitude, requestWaypointInfoSrv.response.longitude);
+		}
+		
+	
+	
 	}
 	
 	if ((requestWaypointInfoSrv.response.longitude == newWaypoint.longitude) 
@@ -269,7 +279,9 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr &msg)
 
 
 	//ROS_WARN("Plane%d sent lat: %f lon: %f w/ act lat: %f lon: %f", goToWaypointSrv.request.planeID, goToWaypointSrv.request.latitude, goToWaypointSrv.request.longitude, planes[planeID].getCurrentLoc().latitude, planes[planeID].getCurrentLoc().longitude);
-	ROS_WARN("Plane%d new bearing: %f Distance: %f", planeID, toCardinal( findAngle(planes[planeID].getCurrentLoc().latitude,planes[planeID].getCurrentLoc().longitude, newWaypoint.latitude, newWaypoint.longitude)), findDistance(planes[planeID].getCurrentLoc().latitude,planes[planeID].getCurrentLoc().longitude, newWaypoint.latitude, newWaypoint.longitude) );
+	ROS_WARN("Plane%d new bearing: %f Distance: %f", planeID, toCardinal( findAngle(planes[planeID].getCurrentLoc().latitude,planes[planeID].getCurrentLoc().longitude, goToWaypointSrv.request.latitude, goToWaypointSrv.request.longitude)), findDistance(planes[planeID].getCurrentLoc().latitude,planes[planeID].getCurrentLoc().longitude, goToWaypointSrv.request.latitude, goToWaypointSrv.request.longitude) );
+
+	ROS_WARN("%f, %f / %f, %f", planes[planeID].getCurrentLoc().latitude,planes[planeID].getCurrentLoc().longitude, goToWaypointSrv.request.latitude, goToWaypointSrv.request.longitude);
 
 	if (goToWaypointClient.call(goToWaypointSrv)){
 		count++;
@@ -280,6 +292,13 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr &msg)
 		ROS_ERROR("Did not receive response");
 	}
 
+	requestWaypointInfoSrv.request.planeID = planeID;
+	requestWaypointInfoSrv.request.isAvoidanceWaypoint = true;
+	requestWaypointInfoSrv.request.positionInQueue = 0;
+
+	if (requestWaypointInfoClient.call(requestWaypointInfoSrv)){
+		ROS_WARN("%f, %f / %f, %f", planes[planeID].getCurrentLoc().latitude, planes[planeID].getCurrentLoc().longitude, requestWaypointInfoSrv.response.latitude, requestWaypointInfoSrv.response.longitude);
+	}
 
 
 

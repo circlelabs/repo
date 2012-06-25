@@ -45,23 +45,43 @@
 
 
 
-
+	AU_UAV_ROS::coordinate turningCircleCenter = calculateCircleCenter(plane1, turningRadius, turnRight);
 	AU_UAV_ROS::waypoint wp;	
-	double V = MPS_SPEED;
-	double delta_T = TIME_STEP;	
-	double cartBearing = toCartesian(plane1.getCurrentBearing())* PI/180;
-	double delta_psi = V / turningRadius * delta_T;
-	if (turnRight) delta_psi *= -1.0;
-	ROS_WARN("Delta psi: %f", delta_psi);
-	double psi = (cartBearing + delta_psi);
-	wp.longitude = plane1.getCurrentLoc().longitude + V*cos(psi)/DELTA_LON_TO_METERS;
-	wp.latitude = plane1.getCurrentLoc().latitude + V*sin(psi)/DELTA_LAT_TO_METERS;
-	wp.altitude = plane1.getCurrentLoc().altitude;
+	double maxTurnAngle = PLANE_MAX_TURN_ANGLE;
+	double r0 = turningRadius; //radius of turning circle
+	double r1 = MPS_SPEED*TIME_STEP; //distance travelled in one time step
+	double d = turningRadius; //distance between circle centers
+	double a = (pow(r0, 2) - pow(r1, 2) + pow(d, 2)) / (2 * d);
+	double h = sqrt(pow(r0, 2) - pow(a, 2));
 
-	//ROS_WARN("Plane%d calc lat: %f lon: %f w/ act lat: %f lon: %f", plane1.getID(), wp.latitude, wp.longitude, plane1.getCurrentLoc().latitude, plane1.getCurrentLoc().longitude);
+	// Using turningCircleCenter as origin
+	double x0 = 0;
+	double y0 = 0;
+
+	double x1 = (plane1.getCurrentLoc().longitude - turningCircleCenter.longitude) * DELTA_LON_TO_METERS;
+	double y1 = (plane1.getCurrentLoc().latitude - turningCircleCenter.latitude) * DELTA_LAT_TO_METERS;
+
+	double x2 = x0 + a * (x1 - x0) / d;
+	double y2 = y0 + a * (y1 - y0) / d;
+
+	double x3 = x2 + h * (y1 - y0) / d;
+	double y3 = y2 - h * (x1 - x0) / d;
+
+	if (fabs(manipulateAngle(toCartesian(plane1.getCurrentBearing()) - atan2((y3-y1),(x3-x1))*180/PI)) > maxTurnAngle) {
+		x3 = x2 - h * (y1 - y0) / d;
+		y3 = y2 + h * (x1 - x0) / d;
+	}
+
+	wp.latitude = turningCircleCenter.latitude + y3/DELTA_LAT_TO_METERS;
+	wp.longitude = turningCircleCenter.longitude + x3/DELTA_LON_TO_METERS;
+	wp.altitude = plane1.getCurrentLoc().altitude;	
+
+
 	ROS_WARN("Plane%d new cbearing: %f", plane1.getID(), toCardinal( findAngle(plane1.getCurrentLoc().latitude, plane1.getCurrentLoc().longitude, wp.latitude, wp.longitude) ) ); 
 
+	
 	return wp;
+
 
 
 
