@@ -152,7 +152,7 @@ double AU_UAV_ROS::PlaneObject::findDistance(double lat2, double lon2) const {
 /* Find Cartesian angle between this plane and another plane, using this plane
 as the origin */
 double AU_UAV_ROS::PlaneObject::findAngle(const AU_UAV_ROS::PlaneObject& plane) const {
-	return findAngle(plane.currentLoc.latitude, plane.currentLoc.longitude);
+	return this->findAngle(plane.currentLoc.latitude, plane.currentLoc.longitude);
 }
 
 /* Find Cartesian angle between this plane and another plane's latitude/longitude 

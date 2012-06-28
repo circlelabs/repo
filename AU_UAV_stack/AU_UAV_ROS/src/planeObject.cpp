@@ -88,7 +88,8 @@ void AU_UAV_ROS::PlaneObject::updateTime(void) {
 
 void AU_UAV_ROS::PlaneObject::update(const AU_UAV_ROS::TelemetryUpdate &msg) {
 
-	this->setTargetBearing(msg.targetBearing);
+	this->setPreviousLoc(this->currentLoc.latitude, this->currentLoc.longitude, this->currentLoc.altitude);
+	this->setCurrentLoc(msg.currentLatitude, msg.currentLongitude, msg.currentAltitude);
 
 	//Calculate actual Cardinal Bearing
 	double numerator = (this->currentLoc.latitude - this->previousLoc.latitude);
@@ -96,8 +97,7 @@ void AU_UAV_ROS::PlaneObject::update(const AU_UAV_ROS::TelemetryUpdate &msg) {
 	double angle = atan2(numerator*DELTA_LAT_TO_METERS,denominator*DELTA_LON_TO_METERS)*180/PI;
 	this->setCurrentBearing(toCardinal(angle));
 
-	this->setPreviousLoc(this->currentLoc.latitude, this->currentLoc.longitude, this->currentLoc.altitude);
-	this->setCurrentLoc(msg.currentLatitude, msg.currentLongitude, msg.currentAltitude);
+	this->setTargetBearing(msg.targetBearing);
 	this->setSpeed(msg.groundSpeed);
 	this->updateTime();
 }
